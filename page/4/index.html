@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/数据管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Neo4j/neo4j/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/docker/数据管理/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/Neo4j/neo4j/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -375,7 +375,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 09:38:04" itemprop="dateModified" datetime="2019-04-26T09:38:04+08:00">2019-04-26</time>
+                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
               
             
           </span>
@@ -411,972 +411,77 @@
       
         
           
-            <p>Docker 通过两种方式来进行数据管理：数据卷、挂载主机目录。</p>
-<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>创建一个数据卷：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume create my-vol</span><br></pre></td></tr></table></figure>
-
-<p>查看所有的数据卷：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume ls</span><br></pre></td></tr></table></figure>
-
-<p>查看指定数据卷的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume inspect my-vol</span><br></pre></td></tr></table></figure>
-
-<p>在用 <code>docker run</code> 命令的时候，使用 <code>--mount</code> 标记来将数据卷挂载到容器里：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v my-vol:/wepapp \</span><br><span class="line">    --mount source=my-vol,target=/webapp \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
-
-<p>删除数据卷：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume rm my-vol</span><br></pre></td></tr></table></figure>
-
-<p>数据卷生命周期独立于容器。</p>
-<p>如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 docker rm -v 这个命令。</p>
-<p>清理无主的数据卷：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume prune</span><br></pre></td></tr></table></figure>
-
-<h3 id="挂载主机目录或文件"><a href="#挂载主机目录或文件" class="headerlink" title="挂载主机目录或文件"></a>挂载主机目录或文件</h3><p>使用 <code>--mount</code> 标记把一个本地主机目录或文件挂载到容器中去：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v /src/webapp:/opt/webapp \</span><br><span class="line">    --mount type=bind,source=/src/webapp,target=/opt/webapp \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
-
-<p>Docker 挂载主机目录的默认权限是 读写，可以通过增加 <code>readonly</code> 指定为 <code>只读</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v /src/webapp:/opt/webapp:ro \</span><br><span class="line">    --mount type=bind,source=/src/webapp,target=/opt/webapp,readonly \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/操作 Docker 容器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/docker/操作 Docker 容器/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-25 23:03:47" itemprop="dateModified" datetime="2019-04-25T23:03:47+08:00">2019-04-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-新建并启动"><a href="#1-新建并启动" class="headerlink" title="1. 新建并启动"></a>1. 新建并启动</h2><p>下面的命令输出一个 “Hello World”，之后终止容器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run ubuntu:18.04 /bin/echo &apos;Hello world&apos;</span><br></pre></td></tr></table></figure>
-
-<p>下面的命令则启动一个 bash 终端，允许用户进行交互。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>其中，<code>-t</code> 选项让Docker分配一个伪终端并绑定到容器的标准输入上，<code>-i</code> 则让容器的标准输入保持打开。</p>
-<p>自定义容器名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name=myname -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-后台运行"><a href="#2-后台运行" class="headerlink" title="2. 后台运行"></a>2. 后台运行</h2><p><code>Ctrl+P Ctrl+Q</code> 把交互式的容器转到后台，<code>exit</code> 退出交互式容器。</p>
-<p>让 Docker 在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 <code>-d</code> 参数来实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d ubuntu:18.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</span><br><span class="line">77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a</span><br></pre></td></tr></table></figure>
-
-<p>此时容器会在后台运行并不会把输出的结果打印到宿主机上面(输出结果可以用 docker logs 查看)。</p>
-<h2 id="3-查看所有容器"><a href="#3-查看所有容器" class="headerlink" title="3. 查看所有容器"></a>3. 查看所有容器</h2><p>查看正在运行的容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br><span class="line">或</span><br><span class="line">$ docker container ls</span><br></pre></td></tr></table></figure>
-
-<p>查看所有的容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps -a</span><br><span class="line">或</span><br><span class="line">$ docker container ls -a</span><br></pre></td></tr></table></figure>
-
-<p>获取容器的输出信息:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker container logs [-f][-t][--tail] [container ID or NAMES]</span><br><span class="line">    [-f]     跟踪容器的输出</span><br><span class="line">    [-t]     显示容器的输出的时间</span><br><span class="line">    [--tail 10]  显示容器最后10条输出</span><br></pre></td></tr></table></figure>
-
-<p>查看容器中运行的进程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container top [container ID or NAMES]</span><br></pre></td></tr></table></figure>
-
-<p>查看容器详细信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect [container ID or NAMES]</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-终止、启动、进入容器"><a href="#4-终止、启动、进入容器" class="headerlink" title="4. 终止、启动、进入容器"></a>4. 终止、启动、进入容器</h2><p>使用 <code>docker container stop [container ID or NAMES]</code> 来终止一个运行中的容器，也可以使用 <code>kill</code> 来强制终止。</p>
-<p>利用 <code>docker container start [-i] [container ID or NAMES]</code> 命令，将一个已经终止的容器启动运行，<code>-i</code> 表示以交互的方式启动。</p>
-<p>使用 <code>exec</code> 命令进入容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it [container ID or NAMES] bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-导出和导入容器"><a href="#5-导出和导入容器" class="headerlink" title="5. 导出和导入容器"></a>5. 导出和导入容器</h2><p>导出容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker export [container ID or NAMES] &gt; ubuntu.tar</span><br></pre></td></tr></table></figure>
-
-<p>导入容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ubuntu.tar | docker import - test/ubuntu:v1.0</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-删除容器"><a href="#6-删除容器" class="headerlink" title="6. 删除容器"></a>6. 删除容器</h2><p>删除容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container rm  [container ID or NAMES]</span><br></pre></td></tr></table></figure>
-
-<p>如果要删除一个运行中的容器，可以添加 -f 参数。</p>
-<p>清理所有处于终止状态的容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container prune</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/使用镜像/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/docker/使用镜像/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-28 09:21:45" itemprop="dateModified" datetime="2019-04-28T09:21:45+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-获取镜像"><a href="#1-获取镜像" class="headerlink" title="1. 获取镜像"></a>1. 获取镜像</h2><p>获取镜像的命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</span><br></pre></td></tr></table></figure>
-
-<p>如果没有仓库名，默认仓库为 Docker Hub，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm \</span><br><span class="line">    ubuntu:18.04 \</span><br><span class="line">    bash</span><br></pre></td></tr></table></figure>
+            <h1 id="neo4j"><a href="#neo4j" class="headerlink" title="neo4j"></a>neo4j</h1><h2 id="neo4j-1"><a href="#neo4j-1" class="headerlink" title="neo4j"></a>neo4j</h2><ul>
+<li>边没有方向之分。</li>
+<li>支持的类型有：<ul>
+<li>Number: Integer, Float</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Spatial types: Point</li>
+<li>Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration</li>
+</ul>
+</li>
+<li>一个节点能有多个 label 。</li>
+</ul>
+<h2 id="Cypher"><a href="#Cypher" class="headerlink" title="Cypher"></a>Cypher</h2><ul>
+<li>允许对将模式（pattern）赋值给变量：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acted_in = (:Person)-[:ACTED_IN]-&gt;(:Movie)</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>-it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端。</li>
-<li>–rm：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。</li>
-<li>ubuntu:18.04：这是指用 ubuntu:18.04 镜像为基础来启动容器。</li>
-<li>bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash。</li>
+<li>我们可以将变量分配给节点和关系，并在以后使用它们，无论它们是创建还是匹配。</li>
 </ul>
-<h2 id="2-列出镜像"><a href="#2-列出镜像" class="headerlink" title="2. 列出镜像"></a>2. 列出镜像</h2><p>列表包含了 <code>仓库名</code>、<code>标签</code>、<code>镜像 ID</code>、<code>创建时间</code> 以及 <code>所占用的空间</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br></pre></td></tr></table></figure>
+<h3 id="1-创建数据"><a href="#1-创建数据" class="headerlink" title="1. 创建数据"></a>1. 创建数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE (:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line"></span><br><span class="line">CREATE (p:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">CREATE (a:Person &#123; name:&quot;Tom Hanks&quot;,born:1956 &#125;)-[r:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(m:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (d:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)-[:DIRECTED]-&gt;(m)</span><br><span class="line">RETURN a,d,r,m</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker system df</span><br></pre></td></tr></table></figure>
+<p>最后一句将创建如图所示的图：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-b3411d1d.svg" alt="image"></p>
+<h3 id="2-匹配模式"><a href="#2-匹配模式" class="headerlink" title="2. 匹配模式"></a>2. 匹配模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie)</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Keanu Reeves&quot; &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN m.title, r.roles</span><br></pre></td></tr></table></figure>
 
-<h3 id="虚悬镜像"><a href="#虚悬镜像" class="headerlink" title="虚悬镜像"></a>虚悬镜像</h3><p>既没有仓库名，也没有标签，均为 <none> 的镜像。显示虚悬镜像：</none></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -f dangling=true</span><br></pre></td></tr></table></figure>
+<p>查找语句最后必须加上 <strong>RETURN</strong> 语句。</p>
+<h3 id="3-附加结构"><a href="#3-附加结构" class="headerlink" title="3. 附加结构"></a>3. 附加结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">CREATE (m:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (p)-[r:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(m)</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
 
-<p>虚悬镜像没有用，可以使用如下命令删除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
+<p>将添加 Cloud Atlas 作为 Tom Hanks 的新电影：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-36eb9048.svg" alt="image"></p>
+<h3 id="4-完成模式"><a href="#4-完成模式" class="headerlink" title="4. 完成模式"></a>4. 完成模式</h3><p><strong>MERGE</strong> 相当于是 <strong>MATCH</strong> 和 <strong>CREATE</strong> 的组合，如果我们不确定图中是否包含节点，可以用 <strong>MERGE</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MERGE (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">ON CREATE SET m.released = 2012</span><br><span class="line">RETURN m</span><br></pre></td></tr></table></figure>
 
-<h3 id="中间层镜像"><a href="#中间层镜像" class="headerlink" title="中间层镜像"></a>中间层镜像</h3><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -a</span><br></pre></td></tr></table></figure>
+<p><strong>MERGE</strong> 还可以声明只创建一次关系:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">MERGE (p)-[r:ACTED_IN]-&gt;(m)</span><br><span class="line">ON CREATE SET r.roles =[&apos;Zachry&apos;]</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
 
-<h3 id="列出部分镜像"><a href="#列出部分镜像" class="headerlink" title="列出部分镜像"></a>列出部分镜像</h3><p>根据仓库名列出镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<p>如果只从前一个子句传入一个节点，<strong>MERGE</strong> 将仅在所提供节点的直接邻域内匹配，并且如果未找到则创建它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE (y:Year &#123; year:2014 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m10:Month &#123; month:10 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m11:Month &#123; month:11 &#125;)</span><br><span class="line">RETURN y,m10,m11</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-删除本地镜像"><a href="#3-删除本地镜像" class="headerlink" title="3. 删除本地镜像"></a>3. 删除本地镜像</h2><p>可以使用 docker image rm 命令，其格式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br></pre></td></tr></table></figure>
+<p>创建了下面的图结构：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-199ba358.svg" alt="image"></p>
+<p>不会全局搜索两个Month节点，仅在2014年节点的上下文中搜索。</p>
+<h3 id="5-结果处理"><a href="#5-结果处理" class="headerlink" title="5. 结果处理"></a>5. 结果处理</h3><p>对于图：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc--ee5ee0f8.svg" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE (matrix:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line">CREATE (cloudAtlas:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (forrestGump:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (keanu:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">CREATE (robert:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)</span><br><span class="line">CREATE (tom:Person &#123; name:&quot;Tom Hanks&quot;, born:1956 &#125;)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(forrestGump)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(cloudAtlas)</span><br><span class="line">CREATE (robert)-[:DIRECTED]-&gt;(forrestGump)</span><br></pre></td></tr></table></figure>
 
-<p>可以用 <code>ID</code>、<code>镜像名</code>、<code>摘要</code> 代表镜像，然后删除镜像。<code>docker image ls</code> 默认列出的就已经是短 <code>ID</code> ，一般取前3个字符以上，只要足够区分于别的镜像就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 501</span><br></pre></td></tr></table></figure>
-
-<p>上面的命令删除 <code>ID</code> 前三位为 501 的镜像。</p>
-<h2 id="4-docker-commit-命令"><a href="#4-docker-commit-命令" class="headerlink" title="4. docker commit 命令"></a>4. docker commit 命令</h2><p>容器修改镜像之上存储层，而镜像是多层的叠加，通过 <code>docker commit</code> 命令，可以把容器层叠加到镜像之上形成新的容器。但是并不推荐怎么做，因为这会找出许多的冗余。该命令适合一些特殊的应用场合，比如被入侵后保存现场等。</p>
-<p>通过 <code>docker diff [container id]</code> 命令可以查看容器对存储层的修改信息。</p>
-<p>通过如下命令将容器保存为镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</span><br></pre></td></tr></table></figure>
-
-<p>查看镜像的历史记录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker history [image id]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/使用网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/docker/使用网络/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-27 10:56:56" itemprop="dateModified" datetime="2019-04-27T10:56:56+08:00">2019-04-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h2><h3 id="映射端口"><a href="#映射端口" class="headerlink" title="映射端口"></a>映射端口</h3><p>当使用大写 <code>-P</code> 标记时，Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
-
-<p>小写 <code>-p</code> 则可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。<code>-p</code> 标记可以多次使用来绑定多个端口。</p>
-<p>使用 hostPort:containerPort 格式把本地的 5000 端口映射到容器的 5000 端口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 5000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
-
-<p>使用 ip::containerPort 绑定 localhost 的任意端口到容器的 5000 端口，本地主机会自动分配一个端口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1::5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h3><p>使用 docker port 来查看当前映射的端口配置，也可以查看到绑定的地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker port [container] 5000</span><br></pre></td></tr></table></figure>
-
-<h2 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h2><p>将容器加入自定义的 Docker 网络来实现容器互联。</p>
-<h3 id="新建网络"><a href="#新建网络" class="headerlink" title="新建网络"></a>新建网络</h3><p>创建一个新的 Docker 网络：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d bridge my-net</span><br></pre></td></tr></table></figure>
-
-<h3 id="连接容器"><a href="#连接容器" class="headerlink" title="连接容器"></a>连接容器</h3><p>运行一个容器并连接到新建的 my-net 网络：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name busybox1 --network my-net busybox sh</span><br></pre></td></tr></table></figure>
-
-<p>打开新的终端，再运行一个容器并加入到 my-net 网络：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name busybox2 --network my-net busybox sh</span><br></pre></td></tr></table></figure>
-
-<p>互 <code>ping</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ping busybox2</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/docker安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/docker/docker安装/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-25 17:19:38" itemprop="dateModified" datetime="2019-04-25T17:19:38+08:00">2019-04-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ubuntu-16-04"><a href="#ubuntu-16-04" class="headerlink" title="ubuntu 16.04+"></a>ubuntu 16.04+</h1><h2 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
-
-<p>添加国内软件源的 GPG 密钥:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<p>向 source.list 中添加 Docker 国内软件源:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">    &quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \</span><br><span class="line">    $(lsb_release -cs) \</span><br><span class="line">    stable&quot;</span><br></pre></td></tr></table></figure>
-
-<p>更新 apt 软件包缓存，并安装 docker-ce:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
-
-<p>启动 Docker CE:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-
-<p>将当前用户加入 docker 组:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
-
-<p>退出当前终端并重新登录，测试 Docker 是否安装:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置镜像加速器"><a href="#配置镜像加速器" class="headerlink" title="配置镜像加速器"></a>配置镜像加速器</h2><p>在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>之后重新启动服务:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/使用 Dockerfile 定制镜像/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/docker/使用 Dockerfile 定制镜像/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-28 10:20:38" itemprop="dateModified" datetime="2019-04-28T10:20:38+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Dockerfile-文本"><a href="#1-Dockerfile-文本" class="headerlink" title="1. Dockerfile 文本"></a>1. Dockerfile 文本</h2><p>Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
-<p>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">RUN echo &apos;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&apos; &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
-
-<p>我们都是在基础镜像之上构建新镜像，因此一个 Dockerfile 中 <code>FROM</code> 是必备的指令，并且必须是第一条指令。</p>
-<p><code>RUN</code> 是在基础进行之上用来执行命令的，有两种格式：</p>
 <ul>
-<li><em>shell</em> 格式：<code>RUN &lt;命令&gt;</code>，就像直接在命令行中输入的命令一样。</li>
-<li><em>exec</em> 格式：<code>RUN [&quot;可执行文件&quot;, &quot;参数1&quot;, &quot;参数2&quot;]</code>，这更像是函数调用中的格式。</li>
+<li><strong>WHERE</strong> 结果过滤</li>
 </ul>
-<p>每一个 <code>RUN</code> 都会新建一层，当我们要用多个 <code>RUN</code> 来完成一件事时我们可以变换如下写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y gcc libc6-dev make wget</span><br><span class="line">RUN wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot;</span><br><span class="line">RUN mkdir -p /usr/src/redis</span><br><span class="line">RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1</span><br><span class="line">RUN make -C /usr/src/redis</span><br><span class="line">RUN make -C /usr/src/redis install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 通过 m 的属性过滤</span><br><span class="line">MATCH (m:Movie)</span><br><span class="line">WHERE m.title = &quot;The Matrix&quot;</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line"># 加了正则</span><br><span class="line">MATCH (p:Person)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">WHERE p.name =~ &quot;K.+&quot; OR m.released &gt; 2000 OR &quot;Neo&quot; IN r.roles</span><br><span class="line">RETURN p,r,m</span><br><span class="line"></span><br><span class="line"># WHERE 后加了 NOT</span><br><span class="line">MATCH (p:Person)-[:ACTED_IN]-&gt;(m)</span><br><span class="line">WHERE NOT (p)-[:DIRECTED]-&gt;()</span><br><span class="line">RETURN p,m</span><br></pre></td></tr></table></figure>
 
-<p>为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN buildDeps=&apos;gcc libc6-dev make wget&apos; \</span><br><span class="line">    &amp;&amp; apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y $buildDeps \</span><br><span class="line">    &amp;&amp; wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot; \</span><br><span class="line">    &amp;&amp; mkdir -p /usr/src/redis \</span><br><span class="line">    &amp;&amp; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis install \</span><br><span class="line">    # 清理不需要的东西</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm redis.tar.gz \</span><br><span class="line">    &amp;&amp; rm -r /usr/src/redis \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以使用一些函数对结果进行<strong>变换、聚合</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">names[0]</span><br><span class="line">length(array)</span><br><span class="line">toInteger(&quot;12&quot;)</span><br><span class="line">count</span><br><span class="line">sum</span><br><span class="line">avg</span><br><span class="line">min</span><br><span class="line">max</span><br><span class="line"></span><br><span class="line">MATCH (p:Person)</span><br><span class="line">RETURN p, p.name AS name, toUpper(p.name)</span><br><span class="line"></span><br><span class="line">MATCH (:Person)</span><br><span class="line">RETURN count(*) AS people</span><br><span class="line"></span><br><span class="line"># 聚会唯一值使用 DISTINCT</span><br><span class="line">count(DISTINCT role)</span><br></pre></td></tr></table></figure>
 
-<p>之前所有的命令只有一个目的，就是编译、安装 redis 可执行文件。因此没有必要建立很多层，通过下面这种写法只新建了一层。</p>
-<p>Dockerfile 支持 Shell 类的行尾添加 <code>\</code> 的命令换行方式，以及行首 <code>#</code> 进行注释的格式。</p>
-<p>这一组命令的最后还添加了<strong>清理工作</strong>的命令，删除了为了编译构建所需要的软件，清理了所有下载、展开的文件，并且还清理了<code>apt</code> 缓存文件。</p>
-<h2 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2. 构建镜像"></a>2. 构建镜像</h2><p>可以在 Dockerfile 所在的文件目录执行如下命名构建镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># docker build [选项] &lt;上下文路径/URL/-&gt;</span><br><span class="line">$ docker build -t nginx:v3 .</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <strong>ORDER BY</strong> 对结果排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person)-[:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN a</span><br><span class="line">ORDER BY a.born</span><br></pre></td></tr></table></figure>
 
-<p>这里我们通过 <code>-t nginx:v3</code> 命令指定了新镜像的名称，命令末尾的 <code>.</code> 表示当前文件目录，也是指定的<strong>上下文</strong>目录。</p>
-<p>我们在构建镜像时，其实是通过把 Dockerfile 和<strong>上下文</strong>目录中的文件传给远程服务器的 Docker 引擎进行构建的。</p>
-<p>如果在 Dockerfile 中这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY ./package.json /app/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>聚合函数 <strong>collect()</strong> ，将所有聚合值收集到列表中：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在我们的数据库中检索每部电影的演员表</span><br><span class="line">MATCH (m:Movie)&lt;-[:ACTED_IN]-(a:Person)</span><br><span class="line">RETURN m.title AS movie, collect(a.name) AS cast</span><br></pre></td></tr></table></figure>
 
-<p>表示把<strong>上下文</strong>目录中的 <code>package.json</code> 文件复制到镜像中的 <code>/app/</code> 目录。</p>
-<p>通常<strong>上下文</strong>目录包含 Deckerfile 和构建镜像必要的文件。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 <code>.gitignore</code> 一样的语法写一个 <code>.dockerignore</code>，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。</p>
-<p>另外 docker build 还支持从 <code>URL</code> 构建。</p>
-
+<h3 id="6-约束"><a href="#6-约束" class="headerlink" title="6. 约束"></a>6. 约束</h3><ul>
+<li>可以指定唯一约束，以保证具有特定标签的节点上某个属性的唯一性，MERGE 子句也使用这些约束来确保节点只存在一次。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每个Movie节点都应该有一个唯一的标题</span><br><span class="line">CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1432,7 +537,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/@property/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/linux/Ubuntu 18.04安装JDK8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1452,7 +557,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/python3/@property/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/linux/Ubuntu 18.04安装JDK8/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1494,7 +599,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-29 19:25:55" itemprop="dateModified" datetime="2019-04-29T19:25:55+08:00">2019-04-29</time>
+                <time title="修改时间：2018-08-12 09:24:43" itemprop="dateModified" datetime="2018-08-12T09:24:43+08:00">2018-08-12</time>
               
             
           </span>
@@ -1530,8 +635,23 @@
       
         
           
-            <p>Python 内置的 <code>@property</code> 装饰器可以把一个方法变成属性调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Student(object):</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def score(self):</span><br><span class="line">        return self._score</span><br><span class="line"></span><br><span class="line">    @score.setter</span><br><span class="line">    def score(self, value):</span><br><span class="line">        if not isinstance(value, int):</span><br><span class="line">            raise ValueError(&apos;score must be an integer!&apos;)</span><br><span class="line">        if value &lt; 0 or value &gt; 100:</span><br><span class="line">            raise ValueError(&apos;score must between 0 ~ 100!&apos;)</span><br><span class="line">        self._score = value</span><br><span class="line"></span><br><span class="line">s = Student()</span><br><span class="line">s.score = 60  # OK，实际转化为s.set_score(60)</span><br><span class="line">print(s.score)  # OK，实际转化为s.get_score()</span><br><span class="line">s.score = 9999</span><br><span class="line"></span><br><span class="line"># Traceback (most recent call last):</span><br><span class="line">#   ...</span><br><span class="line"># ValueError: score must between 0 ~ 100!</span><br></pre></td></tr></table></figure>
+            <h2 id="JDK8-在线安装"><a href="#JDK8-在线安装" class="headerlink" title="JDK8 在线安装"></a>JDK8 在线安装</h2><ul>
+<li><p>安装 ppa</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java </span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 jdk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证安装是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果系统中安装有多个JDK版本，则如下命令设置系统默认JDK为Oracle JDK 8：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-8-oracle</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置JAVA_HOME环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /etc/profile</span><br><span class="line"></span><br><span class="line"># 编辑/etc/profile文件，在文件末尾添加如下3行：</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8-oracle</span><br><span class="line">export JRE_HOME=/usr/lib/jvm/java-8-oracle/jre</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 重新加载</span><br><span class="line">$ source /etc/profile</span><br></pre></td></tr></table></figure></li>
+</ul>
+
           
         
       
@@ -1765,178 +885,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/linux/nohup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/linux/nohup/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-08 16:46:11" itemprop="dateModified" datetime="2019-05-08T16:46:11+08:00">2019-05-08</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>nohup用于使程序在用户退出登陆、关闭终端之后仍能继续运行</li>
-<li>用法：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nohup your_command &amp; #（符号＆使程序在后台运行）</span><br><span class="line">exit #（退出nohup模式）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>启动后，会将程序运行输出记录在当前目录下的nohup.out文件下，如果当前目录不可写，则会被记录在Home目录下的nohup.out文件中</li>
-<li>自定义日志文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nohup your_command &gt; my_nohup.log 2&gt;&amp;1 &amp;</span><br><span class="line">#（将日志输出在my_nohup.log文件中，并将stderr重定</span><br><span class="line">向至stdout）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>退出nohup模式之后，停止程序：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep &quot;your_command&quot; #（查找运行该命令的进程）</span><br><span class="line">kill -9 your_command_pid #(根据进程号关闭程序)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><a href="https://www.cnblogs.com/mafeng/p/7721745.html" target="_blank" rel="noopener">参考</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/flask/使用Gunicorn运行程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2083,6 +1031,1233 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/06/技术教程/docker/2017-2-6-数据管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/06/技术教程/docker/2017-2-6-数据管理/" class="post-title-link" itemprop="url">数据管理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-06 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-06T00:00:00+08:00">2017-02-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:30:45" itemprop="dateModified" datetime="2019-06-28T14:30:45+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Docker 通过两种方式来进行数据管理：数据卷、挂载主机目录。</p>
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>创建一个数据卷：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume create my-vol</span><br></pre></td></tr></table></figure>
+
+<p>查看所有的数据卷：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume ls</span><br></pre></td></tr></table></figure>
+
+<p>查看指定数据卷的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume inspect my-vol</span><br></pre></td></tr></table></figure>
+
+<p>在用 <code>docker run</code> 命令的时候，使用 <code>--mount</code> 标记来将数据卷挂载到容器里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v my-vol:/wepapp \</span><br><span class="line">    --mount source=my-vol,target=/webapp \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
+
+<p>删除数据卷：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume rm my-vol</span><br></pre></td></tr></table></figure>
+
+<p>数据卷生命周期独立于容器。</p>
+<p>如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 docker rm -v 这个命令。</p>
+<p>清理无主的数据卷：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume prune</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载主机目录或文件"><a href="#挂载主机目录或文件" class="headerlink" title="挂载主机目录或文件"></a>挂载主机目录或文件</h3><p>使用 <code>--mount</code> 标记把一个本地主机目录或文件挂载到容器中去：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v /src/webapp:/opt/webapp \</span><br><span class="line">    --mount type=bind,source=/src/webapp,target=/opt/webapp \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
+
+<p>Docker 挂载主机目录的默认权限是 读写，可以通过增加 <code>readonly</code> 指定为 <code>只读</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P \</span><br><span class="line">    --name web \</span><br><span class="line">    # -v /src/webapp:/opt/webapp:ro \</span><br><span class="line">    --mount type=bind,source=/src/webapp,target=/opt/webapp,readonly \</span><br><span class="line">    training/webapp \</span><br><span class="line">    python app.py</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/技术教程/docker/2017-2-5-使用网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/05/技术教程/docker/2017-2-5-使用网络/" class="post-title-link" itemprop="url">使用网络</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-05T00:00:00+08:00">2017-02-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:27:22" itemprop="dateModified" datetime="2019-06-28T14:27:22+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h2><h3 id="映射端口"><a href="#映射端口" class="headerlink" title="映射端口"></a>映射端口</h3><p>当使用大写 <code>-P</code> 标记时，Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
+
+<p>小写 <code>-p</code> 则可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。<code>-p</code> 标记可以多次使用来绑定多个端口。</p>
+<p>使用 hostPort:containerPort 格式把本地的 5000 端口映射到容器的 5000 端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 5000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
+
+<p>使用 ip::containerPort 绑定 localhost 的任意端口到容器的 5000 端口，本地主机会自动分配一个端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1::5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h3><p>使用 docker port 来查看当前映射的端口配置，也可以查看到绑定的地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker port [container] 5000</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h2><p>将容器加入自定义的 Docker 网络来实现容器互联。</p>
+<h3 id="新建网络"><a href="#新建网络" class="headerlink" title="新建网络"></a>新建网络</h3><p>创建一个新的 Docker 网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d bridge my-net</span><br></pre></td></tr></table></figure>
+
+<h3 id="连接容器"><a href="#连接容器" class="headerlink" title="连接容器"></a>连接容器</h3><p>运行一个容器并连接到新建的 my-net 网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name busybox1 --network my-net busybox sh</span><br></pre></td></tr></table></figure>
+
+<p>打开新的终端，再运行一个容器并加入到 my-net 网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name busybox2 --network my-net busybox sh</span><br></pre></td></tr></table></figure>
+
+<p>互 <code>ping</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ping busybox2</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/04/技术教程/docker/2017-2-4-操作 Docker 容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/04/技术教程/docker/2017-2-4-操作 Docker 容器/" class="post-title-link" itemprop="url">操作 Docker 容器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-04T00:00:00+08:00">2017-02-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:26:39" itemprop="dateModified" datetime="2019-06-28T14:26:39+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-新建并启动"><a href="#1-新建并启动" class="headerlink" title="1. 新建并启动"></a>1. 新建并启动</h2><p>下面的命令输出一个 “Hello World”，之后终止容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run ubuntu:18.04 /bin/echo &apos;Hello world&apos;</span><br></pre></td></tr></table></figure>
+
+<p>下面的命令则启动一个 bash 终端，允许用户进行交互。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>-t</code> 选项让Docker分配一个伪终端并绑定到容器的标准输入上，<code>-i</code> 则让容器的标准输入保持打开。</p>
+<p>自定义容器名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name=myname -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-后台运行"><a href="#2-后台运行" class="headerlink" title="2. 后台运行"></a>2. 后台运行</h2><p><code>Ctrl+P Ctrl+Q</code> 把交互式的容器转到后台，<code>exit</code> 退出交互式容器。</p>
+<p>让 Docker 在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 <code>-d</code> 参数来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d ubuntu:18.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</span><br><span class="line">77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a</span><br></pre></td></tr></table></figure>
+
+<p>此时容器会在后台运行并不会把输出的结果打印到宿主机上面(输出结果可以用 docker logs 查看)。</p>
+<h2 id="3-查看所有容器"><a href="#3-查看所有容器" class="headerlink" title="3. 查看所有容器"></a>3. 查看所有容器</h2><p>查看正在运行的容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br><span class="line">或</span><br><span class="line">$ docker container ls</span><br></pre></td></tr></table></figure>
+
+<p>查看所有的容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps -a</span><br><span class="line">或</span><br><span class="line">$ docker container ls -a</span><br></pre></td></tr></table></figure>
+
+<p>获取容器的输出信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker container logs [-f][-t][--tail] [container ID or NAMES]</span><br><span class="line">    [-f]     跟踪容器的输出</span><br><span class="line">    [-t]     显示容器的输出的时间</span><br><span class="line">    [--tail 10]  显示容器最后10条输出</span><br></pre></td></tr></table></figure>
+
+<p>查看容器中运行的进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container top [container ID or NAMES]</span><br></pre></td></tr></table></figure>
+
+<p>查看容器详细信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect [container ID or NAMES]</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-终止、启动、进入容器"><a href="#4-终止、启动、进入容器" class="headerlink" title="4. 终止、启动、进入容器"></a>4. 终止、启动、进入容器</h2><p>使用 <code>docker container stop [container ID or NAMES]</code> 来终止一个运行中的容器，也可以使用 <code>kill</code> 来强制终止。</p>
+<p>利用 <code>docker container start [-i] [container ID or NAMES]</code> 命令，将一个已经终止的容器启动运行，<code>-i</code> 表示以交互的方式启动。</p>
+<p>使用 <code>exec</code> 命令进入容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it [container ID or NAMES] bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-导出和导入容器"><a href="#5-导出和导入容器" class="headerlink" title="5. 导出和导入容器"></a>5. 导出和导入容器</h2><p>导出容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker export [container ID or NAMES] &gt; ubuntu.tar</span><br></pre></td></tr></table></figure>
+
+<p>导入容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ubuntu.tar | docker import - test/ubuntu:v1.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-删除容器"><a href="#6-删除容器" class="headerlink" title="6. 删除容器"></a>6. 删除容器</h2><p>删除容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container rm  [container ID or NAMES]</span><br></pre></td></tr></table></figure>
+
+<p>如果要删除一个运行中的容器，可以添加 -f 参数。</p>
+<p>清理所有处于终止状态的容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container prune</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/03/技术教程/docker/2017-2-3-使用镜像/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/03/技术教程/docker/2017-2-3-使用镜像/" class="post-title-link" itemprop="url">使用镜像</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-03T00:00:00+08:00">2017-02-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:26:08" itemprop="dateModified" datetime="2019-06-28T14:26:08+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-获取镜像"><a href="#1-获取镜像" class="headerlink" title="1. 获取镜像"></a>1. 获取镜像</h2><p>获取镜像的命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</span><br></pre></td></tr></table></figure>
+
+<p>如果没有仓库名，默认仓库为 Docker Hub，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm \</span><br><span class="line">    ubuntu:18.04 \</span><br><span class="line">    bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端。</li>
+<li>–rm：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。</li>
+<li>ubuntu:18.04：这是指用 ubuntu:18.04 镜像为基础来启动容器。</li>
+<li>bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash。</li>
+</ul>
+<h2 id="2-列出镜像"><a href="#2-列出镜像" class="headerlink" title="2. 列出镜像"></a>2. 列出镜像</h2><p>列表包含了 <code>仓库名</code>、<code>标签</code>、<code>镜像 ID</code>、<code>创建时间</code> 以及 <code>所占用的空间</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker system df</span><br></pre></td></tr></table></figure>
+
+<h3 id="虚悬镜像"><a href="#虚悬镜像" class="headerlink" title="虚悬镜像"></a>虚悬镜像</h3><p>既没有仓库名，也没有标签，均为 <none> 的镜像。显示虚悬镜像：</none></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -f dangling=true</span><br></pre></td></tr></table></figure>
+
+<p>虚悬镜像没有用，可以使用如下命令删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
+
+<h3 id="中间层镜像"><a href="#中间层镜像" class="headerlink" title="中间层镜像"></a>中间层镜像</h3><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -a</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出部分镜像"><a href="#列出部分镜像" class="headerlink" title="列出部分镜像"></a>列出部分镜像</h3><p>根据仓库名列出镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls ubuntu:18.04</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-删除本地镜像"><a href="#3-删除本地镜像" class="headerlink" title="3. 删除本地镜像"></a>3. 删除本地镜像</h2><p>可以使用 docker image rm 命令，其格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br></pre></td></tr></table></figure>
+
+<p>可以用 <code>ID</code>、<code>镜像名</code>、<code>摘要</code> 代表镜像，然后删除镜像。<code>docker image ls</code> 默认列出的就已经是短 <code>ID</code> ，一般取前3个字符以上，只要足够区分于别的镜像就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 501</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令删除 <code>ID</code> 前三位为 501 的镜像。</p>
+<h2 id="4-docker-commit-命令"><a href="#4-docker-commit-命令" class="headerlink" title="4. docker commit 命令"></a>4. docker commit 命令</h2><p>容器修改镜像之上存储层，而镜像是多层的叠加，通过 <code>docker commit</code> 命令，可以把容器层叠加到镜像之上形成新的容器。但是并不推荐怎么做，因为这会找出许多的冗余。该命令适合一些特殊的应用场合，比如被入侵后保存现场等。</p>
+<p>通过 <code>docker diff [container id]</code> 命令可以查看容器对存储层的修改信息。</p>
+<p>通过如下命令将容器保存为镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</span><br></pre></td></tr></table></figure>
+
+<p>查看镜像的历史记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker history [image id]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/技术教程/docker/2017-2-2-使用 Dockerfile 定制镜像/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/02/技术教程/docker/2017-2-2-使用 Dockerfile 定制镜像/" class="post-title-link" itemprop="url">使用 Dockerfile 定制镜像</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-02T00:00:00+08:00">2017-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:24:28" itemprop="dateModified" datetime="2019-06-28T14:24:28+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Dockerfile-文本"><a href="#1-Dockerfile-文本" class="headerlink" title="1. Dockerfile 文本"></a>1. Dockerfile 文本</h2><p>Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">RUN echo &apos;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&apos; &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+
+<p>我们都是在基础镜像之上构建新镜像，因此一个 Dockerfile 中 <code>FROM</code> 是必备的指令，并且必须是第一条指令。</p>
+<p><code>RUN</code> 是在基础进行之上用来执行命令的，有两种格式：</p>
+<ul>
+<li><em>shell</em> 格式：<code>RUN &lt;命令&gt;</code>，就像直接在命令行中输入的命令一样。</li>
+<li><em>exec</em> 格式：<code>RUN [&quot;可执行文件&quot;, &quot;参数1&quot;, &quot;参数2&quot;]</code>，这更像是函数调用中的格式。</li>
+</ul>
+<p>每一个 <code>RUN</code> 都会新建一层，当我们要用多个 <code>RUN</code> 来完成一件事时我们可以变换如下写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y gcc libc6-dev make wget</span><br><span class="line">RUN wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot;</span><br><span class="line">RUN mkdir -p /usr/src/redis</span><br><span class="line">RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1</span><br><span class="line">RUN make -C /usr/src/redis</span><br><span class="line">RUN make -C /usr/src/redis install</span><br></pre></td></tr></table></figure>
+
+<p>为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN buildDeps=&apos;gcc libc6-dev make wget&apos; \</span><br><span class="line">    &amp;&amp; apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y $buildDeps \</span><br><span class="line">    &amp;&amp; wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot; \</span><br><span class="line">    &amp;&amp; mkdir -p /usr/src/redis \</span><br><span class="line">    &amp;&amp; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis install \</span><br><span class="line">    # 清理不需要的东西</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm redis.tar.gz \</span><br><span class="line">    &amp;&amp; rm -r /usr/src/redis \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps</span><br></pre></td></tr></table></figure>
+
+<p>之前所有的命令只有一个目的，就是编译、安装 redis 可执行文件。因此没有必要建立很多层，通过下面这种写法只新建了一层。</p>
+<p>Dockerfile 支持 Shell 类的行尾添加 <code>\</code> 的命令换行方式，以及行首 <code>#</code> 进行注释的格式。</p>
+<p>这一组命令的最后还添加了<strong>清理工作</strong>的命令，删除了为了编译构建所需要的软件，清理了所有下载、展开的文件，并且还清理了<code>apt</code> 缓存文件。</p>
+<h2 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2. 构建镜像"></a>2. 构建镜像</h2><p>可以在 Dockerfile 所在的文件目录执行如下命名构建镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># docker build [选项] &lt;上下文路径/URL/-&gt;</span><br><span class="line">$ docker build -t nginx:v3 .</span><br></pre></td></tr></table></figure>
+
+<p>这里我们通过 <code>-t nginx:v3</code> 命令指定了新镜像的名称，命令末尾的 <code>.</code> 表示当前文件目录，也是指定的<strong>上下文</strong>目录。</p>
+<p>我们在构建镜像时，其实是通过把 Dockerfile 和<strong>上下文</strong>目录中的文件传给远程服务器的 Docker 引擎进行构建的。</p>
+<p>如果在 Dockerfile 中这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY ./package.json /app/</span><br></pre></td></tr></table></figure>
+
+<p>表示把<strong>上下文</strong>目录中的 <code>package.json</code> 文件复制到镜像中的 <code>/app/</code> 目录。</p>
+<p>通常<strong>上下文</strong>目录包含 Deckerfile 和构建镜像必要的文件。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 <code>.gitignore</code> 一样的语法写一个 <code>.dockerignore</code>，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。</p>
+<p>另外 docker build 还支持从 <code>URL</code> 构建。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/01/技术教程/docker/2017-2-1-docker安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/01/技术教程/docker/2017-2-1-docker安装/" class="post-title-link" itemprop="url">docker 安装</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-01T00:00:00+08:00">2017-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 14:24:19" itemprop="dateModified" datetime="2019-06-28T14:24:19+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ubuntu-16-04"><a href="#ubuntu-16-04" class="headerlink" title="ubuntu 16.04+"></a>ubuntu 16.04+</h1><h2 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
+
+<p>添加国内软件源的 GPG 密钥:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<p>向 source.list 中添加 Docker 国内软件源:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">    &quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \</span><br><span class="line">    $(lsb_release -cs) \</span><br><span class="line">    stable&quot;</span><br></pre></td></tr></table></figure>
+
+<p>更新 apt 软件包缓存，并安装 docker-ce:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>启动 Docker CE:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<p>将当前用户加入 docker 组:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
+
+<p>退出当前终端并重新登录，测试 Docker 是否安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置镜像加速器"><a href="#配置镜像加速器" class="headerlink" title="配置镜像加速器"></a>配置镜像加速器</h2><p>在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后重新启动服务:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2152,7 +2327,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

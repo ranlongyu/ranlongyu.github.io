@@ -313,6 +313,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spark/RDD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/Spark/RDD/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-15 11:31:45" itemprop="dateModified" datetime="2018-09-15T11:31:45+08:00">2018-09-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Spark无论处理什么数据先整成一个拥有多个分块的数据集再说，这个数据集就叫RDD。</p>
+<p>RDD：是一个分布式对象集合，本质上是一个只读的分区记录集合，每个RDD可分成多个分区，每个分区就是一个数据集片段，并且一个RDD的不同分区可以被保存到集群中不同的节点上，从而可以在集群中的不同节点上进行并行计算；</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/2、Controller的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -521,7 +677,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/3、数据库操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/1、配置文件使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -541,7 +697,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/3、数据库操作/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/Spring Boot/1、配置文件使用/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -583,7 +739,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-15 17:34:17" itemprop="dateModified" datetime="2018-08-15T17:34:17+08:00">2018-08-15</time>
+                <time title="修改时间：2018-08-12 09:24:44" itemprop="dateModified" datetime="2018-08-12T09:24:44+08:00">2018-08-12</time>
               
             
           </span>
@@ -619,42 +775,369 @@
       
         
           
-            <p>JPA（Java Persistence API）定义了一系列对象持久化的标准，目前实现这一规范的产品有 Hibernate、TopLink 等，spring-data-jpa 是对 Hibernate 的整合。</p>
-<h2 id="使用-MySQL-数据库"><a href="#使用-MySQL-数据库" class="headerlink" title="使用 MySQL 数据库"></a>使用 MySQL 数据库</h2><ul>
-<li><p>添加依赖</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写配置文件</p>
-<p>  ddl-auto字段为create：在运行程序时会删除以前的数据库，然后重新创建。</p>
-<p>  ddl-auto字段为update：在运行程序时会保留以前的数据库。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//127.0.0.1:3306/dbgirl   //链接 dbgirl 这个数据库</span></span><br><span class="line">    username: username</span><br><span class="line">    password: 密码</span><br><span class="line">  jpa:</span><br><span class="line">    hibernate:</span><br><span class="line">      ddl-auto: create   <span class="comment">//注意这个字段</span></span><br><span class="line">    show-sql: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写表类</p>
-<p>  @Entity表示这个类对应数据库中的一个表。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span>   <span class="comment">//关键字段</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>   <span class="comment">//自增长，等同于 @GeneratedValue(strategy = GenerationType.AUTO)</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String cupSize;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Girl</span><span class="params">()</span> </span>&#123;   <span class="comment">//必须为无参的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCupSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cupSize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCupSize</span><span class="params">(String cupSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cupSize = cupSize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写接口</p>
-<p>  接口自动生成了18中方法，通过实例化对象就可以调用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Girl是实体名，Integer是关键字的类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GirlRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Girl</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写控制器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例化接口对象</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询女生列表</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlRepository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建一个女生</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@RequestParam(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                          @<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setCupSize(cupSize);</span><br><span class="line">        girl.setAge(age);</span><br><span class="line">        <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 查询，返回 Girl 对象</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlFindone</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlRepository.findOne(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 更新一个女生</span></span><br><span class="line">    <span class="meta">@PutMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlUpdate</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id,</span></span><br><span class="line"><span class="function">                           @<span class="title">PathVariable</span><span class="params">(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                           @<span class="title">PathVariable</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setId(id);</span><br><span class="line">        girl.setCupSize(cupSize);</span><br><span class="line">        girl.setAge(age);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 删除一个女生</span></span><br><span class="line">    <span class="meta">@DeleteMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlDelete</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        girlRepository.delete(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>控制器简化：<br>  如果方法传入的方法过多，可以直接传入对象进行简化，如下所示两个方法等价：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//创建一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Girl girlAdd(@RequestParam(&quot;cupSize&quot;) String cupSize,</span><br><span class="line">                      @RequestParam(&quot;age&quot;) Integer age)&#123;</span><br><span class="line">    Girl girl = new Girl();</span><br><span class="line">    girl.setCupSize(cupSize);</span><br><span class="line">    girl.setAge(age);</span><br><span class="line">    return girlRepository.save(girl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//创建一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Girl girlAdd(Girl girl)&#123;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    return girlRepository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果要通过 <strong>非关键字字段</strong> 来查询：</p>
-</li>
-</ul>
-<ol>
-<li><p>修改接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GirlRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Girl</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//通过年龄来查询</span></span><br><span class="line">    <span class="comment">//注意 findByAge 这个函数名必须要这么写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">findByAge</span><span class="params">(Integer age)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在控制器中添加：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过年龄来查询</span></span><br><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"girls/age"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlListByAge</span><span class="params">(@PathVariable(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> girlRepository.findByAge(age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>配置文件有 application.properties 与 application.yml 两种类型，推荐使用后面一种。</p>
+<h2 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h2><p>以 application.yml 类型为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line"></span><br><span class="line">cupSize: B</span><br><span class="line">age: 18</span><br><span class="line"></span><br><span class="line">content: &quot;cupSize: $&#123;cupSize&#125;, age: $&#123;age&#125;&quot;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
+<p>则其他地方可以这用使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;cupSize&#125;&quot;)</span><br><span class="line">private String cupSize;   //cupSize 的值为 B</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;age&#125;&quot;)</span><br><span class="line">private String age;   //age 的值为 18</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;content&#125;&quot;)</span><br><span class="line">private String content;   //content 的值为 cupSize: B, age: 18</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Ruby-on-Rails/Rails命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/Ruby-on-Rails/Rails命令/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>加载开发环境</p>
+<pre><code>$ source ~/.rvm/scripts/rvm</code></pre><p>新建工程</p>
+<pre><code>$ rails new hello_app</code></pre><p>安装 gem</p>
+<pre><code>$ bundle install</code></pre><p>打开服务</p>
+<pre><code>$ rails server</code></pre><p>查看路由</p>
+<pre><code>$ rake routes</code></pre><p><strong>资源路由</strong>最常用，路由表中写入如下内容，生成该模型全部路由信息</p>
+<pre><code>resources :post #post为 model 名</code></pre><p>脚手架帮助生成包括模型（数据库表）、控制器、路由等在内的所有初始代码，这里 scffold 是脚手架的意思，注意后面的模型 Post 是单数，其主键 id 自动生成，content 字段设置为 text 类型</p>
+<pre><code>$ rails generate scaffold Post content:text</code></pre><p>删除命令</p>
+<pre><code>$ rails destroy scaffold Post</code></pre><p>数据库迁移命令，模型建立后要执行，数据库才有用</p>
+<pre><code>$ bundle exec rake db:migrate</code></pre><p><strong>一般路由</strong>实例，路由表中写入如下代码，表示请求一个路由，转到一个动作</p>
+<pre><code>get &apos;posts/:id&apos;, :to =&gt; &apos;posts#show&apos;</code></pre><p>html 前端代码中超链接,使用了 link_to 的方法</p>
+<pre><code>&lt;%= link_to &apos;id为1的微博&apos;,{：controller =&gt; &apos;posts&apos;,:action =&gt; &apos;show&apos;,:id =&gt; 1}&gt;</code></pre><p><strong>命名路由</strong>，把上面的路由修改为如下，前端代码中可以直接使用命名路由</p>
+<pre><code>get &apos;posts/:id&apos;, :to =&gt; &apos;posts#show&apos;，:as =&gt; &apos;show_post&apos;</code></pre><p>在前端代码中可以修改为如下代码，可以生成相同效果超链接，1 是参数</p>
+<pre><code>&lt;%= link_to &apos;id为1的微博&apos;,show_post_path(1)&gt;</code></pre><p><strong>资源路由</strong>拓展，在控制器中要添加相应的方法，这里是 recent 方法，在 posts 的视图下面也要添加 recent.html.erb 文件，执行那个方法时，会自动转到这个页面</p>
+<pre><code>resources :posts do 
+    collection do       #集合路由
+        get &apos;recent&apos;
+    end
+    member do           #成员路由
+        get &apos;recent&apos;
+    end
+end</code></pre><p>单独创建模型</p>
+<pre><code>$ rails generate model user userName:string email:string</code></pre><p>在生成的 model 文件 user.rb 中添加存在性、长度、格式、唯一性（不区分大小写）验证</p>
+<pre><code>EMAIL = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/ #邮箱正则表达式
+validates :email,presence:true,length:{maximum:255},format:{with:EMAIL},uniqueness:{case_sensitive:false}</code></pre><p>rails 控制台，可以用其操作数据库</p>
+<pre><code>$ rails console</code></pre><p>修改模型，这里以添加字段为例，先输入如下命令</p>
+<pre><code>$ rails generate migration change_user_add_password</code></pre><p>再在生成的脚本文件 db/migrate/20180127021214_change_user_add_password.rb 中的函数中添加，字段就添加成功了</p>
+<pre><code>add_column :users,:password_digest,:string</code></pre><p>再在模型文件中添加一个安全验证函数（注意这里把 Gemfile 中的 gem ‘bcrypt’ 注释去掉）和其他验证</p>
+<pre><code>has_secure_password     #安全验证函数
+validates :password,length:{minmum:6}</code></pre><p>页面重定向</p>
+<pre><code>redirect_to @user #重定向到 user 用户的资料页（show方法）</code></pre><p>使用 session 保持用户状态，实现退出用户登录登出等会话功能，这里为 session 创建了一个 new 方法及视图</p>
+<pre><code>$ rails generate controller Sessions new</code></pre><p>关联两个模型，在两个模型中写下如下代码</p>
+<pre><code>belongs_to :user #一个 post 属于一个 user
+has_many :posts  #一个 user 有许多 posts</code></pre><p>注意上面之前在 posts 模型中添加了一个字段 user_id 作为自动关联用的字段</p>
+<p>html.reb 表示嵌入式 ruby 语言，其中 &lt;%= %&gt; (要在页面上显示出来)或&lt;% %&gt; （不显示出来，主要是判断语句）写 ruby 语言，rails 会自动解析其中的 ruby 代码</p>
+<p>rails 会默认将控制器动作中出现的所有变量给前端显示</p>
+<p>常用前端内置方法 link_to （超链接）与 form_for （表单）</p>
+<pre><code>link_to &quot;链接显示文字&quot; options = {},html_options = {} #如何不写请求提交的方法，默认用 get 方法</code></pre><p>rails 前端采用局部视图，底层视图在 layouts 文件夹中</p>
+<p>只要你有一个控制器，就会有一个 helpers 文件对应，在 application_controller.rb 中包含一下该文件,helpers 文件中的方法就可以在所有控制器文件中使用，使用这种方式可以实现用户强制登录</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/原类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/python3/原类/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-28 17:39:54" itemprop="dateModified" datetime="2019-04-28T17:39:54+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>python 中一切皆对象，类也是一种对象，只不过这个对象（类）自身拥有创建对象（类实例）的能力。</p>
+<p><code>type</code> 是 python 的内建<strong>原类</strong>，<code>type</code> 对象本身又是 <code>type</code> 类的实例，可以用其动态的创建类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">echo_bar</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(self.bar)</span><br><span class="line"><span class="comment"># type(类名, 父类的元组（针对继承的情况，可以为空），包含属性的字典（名称和值）)</span></span><br><span class="line">FooChild = type(<span class="string">'FooChild'</span>, (), &#123;<span class="string">'echo_bar'</span>: echo_bar&#125;)</span><br><span class="line">my_foo = FooChild()</span><br><span class="line">my_foo.echo_bar()</span><br></pre></td></tr></table></figure>
+
+<p>在写一个类的时候为其添加 <code>__metaclass__</code> 属性，用于指定原类。Python 会在类的定义中寻找 <code>__metaclass__</code> 属性，如果找到了，Python 就会用它来创建类 Foo，如果没有找到，就会用内建的 type 来创建这个类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Metaclass</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, dct)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'HAHAHA'</span></span><br><span class="line">        dct[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, dct)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'before Create OBJ'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OBJ</span><span class="params">(object)</span>:</span></span><br><span class="line">    __metaclass__ = Metaclass</span><br><span class="line"><span class="keyword">print</span> <span class="string">'after Create OBJ'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">print</span> OBJ.a</span><br><span class="line">    </span><br><span class="line"><span class="comment"># before Create OBJ</span></span><br><span class="line"><span class="comment"># HAHAHA</span></span><br><span class="line"><span class="comment"># after Create OBJ</span></span><br><span class="line"><span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+<p>在创建OBJ这个类的时候，<code>__metaclass__</code> 起了作用，为 OBJ 增加了一个类属性 <code>a</code>。</p>
+<p><em>references：<a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">1</a>, <a href="https://www.cnblogs.com/xybaby/p/7927407.html" target="_blank" rel="noopener">2</a></em></p>
 
           
         
@@ -977,962 +1460,6 @@ end</code></pre><p> <code>User</code> 和 <code>Micropost</code> 都继承自 <s
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spark/RDD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Spark/RDD/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-15 11:31:45" itemprop="dateModified" datetime="2018-09-15T11:31:45+08:00">2018-09-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Spark无论处理什么数据先整成一个拥有多个分块的数据集再说，这个数据集就叫RDD。</p>
-<p>RDD：是一个分布式对象集合，本质上是一个只读的分区记录集合，每个RDD可分成多个分区，每个分区就是一个数据集片段，并且一个RDD的不同分区可以被保存到集群中不同的节点上，从而可以在集群中的不同节点上进行并行计算；</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Ruby-on-Rails/Rails命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Ruby-on-Rails/Rails命令/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>加载开发环境</p>
-<pre><code>$ source ~/.rvm/scripts/rvm</code></pre><p>新建工程</p>
-<pre><code>$ rails new hello_app</code></pre><p>安装 gem</p>
-<pre><code>$ bundle install</code></pre><p>打开服务</p>
-<pre><code>$ rails server</code></pre><p>查看路由</p>
-<pre><code>$ rake routes</code></pre><p><strong>资源路由</strong>最常用，路由表中写入如下内容，生成该模型全部路由信息</p>
-<pre><code>resources :post #post为 model 名</code></pre><p>脚手架帮助生成包括模型（数据库表）、控制器、路由等在内的所有初始代码，这里 scffold 是脚手架的意思，注意后面的模型 Post 是单数，其主键 id 自动生成，content 字段设置为 text 类型</p>
-<pre><code>$ rails generate scaffold Post content:text</code></pre><p>删除命令</p>
-<pre><code>$ rails destroy scaffold Post</code></pre><p>数据库迁移命令，模型建立后要执行，数据库才有用</p>
-<pre><code>$ bundle exec rake db:migrate</code></pre><p><strong>一般路由</strong>实例，路由表中写入如下代码，表示请求一个路由，转到一个动作</p>
-<pre><code>get &apos;posts/:id&apos;, :to =&gt; &apos;posts#show&apos;</code></pre><p>html 前端代码中超链接,使用了 link_to 的方法</p>
-<pre><code>&lt;%= link_to &apos;id为1的微博&apos;,{：controller =&gt; &apos;posts&apos;,:action =&gt; &apos;show&apos;,:id =&gt; 1}&gt;</code></pre><p><strong>命名路由</strong>，把上面的路由修改为如下，前端代码中可以直接使用命名路由</p>
-<pre><code>get &apos;posts/:id&apos;, :to =&gt; &apos;posts#show&apos;，:as =&gt; &apos;show_post&apos;</code></pre><p>在前端代码中可以修改为如下代码，可以生成相同效果超链接，1 是参数</p>
-<pre><code>&lt;%= link_to &apos;id为1的微博&apos;,show_post_path(1)&gt;</code></pre><p><strong>资源路由</strong>拓展，在控制器中要添加相应的方法，这里是 recent 方法，在 posts 的视图下面也要添加 recent.html.erb 文件，执行那个方法时，会自动转到这个页面</p>
-<pre><code>resources :posts do 
-    collection do       #集合路由
-        get &apos;recent&apos;
-    end
-    member do           #成员路由
-        get &apos;recent&apos;
-    end
-end</code></pre><p>单独创建模型</p>
-<pre><code>$ rails generate model user userName:string email:string</code></pre><p>在生成的 model 文件 user.rb 中添加存在性、长度、格式、唯一性（不区分大小写）验证</p>
-<pre><code>EMAIL = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/ #邮箱正则表达式
-validates :email,presence:true,length:{maximum:255},format:{with:EMAIL},uniqueness:{case_sensitive:false}</code></pre><p>rails 控制台，可以用其操作数据库</p>
-<pre><code>$ rails console</code></pre><p>修改模型，这里以添加字段为例，先输入如下命令</p>
-<pre><code>$ rails generate migration change_user_add_password</code></pre><p>再在生成的脚本文件 db/migrate/20180127021214_change_user_add_password.rb 中的函数中添加，字段就添加成功了</p>
-<pre><code>add_column :users,:password_digest,:string</code></pre><p>再在模型文件中添加一个安全验证函数（注意这里把 Gemfile 中的 gem ‘bcrypt’ 注释去掉）和其他验证</p>
-<pre><code>has_secure_password     #安全验证函数
-validates :password,length:{minmum:6}</code></pre><p>页面重定向</p>
-<pre><code>redirect_to @user #重定向到 user 用户的资料页（show方法）</code></pre><p>使用 session 保持用户状态，实现退出用户登录登出等会话功能，这里为 session 创建了一个 new 方法及视图</p>
-<pre><code>$ rails generate controller Sessions new</code></pre><p>关联两个模型，在两个模型中写下如下代码</p>
-<pre><code>belongs_to :user #一个 post 属于一个 user
-has_many :posts  #一个 user 有许多 posts</code></pre><p>注意上面之前在 posts 模型中添加了一个字段 user_id 作为自动关联用的字段</p>
-<p>html.reb 表示嵌入式 ruby 语言，其中 &lt;%= %&gt; (要在页面上显示出来)或&lt;% %&gt; （不显示出来，主要是判断语句）写 ruby 语言，rails 会自动解析其中的 ruby 代码</p>
-<p>rails 会默认将控制器动作中出现的所有变量给前端显示</p>
-<p>常用前端内置方法 link_to （超链接）与 form_for （表单）</p>
-<pre><code>link_to &quot;链接显示文字&quot; options = {},html_options = {} #如何不写请求提交的方法，默认用 get 方法</code></pre><p>rails 前端采用局部视图，底层视图在 layouts 文件夹中</p>
-<p>只要你有一个控制器，就会有一个 helpers 文件对应，在 application_controller.rb 中包含一下该文件,helpers 文件中的方法就可以在所有控制器文件中使用，使用这种方式可以实现用户强制登录</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/0、基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Spring Boot/0、基础/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>@</p>
-<p>  语法: @关键字(值)</p>
-<p>  用于把关键字和值传递给编译器，更精确低控制编译器的动作。</p>
-</li>
-<li><p>javaBean</p>
-<p>  JavaBean在MVC设计模型中是model，又称模型层，在一般的程序中，我们称它为数据层，就是用来设置数据的属性和一些行为，然后提供获取属性和设置属性的get/set方法。</p>
-</li>
-<li><p>postman 工具</p>
-</li>
-<li><p>RESTful API</p>
-<p>  PUT，DELETE操作是幂等的。所谓幂等是指不管进行多少次操作，结果都一样。比如我用PUT修改一篇文章，然后在做同样的操作，每次操作后的结果并没有不同，DELETE也是一样。顺便说一句，因为GET操作是安全的，所以它自然也是幂等的。</p>
-<p>  POST操作既不是安全的，也不是幂等的，比如常见的POST重复加载问题：当我们多次发出同样的POST请求后，其结果是创建出了若干的资源。</p>
-<p>  创建操作可以使用POST，也可以使用PUT，区别在于POST 是作用在一个集合资源之上的（/uri），而PUT操作是作用在一个具体资源之上的（/uri/xxx），再通俗点说，如果URL可以在客户端确定，那么就使用PUT，如果是在服务端确定，那么就使用POST，比如说很多资源使用数据库自增主键作为标识信息，而创建的资源的标识信息到底是什么只能由服务端提供，这个时候就必须使用POST。</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求类型</th>
-<th>请求路径</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GET</td>
-<td>/girls</td>
-<td>获取女生列表</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>/girls</td>
-<td>创建一个女生</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/girls/id</td>
-<td>通过id查询一个女生</td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>/girls/id</td>
-<td>通过id更新一个女生</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>/girls/id</td>
-<td>通过id删除一个女生</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>@Autowired</p>
-<p>  这个注解的作用是将其他的类，接口引入，类似于之前的类的初始化等，用这个注解，类中或接口的方法就可以直接调用了。</p>
-</li>
-<li><p>修改页面后实时刷新</p>
-<p>  1、禁用缓存，配置文件中加 <code>spring.thymeleaf.cache=false</code></p>
-<p>  2、修改模板后 <code>Ctrl+F9</code> 重新编译就可以刷新了</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/linux/Ubuntu 18.04安装JDK8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/linux/Ubuntu 18.04安装JDK8/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:43" itemprop="dateModified" datetime="2018-08-12T09:24:43+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="JDK8-在线安装"><a href="#JDK8-在线安装" class="headerlink" title="JDK8 在线安装"></a>JDK8 在线安装</h2><ul>
-<li><p>安装 ppa</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java </span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装 jdk</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证安装是否成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果系统中安装有多个JDK版本，则如下命令设置系统默认JDK为Oracle JDK 8：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-8-oracle</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置JAVA_HOME环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /etc/profile</span><br><span class="line"></span><br><span class="line"># 编辑/etc/profile文件，在文件末尾添加如下3行：</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8-oracle</span><br><span class="line">export JRE_HOME=/usr/lib/jvm/java-8-oracle/jre</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 重新加载</span><br><span class="line">$ source /etc/profile</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Neo4j/neo4j/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Neo4j/neo4j/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="neo4j"><a href="#neo4j" class="headerlink" title="neo4j"></a>neo4j</h1><h2 id="neo4j-1"><a href="#neo4j-1" class="headerlink" title="neo4j"></a>neo4j</h2><ul>
-<li>边没有方向之分。</li>
-<li>支持的类型有：<ul>
-<li>Number: Integer, Float</li>
-<li>String</li>
-<li>Boolean</li>
-<li>Spatial types: Point</li>
-<li>Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration</li>
-</ul>
-</li>
-<li>一个节点能有多个 label 。</li>
-</ul>
-<h2 id="Cypher"><a href="#Cypher" class="headerlink" title="Cypher"></a>Cypher</h2><ul>
-<li>允许对将模式（pattern）赋值给变量：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acted_in = (:Person)-[:ACTED_IN]-&gt;(:Movie)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>我们可以将变量分配给节点和关系，并在以后使用它们，无论它们是创建还是匹配。</li>
-</ul>
-<h3 id="1-创建数据"><a href="#1-创建数据" class="headerlink" title="1. 创建数据"></a>1. 创建数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE (:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line"></span><br><span class="line">CREATE (p:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">CREATE (a:Person &#123; name:&quot;Tom Hanks&quot;,born:1956 &#125;)-[r:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(m:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (d:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)-[:DIRECTED]-&gt;(m)</span><br><span class="line">RETURN a,d,r,m</span><br></pre></td></tr></table></figure>
-
-<p>最后一句将创建如图所示的图：</p>
-<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-b3411d1d.svg" alt="image"></p>
-<h3 id="2-匹配模式"><a href="#2-匹配模式" class="headerlink" title="2. 匹配模式"></a>2. 匹配模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie)</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Keanu Reeves&quot; &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN m.title, r.roles</span><br></pre></td></tr></table></figure>
-
-<p>查找语句最后必须加上 <strong>RETURN</strong> 语句。</p>
-<h3 id="3-附加结构"><a href="#3-附加结构" class="headerlink" title="3. 附加结构"></a>3. 附加结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">CREATE (m:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (p)-[r:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(m)</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
-
-<p>将添加 Cloud Atlas 作为 Tom Hanks 的新电影：</p>
-<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-36eb9048.svg" alt="image"></p>
-<h3 id="4-完成模式"><a href="#4-完成模式" class="headerlink" title="4. 完成模式"></a>4. 完成模式</h3><p><strong>MERGE</strong> 相当于是 <strong>MATCH</strong> 和 <strong>CREATE</strong> 的组合，如果我们不确定图中是否包含节点，可以用 <strong>MERGE</strong> ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MERGE (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">ON CREATE SET m.released = 2012</span><br><span class="line">RETURN m</span><br></pre></td></tr></table></figure>
-
-<p><strong>MERGE</strong> 还可以声明只创建一次关系:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">MERGE (p)-[r:ACTED_IN]-&gt;(m)</span><br><span class="line">ON CREATE SET r.roles =[&apos;Zachry&apos;]</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
-
-<p>如果只从前一个子句传入一个节点，<strong>MERGE</strong> 将仅在所提供节点的直接邻域内匹配，并且如果未找到则创建它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE (y:Year &#123; year:2014 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m10:Month &#123; month:10 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m11:Month &#123; month:11 &#125;)</span><br><span class="line">RETURN y,m10,m11</span><br></pre></td></tr></table></figure>
-
-<p>创建了下面的图结构：</p>
-<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-199ba358.svg" alt="image"></p>
-<p>不会全局搜索两个Month节点，仅在2014年节点的上下文中搜索。</p>
-<h3 id="5-结果处理"><a href="#5-结果处理" class="headerlink" title="5. 结果处理"></a>5. 结果处理</h3><p>对于图：</p>
-<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc--ee5ee0f8.svg" alt="image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE (matrix:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line">CREATE (cloudAtlas:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (forrestGump:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (keanu:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">CREATE (robert:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)</span><br><span class="line">CREATE (tom:Person &#123; name:&quot;Tom Hanks&quot;, born:1956 &#125;)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(forrestGump)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(cloudAtlas)</span><br><span class="line">CREATE (robert)-[:DIRECTED]-&gt;(forrestGump)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>WHERE</strong> 结果过滤</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 通过 m 的属性过滤</span><br><span class="line">MATCH (m:Movie)</span><br><span class="line">WHERE m.title = &quot;The Matrix&quot;</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line"># 加了正则</span><br><span class="line">MATCH (p:Person)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">WHERE p.name =~ &quot;K.+&quot; OR m.released &gt; 2000 OR &quot;Neo&quot; IN r.roles</span><br><span class="line">RETURN p,r,m</span><br><span class="line"></span><br><span class="line"># WHERE 后加了 NOT</span><br><span class="line">MATCH (p:Person)-[:ACTED_IN]-&gt;(m)</span><br><span class="line">WHERE NOT (p)-[:DIRECTED]-&gt;()</span><br><span class="line">RETURN p,m</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以使用一些函数对结果进行<strong>变换、聚合</strong>。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">names[0]</span><br><span class="line">length(array)</span><br><span class="line">toInteger(&quot;12&quot;)</span><br><span class="line">count</span><br><span class="line">sum</span><br><span class="line">avg</span><br><span class="line">min</span><br><span class="line">max</span><br><span class="line"></span><br><span class="line">MATCH (p:Person)</span><br><span class="line">RETURN p, p.name AS name, toUpper(p.name)</span><br><span class="line"></span><br><span class="line">MATCH (:Person)</span><br><span class="line">RETURN count(*) AS people</span><br><span class="line"></span><br><span class="line"># 聚会唯一值使用 DISTINCT</span><br><span class="line">count(DISTINCT role)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用 <strong>ORDER BY</strong> 对结果排序</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person)-[:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN a</span><br><span class="line">ORDER BY a.born</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>聚合函数 <strong>collect()</strong> ，将所有聚合值收集到列表中：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在我们的数据库中检索每部电影的演员表</span><br><span class="line">MATCH (m:Movie)&lt;-[:ACTED_IN]-(a:Person)</span><br><span class="line">RETURN m.title AS movie, collect(a.name) AS cast</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-约束"><a href="#6-约束" class="headerlink" title="6. 约束"></a>6. 约束</h3><ul>
-<li>可以指定唯一约束，以保证具有特定标签的节点上某个属性的唯一性，MERGE 子句也使用这些约束来确保节点只存在一次。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每个Movie节点都应该有一个唯一的标题</span><br><span class="line">CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/MySQL/MySQL语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2136,6 +1663,161 @@ has_many :posts  #一个 user 有许多 posts</code></pre><p>注意上面之前�
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/@property/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/python3/@property/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-29 19:25:55" itemprop="dateModified" datetime="2019-04-29T19:25:55+08:00">2019-04-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python 内置的 <code>@property</code> 装饰器可以把一个方法变成属性调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Student(object):</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def score(self):</span><br><span class="line">        return self._score</span><br><span class="line"></span><br><span class="line">    @score.setter</span><br><span class="line">    def score(self, value):</span><br><span class="line">        if not isinstance(value, int):</span><br><span class="line">            raise ValueError(&apos;score must be an integer!&apos;)</span><br><span class="line">        if value &lt; 0 or value &gt; 100:</span><br><span class="line">            raise ValueError(&apos;score must between 0 ~ 100!&apos;)</span><br><span class="line">        self._score = value</span><br><span class="line"></span><br><span class="line">s = Student()</span><br><span class="line">s.score = 60  # OK，实际转化为s.set_score(60)</span><br><span class="line">print(s.score)  # OK，实际转化为s.get_score()</span><br><span class="line">s.score = 9999</span><br><span class="line"></span><br><span class="line"># Traceback (most recent call last):</span><br><span class="line">#   ...</span><br><span class="line"># ValueError: score must between 0 ~ 100!</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/MySQL/MySQL安装及常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2283,6 +1965,178 @@ has_many :posts  #一个 user 有许多 posts</code></pre><p>注意上面之前�
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/linux/nohup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/linux/nohup/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-08 16:46:11" itemprop="dateModified" datetime="2019-05-08T16:46:11+08:00">2019-05-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>nohup用于使程序在用户退出登陆、关闭终端之后仍能继续运行</li>
+<li>用法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nohup your_command &amp; #（符号＆使程序在后台运行）</span><br><span class="line">exit #（退出nohup模式）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动后，会将程序运行输出记录在当前目录下的nohup.out文件下，如果当前目录不可写，则会被记录在Home目录下的nohup.out文件中</li>
+<li>自定义日志文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nohup your_command &gt; my_nohup.log 2&gt;&amp;1 &amp;</span><br><span class="line">#（将日志输出在my_nohup.log文件中，并将stderr重定</span><br><span class="line">向至stdout）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>退出nohup模式之后，停止程序：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep &quot;your_command&quot; #（查找运行该命令的进程）</span><br><span class="line">kill -9 your_command_pid #(根据进程号关闭程序)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><a href="https://www.cnblogs.com/mafeng/p/7721745.html" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2352,7 +2206,9 @@ has_many :posts  #一个 user 有许多 posts</code></pre><p>注意上面之前�
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

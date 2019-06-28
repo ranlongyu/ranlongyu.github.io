@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/os与sys模块/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/python3/os与sys模块/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -375,7 +375,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-08 14:24:57" itemprop="dateModified" datetime="2019-05-08T14:24:57+08:00">2019-05-08</time>
+                <time title="修改时间：2019-06-25 15:10:08" itemprop="dateModified" datetime="2019-06-25T15:10:08+08:00">2019-06-25</time>
               
             
           </span>
@@ -411,52 +411,170 @@
       
         
           
-            <h2 id="os-模块"><a href="#os-模块" class="headerlink" title="os 模块"></a>os 模块</h2><p>Python 的 os 模块封装了常见的和操作系统交互的文件和目录操作。</p>
-<ul>
-<li><p>os.mkdir 创建文件</p>
-</li>
-<li><p>os.rmdir 删除文件</p>
-</li>
-<li><p>os.rename 重命名</p>
-</li>
-<li><p>os.remove 删除文件</p>
-</li>
-<li><p>os.getcwd 获取当前工作路径</p>
-</li>
-<li><p>os.walk 遍历目录</p>
-</li>
-<li><p>os.path.join 连接目录与文件名</p>
-</li>
-<li><p>os.path.split 分割文件名与目录</p>
-</li>
-<li><p>os.path.abspath 获取绝对路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不管从哪里开始调用，都是写这句代码的文件的绝对路径</span></span><br><span class="line">os.path.abspath(__file__)  <span class="comment"># 当前文件绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取的路径总是程序入口的路径</span></span><br><span class="line">os.path.abspath(<span class="string">'.'</span>)  <span class="comment"># 当前目录的绝对路径</span></span><br><span class="line">os.path.abspath(<span class="string">'..'</span>)  <span class="comment"># 上一级目录的绝对路径</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.dirname 获取文件夹路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.basename 获取文件名或文件夹名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># 'hello.py'</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># ''</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># 'python'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.splitext 分离文件名与扩展名</p>
-</li>
-<li><p>os.path.isfile 判断给出的路径是否是一个文件</p>
-</li>
-<li><p>os.path.isdir    判断给出的路径是否是一个目录</p>
-</li>
-</ul>
-<h2 id="sys-模块"><a href="#sys-模块" class="headerlink" title="sys 模块"></a>sys 模块</h2><p>sys 模块包含了与 Python 解释器和它的环境有关的函数。</p>
-<ul>
-<li>sys.argv</li>
-</ul>
-<p>通过命令行传入参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># Filename: using_sys.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'The command line arguments are:'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> sys.argv:</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意，脚本的名称总是 sys.argv 列表的第一个参数</span></span><br><span class="line"><span class="comment"># $ python using_sys.py we are arguments</span></span><br><span class="line"><span class="comment">#    The command line arguments are:</span></span><br><span class="line"><span class="comment">#    using_sys.py</span></span><br><span class="line"><span class="comment">#    we</span></span><br><span class="line"><span class="comment">#    are</span></span><br><span class="line"><span class="comment">#    arguments</span></span><br></pre></td></tr></table></figure>
+            <h1 id="tensorflow笔记"><a href="#tensorflow笔记" class="headerlink" title="tensorflow笔记"></a>tensorflow笔记</h1><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><pre><code># 用numpy构造数据
+x_data = np.random.rand(100).astype(np.float32)
+y_data = x_data*0.1 + 0.3
+#tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值
+#1表示这个变量是一维的，变量的初始范围是-1到1
+Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+#定了变量初始值为0
+biases = tf.Variable(tf.zeros([1]))
+#预测的y，由真实的数据x_data来表示
+y = Weights*x_data + biases
+#定义损失函数，实际的y与定义的y_data的差值
+loss = tf.reduce_mean(tf.square(y-y_data))
+#定义了一个最原始的优化器，0.5为学习率
+optimizer = tf.train.GradientDescentOptimizer(0.5)
+#用优化器减小误差
+train = optimizer.minimize(loss)
+#建立了神经网络的结构，在使用这个结构之前，我们必须先初始化所有之前定义的Variable初始化
+init = tf.global_variables_initializer()
+#用Session来run每一次training的数据
+sess = tf.Session()
+sess.run(init)
+#要训练多少次，就循环多少次
+for step in range(201):
+sess.run(train)
+if step % 20 == 0:
+#每20次训练输出定义的权重和偏置值
+print(step, sess.run(Weights), sess.run(biases))</code></pre><h2 id="Session会话控制"><a href="#Session会话控制" class="headerlink" title="Session会话控制"></a>Session会话控制</h2><pre><code>#定义两个矩阵，tf.constant表示恒量
+matrix1 = tf.constant([[3,3]])
+matrix2 = tf.constant([[2],
+   [2]])
+#tf.matmul表示矩阵乘法
+product = tf.matmul(matrix1,matrix2)
+# 两种Session的打开模式，法1
+sess = tf.Session()
+result = sess.run(product)
+print(result)
+sess.close()
+#法2
+with tf.Session() as sess:
+result2 = sess.run(product)
+print(result2)</code></pre><h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><pre><code>#变量一定要用tf.Variable定义才是变量
+#这里定义了变量名为0，变量名为counter，然后打印了变量名字
+state = tf.Variable(0, name=&apos;counter&apos;)
+print（state.name）
+# 定义常量 one
+one = tf.constant(1)
+# 定义加法步骤 (注: 此步并没有直接计算)
+new_value = tf.add(state, one)
+# 用tf.assign将 State 更新成为 new_value
+update = tf.assign(state, new_value)
+# 如果定义 Variable, 就一定要 initialize
+# 就是初始化我们定义的变量
+init = tf.global_variables_initializer() 
+# 使用 Session
+with tf.Session() as sess:
+    #必须要run一下init激活我们的结构
+    sess.run(init)
+    for _ in range(3):
+        #每run一次update，state变量就会加1
+        sess.run(update)
+        #注意这里直接 print(state) 不起作用
+        print(sess.run(state))</code></pre><h2 id="Placeholder-传入值"><a href="#Placeholder-传入值" class="headerlink" title="Placeholder 传入值"></a>Placeholder 传入值</h2><pre><code>#在 Tensorflow 中需要定义 placeholder 的 type ，一般为 float32 类型
+input1 = tf.placeholder(tf.float32)
+nput2 = tf.placeholder(tf.float32)
+# mul = multiply 是将input1和input2 做乘法运算，并输出为 output 
+ouput = tf.multiply(input1, input2)
+with tf.Session() as sess:
+    # 需要传入的值放在了feed_dict={} 并一一对应每一个 
+    # input. placeholder 与 feed_dict={} 是绑定在一起出现的
+    print(sess.run(ouput, feed_dict={input1: [7.], input2: [2.]}))</code></pre><h2 id="添加层-def-add-layer"><a href="#添加层-def-add-layer" class="headerlink" title="添加层 def add_layer()"></a>添加层 def add_layer()</h2><pre><code>#定义添加神经层的函数def add_layer(),
+#它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。
+def add_layer(inputs, in_size, out_size, activation_function=None):  
+    #随机变量(normal distribution)会比全部为0要好很多
+    #这里的weights为一个in_size行, out_size列的随机变量矩阵。
+    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
+    #biases的推荐值不为0，所以我们这里是在0向量的基础上又加了0.1
+    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
+    #定义Wx_plus_b, 即神经网络未激活的值
+    Wx_plus_b = tf.matmul(inputs, Weights) + biases
 
-<ul>
-<li>sys.path</li>
-</ul>
-<p>功能：获取指定模块搜索路径的字符串集合，可以将写好的模块放在得到的某个路径下，就可以在程序中import时正确找到。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加搜索路径，一般配合 os 模块使用</span></span><br><span class="line">sys.path.append(<span class="string">"自定义模块路径"</span>)</span><br></pre></td></tr></table></figure>
+    if activation_function is None:
+        outputs = Wx_plus_b
+    else:
+        outputs = activation_function(Wx_plus_b)
+    #返回输出，添加一个神经层的函数——def add_layer()就定义好了
+    return outputs</code></pre><h2 id="建造神经网络"><a href="#建造神经网络" class="headerlink" title="建造神经网络"></a>建造神经网络</h2><pre><code>#利用占位符定义我们所需的神经网络的输入，训练时再传值！ 
+#tf.placeholder()就是代表占位符
+#这里的None代表无论输入样本有多少都可以，因为输入只有一个特征，所以这里是1。
+xs = tf.placeholder(tf.float32, [None, 1])
+ys = tf.placeholder(tf.float32, [None, 1])
+#构建输入层1个、隐藏层10个、输出层1个神经元的神经网络
+#虽然有三个层，但是只需要定义两个层构造函数即可
+#用上面的添加层函数定义隐藏层，激活函数用relu
+l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
+#定义输出层，输出层输入的数据是隐藏层l1的输出
+prediction = add_layer(l1, 10, 1, activation_function=None)
+#计算预测值prediction和真实值的误差，对二者差的平方求和再取平均。
+loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
+     reduction_indices=[1]))
+#用优化器以0.1的效率来最小化误差loss。
+train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+#下面，让机器开始学习。
+#机器学习的内容是train_step
+#当运算要用到placeholder时，就需要feed_dict这个字典来指定输入。
+for i in range(1000):
+    # training
+    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+    if i % 50 == 0:
+        # to see the step improvement
+        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
+#预测对应x值的y值
+prediction_value = sess.run(prediction, feed_dict={xs: x_data})</code></pre><h2 id="Classification-分类学习"><a href="#Classification-分类学习" class="headerlink" title="Classification 分类学习"></a>Classification 分类学习</h2><pre><code>#784表示28x28个特征，即一张图片由784个像素构成
+#相当于每个样本有784个输入
+xs = tf.placeholder(tf.float32, [None, 784])
+#每张图片都表示一个数字，所以我们的输出是数字0到9，共10类。
+#相对于每个样本有10个输出的可能
+ys = tf.placeholder(tf.float32, [None, 10])
+#调用add_layer函数搭建一个最简单的训练网络结构，只有输入层和输出层。 
+prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
+#loss函数（即最优化目标函数）选用交叉熵函数。
+#交叉熵用来衡量预测值和真实值的相似程度，如果完全相同，它们的交叉熵等于零。
+cross_entropy = tf.reduce_mean(
+    -tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))
+#优化器，train方法（最优化算法）采用梯度下降法。
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+#现在开始train，每次只取100张图片，免得数据太多训练太慢。
+#mnist是原始样本集
+batch_xs, batch_ys = mnist.train.next_batch(100)
+sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})</code></pre><h2 id="Dropout-解决-overfitting"><a href="#Dropout-解决-overfitting" class="headerlink" title="Dropout 解决 overfitting"></a>Dropout 解决 overfitting</h2><pre><code>#先定义一个keep_prob
+keep_prob = tf.placeholder(tf.float32)
+#keep_prob最后在这里使用，表示有50%的结果不被Dropout掉
+#keep_prob即保留概率，即我们要保留的结果所占比例
+sess.run(train_step, feed_dict={xs: X_train, ys: y_train, keep_prob: 0.5})
+#dropout掉Wx_plus_b的50%的结果
+#Wx_plus_b是我们定义的预测值
+Wx_plus_b = tf.nn.dropout(Wx_plus_b, keep_prob)</code></pre><h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><pre><code>#定义Weight变量，输入shape，返回变量的参数。
+#其中我们使用tf.truncted_normal产生随机变量来进行初始化
+def weight_variable(shape): 
+    inital=tf.truncted_normal(shape,stddev=0.1)
+    return tf.Variable(initial)
+#定义biase变量，输入shape ,返回变量的一些参数。
+#其中我们使用tf.constant常量函数来进行初始化
+def bias_variable(shape): 
+    initial=tf.constant(0.1,shape=shape) 
+    return tf.Variable(initial)
+#定义卷积，tf.nn.conv2d函数是tensoflow里面的二维的卷积函数
+#x是图片的所有参数，W是此卷积层的权重，
+#然后定义卷积的步长strides=[1,1,1,1]值，strides[0]和strides[3]的两个1是默认值，
+#中间两个1代表padding时在x方向运动一步，y方向运动一步，padding采用的方式是SAME。
+def conv2d(x,W):
+    return tf.nn.conv2d(x,W,strides=[1,1,1,1]，padding=&apos;SAME&apos;) 
+#接着定义池化pooling，
+#为了得到更多的图片信息，padding时我们选的是一次一步，也就是strides[1]=strides[2]=1，
+#这样得到的图片尺寸没有变化，而我们希望压缩一下图片也就是参数能少一些从而减小系统的复杂度，
+#因此我们采用pooling来稀疏化参数，也就是卷积神经网络中所谓的下采样层。
+#pooling 有两种，一种是最大值池化，一种是平均值池化，本例采用的是最大值池化tf.max_pool()。
+#池化的核函数大小为2x2，因此ksize=[1,2,2,1]，步长为2，因此strides=[1,2,2,1]:
+def max_poo_2x2(x): 
+    return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1])</code></pre>
           
         
       
@@ -972,323 +1090,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-25 15:10:08" itemprop="dateModified" datetime="2019-06-25T15:10:08+08:00">2019-06-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="tensorflow笔记"><a href="#tensorflow笔记" class="headerlink" title="tensorflow笔记"></a>tensorflow笔记</h1><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><pre><code># 用numpy构造数据
-x_data = np.random.rand(100).astype(np.float32)
-y_data = x_data*0.1 + 0.3
-#tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值
-#1表示这个变量是一维的，变量的初始范围是-1到1
-Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
-#定了变量初始值为0
-biases = tf.Variable(tf.zeros([1]))
-#预测的y，由真实的数据x_data来表示
-y = Weights*x_data + biases
-#定义损失函数，实际的y与定义的y_data的差值
-loss = tf.reduce_mean(tf.square(y-y_data))
-#定义了一个最原始的优化器，0.5为学习率
-optimizer = tf.train.GradientDescentOptimizer(0.5)
-#用优化器减小误差
-train = optimizer.minimize(loss)
-#建立了神经网络的结构，在使用这个结构之前，我们必须先初始化所有之前定义的Variable初始化
-init = tf.global_variables_initializer()
-#用Session来run每一次training的数据
-sess = tf.Session()
-sess.run(init)
-#要训练多少次，就循环多少次
-for step in range(201):
-sess.run(train)
-if step % 20 == 0:
-#每20次训练输出定义的权重和偏置值
-print(step, sess.run(Weights), sess.run(biases))</code></pre><h2 id="Session会话控制"><a href="#Session会话控制" class="headerlink" title="Session会话控制"></a>Session会话控制</h2><pre><code>#定义两个矩阵，tf.constant表示恒量
-matrix1 = tf.constant([[3,3]])
-matrix2 = tf.constant([[2],
-   [2]])
-#tf.matmul表示矩阵乘法
-product = tf.matmul(matrix1,matrix2)
-# 两种Session的打开模式，法1
-sess = tf.Session()
-result = sess.run(product)
-print(result)
-sess.close()
-#法2
-with tf.Session() as sess:
-result2 = sess.run(product)
-print(result2)</code></pre><h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><pre><code>#变量一定要用tf.Variable定义才是变量
-#这里定义了变量名为0，变量名为counter，然后打印了变量名字
-state = tf.Variable(0, name=&apos;counter&apos;)
-print（state.name）
-# 定义常量 one
-one = tf.constant(1)
-# 定义加法步骤 (注: 此步并没有直接计算)
-new_value = tf.add(state, one)
-# 用tf.assign将 State 更新成为 new_value
-update = tf.assign(state, new_value)
-# 如果定义 Variable, 就一定要 initialize
-# 就是初始化我们定义的变量
-init = tf.global_variables_initializer() 
-# 使用 Session
-with tf.Session() as sess:
-    #必须要run一下init激活我们的结构
-    sess.run(init)
-    for _ in range(3):
-        #每run一次update，state变量就会加1
-        sess.run(update)
-        #注意这里直接 print(state) 不起作用
-        print(sess.run(state))</code></pre><h2 id="Placeholder-传入值"><a href="#Placeholder-传入值" class="headerlink" title="Placeholder 传入值"></a>Placeholder 传入值</h2><pre><code>#在 Tensorflow 中需要定义 placeholder 的 type ，一般为 float32 类型
-input1 = tf.placeholder(tf.float32)
-nput2 = tf.placeholder(tf.float32)
-# mul = multiply 是将input1和input2 做乘法运算，并输出为 output 
-ouput = tf.multiply(input1, input2)
-with tf.Session() as sess:
-    # 需要传入的值放在了feed_dict={} 并一一对应每一个 
-    # input. placeholder 与 feed_dict={} 是绑定在一起出现的
-    print(sess.run(ouput, feed_dict={input1: [7.], input2: [2.]}))</code></pre><h2 id="添加层-def-add-layer"><a href="#添加层-def-add-layer" class="headerlink" title="添加层 def add_layer()"></a>添加层 def add_layer()</h2><pre><code>#定义添加神经层的函数def add_layer(),
-#它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。
-def add_layer(inputs, in_size, out_size, activation_function=None):  
-    #随机变量(normal distribution)会比全部为0要好很多
-    #这里的weights为一个in_size行, out_size列的随机变量矩阵。
-    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
-    #biases的推荐值不为0，所以我们这里是在0向量的基础上又加了0.1
-    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
-    #定义Wx_plus_b, 即神经网络未激活的值
-    Wx_plus_b = tf.matmul(inputs, Weights) + biases
-
-    if activation_function is None:
-        outputs = Wx_plus_b
-    else:
-        outputs = activation_function(Wx_plus_b)
-    #返回输出，添加一个神经层的函数——def add_layer()就定义好了
-    return outputs</code></pre><h2 id="建造神经网络"><a href="#建造神经网络" class="headerlink" title="建造神经网络"></a>建造神经网络</h2><pre><code>#利用占位符定义我们所需的神经网络的输入，训练时再传值！ 
-#tf.placeholder()就是代表占位符
-#这里的None代表无论输入样本有多少都可以，因为输入只有一个特征，所以这里是1。
-xs = tf.placeholder(tf.float32, [None, 1])
-ys = tf.placeholder(tf.float32, [None, 1])
-#构建输入层1个、隐藏层10个、输出层1个神经元的神经网络
-#虽然有三个层，但是只需要定义两个层构造函数即可
-#用上面的添加层函数定义隐藏层，激活函数用relu
-l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
-#定义输出层，输出层输入的数据是隐藏层l1的输出
-prediction = add_layer(l1, 10, 1, activation_function=None)
-#计算预测值prediction和真实值的误差，对二者差的平方求和再取平均。
-loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
-     reduction_indices=[1]))
-#用优化器以0.1的效率来最小化误差loss。
-train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
-init = tf.global_variables_initializer()
-sess = tf.Session()
-sess.run(init)
-#下面，让机器开始学习。
-#机器学习的内容是train_step
-#当运算要用到placeholder时，就需要feed_dict这个字典来指定输入。
-for i in range(1000):
-    # training
-    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
-    if i % 50 == 0:
-        # to see the step improvement
-        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
-#预测对应x值的y值
-prediction_value = sess.run(prediction, feed_dict={xs: x_data})</code></pre><h2 id="Classification-分类学习"><a href="#Classification-分类学习" class="headerlink" title="Classification 分类学习"></a>Classification 分类学习</h2><pre><code>#784表示28x28个特征，即一张图片由784个像素构成
-#相当于每个样本有784个输入
-xs = tf.placeholder(tf.float32, [None, 784])
-#每张图片都表示一个数字，所以我们的输出是数字0到9，共10类。
-#相对于每个样本有10个输出的可能
-ys = tf.placeholder(tf.float32, [None, 10])
-#调用add_layer函数搭建一个最简单的训练网络结构，只有输入层和输出层。 
-prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
-#loss函数（即最优化目标函数）选用交叉熵函数。
-#交叉熵用来衡量预测值和真实值的相似程度，如果完全相同，它们的交叉熵等于零。
-cross_entropy = tf.reduce_mean(
-    -tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))
-#优化器，train方法（最优化算法）采用梯度下降法。
-train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
-sess = tf.Session()
-sess.run(tf.global_variables_initializer())
-#现在开始train，每次只取100张图片，免得数据太多训练太慢。
-#mnist是原始样本集
-batch_xs, batch_ys = mnist.train.next_batch(100)
-sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})</code></pre><h2 id="Dropout-解决-overfitting"><a href="#Dropout-解决-overfitting" class="headerlink" title="Dropout 解决 overfitting"></a>Dropout 解决 overfitting</h2><pre><code>#先定义一个keep_prob
-keep_prob = tf.placeholder(tf.float32)
-#keep_prob最后在这里使用，表示有50%的结果不被Dropout掉
-#keep_prob即保留概率，即我们要保留的结果所占比例
-sess.run(train_step, feed_dict={xs: X_train, ys: y_train, keep_prob: 0.5})
-#dropout掉Wx_plus_b的50%的结果
-#Wx_plus_b是我们定义的预测值
-Wx_plus_b = tf.nn.dropout(Wx_plus_b, keep_prob)</code></pre><h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><pre><code>#定义Weight变量，输入shape，返回变量的参数。
-#其中我们使用tf.truncted_normal产生随机变量来进行初始化
-def weight_variable(shape): 
-    inital=tf.truncted_normal(shape,stddev=0.1)
-    return tf.Variable(initial)
-#定义biase变量，输入shape ,返回变量的一些参数。
-#其中我们使用tf.constant常量函数来进行初始化
-def bias_variable(shape): 
-    initial=tf.constant(0.1,shape=shape) 
-    return tf.Variable(initial)
-#定义卷积，tf.nn.conv2d函数是tensoflow里面的二维的卷积函数
-#x是图片的所有参数，W是此卷积层的权重，
-#然后定义卷积的步长strides=[1,1,1,1]值，strides[0]和strides[3]的两个1是默认值，
-#中间两个1代表padding时在x方向运动一步，y方向运动一步，padding采用的方式是SAME。
-def conv2d(x,W):
-    return tf.nn.conv2d(x,W,strides=[1,1,1,1]，padding=&apos;SAME&apos;) 
-#接着定义池化pooling，
-#为了得到更多的图片信息，padding时我们选的是一次一步，也就是strides[1]=strides[2]=1，
-#这样得到的图片尺寸没有变化，而我们希望压缩一下图片也就是参数能少一些从而减小系统的复杂度，
-#因此我们采用pooling来稀疏化参数，也就是卷积神经网络中所谓的下采样层。
-#pooling 有两种，一种是最大值池化，一种是平均值池化，本例采用的是最大值池化tf.max_pool()。
-#池化的核函数大小为2x2，因此ksize=[1,2,2,1]，步长为2，因此strides=[1,2,2,1]:
-def max_poo_2x2(x): 
-    return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1])</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/numpy教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1388,6 +1189,200 @@ def max_poo_2x2(x):
         
           
             <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">c_dot = np.dot(a,b) <span class="comment">#矩阵相乘</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> A: <span class="comment">#遍历每一行</span></span><br><span class="line"><span class="keyword">for</span> column <span class="keyword">in</span> A.T: <span class="comment">#遍历每一列</span></span><br><span class="line">C = np.vstack((A,B)) <span class="comment">#上下合并</span></span><br><span class="line">D = np.hstack((A,B)) <span class="comment">#左右合并</span></span><br><span class="line">A[np.newaxis,:] <span class="comment">#在行上加上一个维度</span></span><br><span class="line">np.split(A, <span class="number">2</span>, axis=<span class="number">1</span>) <span class="comment">#纵向分割成2块</span></span><br><span class="line">print(np.vsplit(A, <span class="number">3</span>)) <span class="comment">#等于 print(np.split(A, 3, axis=0))</span></span><br><span class="line">b = a.copy()    <span class="comment"># deep copy</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/7、统一异常处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/Spring Boot/7、统一异常处理/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>后端返回给前端的内容格式最好统一。</p>
+<ul>
+<li>新建一个 Result 类规范返回类型：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//http请求返回的最外层对象</span><br><span class="line">public class Result&lt;T&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    //错误码</span><br><span class="line">    private Integer code;</span><br><span class="line">    </span><br><span class="line">    //提示信息</span><br><span class="line">    private String msg;</span><br><span class="line">    </span><br><span class="line">    //具体内容，用泛型表示</span><br><span class="line">    private T data;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getMsg() &#123;</span><br><span class="line">        return msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setMsg(String msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public T getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setData(T data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改控制器：</p>
+<p>  用 Result 类的对象来存储返回的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//添加一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Result&lt;Girl&gt; girlAdd(@Valid Girl girl, BindingResult bindingResult)&#123;</span><br><span class="line">    //如果有错误</span><br><span class="line">    if(bindingResult.hasErrors())&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(1);</span><br><span class="line">        result.setMsg(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    </span><br><span class="line">    Result result = new Result();</span><br><span class="line">    result.setCode(0);</span><br><span class="line">    result.setMsg(&quot;成功&quot;);</span><br><span class="line">    result.setData(girlRepository.save(girl));</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优化代码，使结构更清晰：</p>
+<p>  代码优化要随时注意，先建一个工具类 ResultUtil 专门把返回的内容转换为 Result 对象，再修改控制器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class ResultUtil &#123;</span><br><span class="line">    </span><br><span class="line">    //成功处理时，注意用静态方法更简洁</span><br><span class="line">    public static Result success(Object object)&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(0);</span><br><span class="line">        result.setMsg(&quot;成功&quot;);</span><br><span class="line">        result.setData(object);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //成功时也可能不含 object</span><br><span class="line">    public static Result success()&#123;</span><br><span class="line">        return success(null);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //有异常时</span><br><span class="line">    public static Result error(Integer code, String msg)&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(code);</span><br><span class="line">        result.setMsg(msg);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>修改控制器方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//添加一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Result&lt;Girl&gt; girlAdd(@Valid Girl girl, BindingResult bindingResult)&#123;</span><br><span class="line">    if(bindingResult.hasErrors())&#123;</span><br><span class="line">        return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    return ResultUtil.success(girlRepository.save(girl));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>捕获异常：</p>
+<p>  捕获控制器抛出的异常可以到达消息传递的目的，通过新建一个专门处理异常的类来捕获和处理异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//新建一个专门处理异常的类</span><br><span class="line">@ControllerAdvice</span><br><span class="line">public class ExceptionHandle &#123;</span><br><span class="line">    </span><br><span class="line">    //要捕获的异常的类型为 Exception</span><br><span class="line">    @ExceptionHandler(value = Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Result hanles(Exception e)&#123;</span><br><span class="line">        //e.getMessage() 就是我们要捕获的异常消息</span><br><span class="line">        return ResultUtil.error(100, e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写自己的抛出异常的函数：</p>
+<p>  编写自己的异常可以让异常携带更多的信息，方便我们的管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//注意继承的是 RuntimeException 类</span><br><span class="line">public class GirlException extends RuntimeException &#123;</span><br><span class="line">    private Integer code;</span><br><span class="line"></span><br><span class="line">    public GirlException(Integer code, String message) &#123;</span><br><span class="line">        super(message);   //调用父类的构造方法</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>捕获自己编写的异常：</p>
+<p>  修改捕获异常的类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class ExceptionHandle &#123;</span><br><span class="line">    </span><br><span class="line">    @ExceptionHandler(value = Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Result hanles(Exception e)&#123;</span><br><span class="line">        //验证为我们自己编写的异常</span><br><span class="line">        //instanceof 运算符是用来在运行时指出对象是否是特定类的一个实例</span><br><span class="line">        if (e instanceof GirlException)&#123;</span><br><span class="line">            GirlException girlException = (GirlException) e;</span><br><span class="line">            return ResultUtil.error(girlException.getCode(), girlException.getMessage());</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return ResultUtil.error(-1, &quot;未知错误&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优化：通过枚举类型维护所有的异常：</p>
+<p>  新建枚举类型，然后在抛出和捕获异常时将枚举传入抛出的参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ResultEnum &#123;</span><br><span class="line">    UNKONW_ERROR(-<span class="number">1</span>,<span class="string">"未知错误"</span>),</span><br><span class="line">    SUCCESS(<span class="number">0</span>,<span class="string">"成功"</span>),</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    ResultEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>修改自定义的抛出异常的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class GirlException extends RuntimeException &#123;</span><br><span class="line">    private Integer code;</span><br><span class="line"></span><br><span class="line">    //传入枚举类型作为参数</span><br><span class="line">    public GirlException(ResultEnum resultEnum) &#123;</span><br><span class="line">        super(resultEnum.getMsg());   //调用父类的构造方法</span><br><span class="line">        this.code = resultEnum.getCode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1606,7 +1601,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/7、统一异常处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/3、数据库操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1626,7 +1621,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/7、统一异常处理/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/Spring Boot/3、数据库操作/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1668,7 +1663,7 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+                <time title="修改时间：2018-08-15 17:34:17" itemprop="dateModified" datetime="2018-08-15T17:34:17+08:00">2018-08-15</time>
               
             
           </span>
@@ -1704,47 +1699,203 @@ def max_poo_2x2(x):
       
         
           
-            <p>后端返回给前端的内容格式最好统一。</p>
-<ul>
-<li>新建一个 Result 类规范返回类型：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//http请求返回的最外层对象</span><br><span class="line">public class Result&lt;T&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    //错误码</span><br><span class="line">    private Integer code;</span><br><span class="line">    </span><br><span class="line">    //提示信息</span><br><span class="line">    private String msg;</span><br><span class="line">    </span><br><span class="line">    //具体内容，用泛型表示</span><br><span class="line">    private T data;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getMsg() &#123;</span><br><span class="line">        return msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setMsg(String msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public T getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setData(T data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>修改控制器：</p>
-<p>  用 Result 类的对象来存储返回的数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//添加一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Result&lt;Girl&gt; girlAdd(@Valid Girl girl, BindingResult bindingResult)&#123;</span><br><span class="line">    //如果有错误</span><br><span class="line">    if(bindingResult.hasErrors())&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(1);</span><br><span class="line">        result.setMsg(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    </span><br><span class="line">    Result result = new Result();</span><br><span class="line">    result.setCode(0);</span><br><span class="line">    result.setMsg(&quot;成功&quot;);</span><br><span class="line">    result.setData(girlRepository.save(girl));</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>JPA（Java Persistence API）定义了一系列对象持久化的标准，目前实现这一规范的产品有 Hibernate、TopLink 等，spring-data-jpa 是对 Hibernate 的整合。</p>
+<h2 id="使用-MySQL-数据库"><a href="#使用-MySQL-数据库" class="headerlink" title="使用 MySQL 数据库"></a>使用 MySQL 数据库</h2><ul>
+<li><p>添加依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>优化代码，使结构更清晰：</p>
-<p>  代码优化要随时注意，先建一个工具类 ResultUtil 专门把返回的内容转换为 Result 对象，再修改控制器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class ResultUtil &#123;</span><br><span class="line">    </span><br><span class="line">    //成功处理时，注意用静态方法更简洁</span><br><span class="line">    public static Result success(Object object)&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(0);</span><br><span class="line">        result.setMsg(&quot;成功&quot;);</span><br><span class="line">        result.setData(object);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //成功时也可能不含 object</span><br><span class="line">    public static Result success()&#123;</span><br><span class="line">        return success(null);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //有异常时</span><br><span class="line">    public static Result error(Integer code, String msg)&#123;</span><br><span class="line">        Result result = new Result();</span><br><span class="line">        result.setCode(code);</span><br><span class="line">        result.setMsg(msg);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p>编写配置文件</p>
+<p>  ddl-auto字段为create：在运行程序时会删除以前的数据库，然后重新创建。</p>
+<p>  ddl-auto字段为update：在运行程序时会保留以前的数据库。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//127.0.0.1:3306/dbgirl   //链接 dbgirl 这个数据库</span></span><br><span class="line">    username: username</span><br><span class="line">    password: 密码</span><br><span class="line">  jpa:</span><br><span class="line">    hibernate:</span><br><span class="line">      ddl-auto: create   <span class="comment">//注意这个字段</span></span><br><span class="line">    show-sql: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>修改控制器方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//添加一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Result&lt;Girl&gt; girlAdd(@Valid Girl girl, BindingResult bindingResult)&#123;</span><br><span class="line">    if(bindingResult.hasErrors())&#123;</span><br><span class="line">        return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    return ResultUtil.success(girlRepository.save(girl));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>捕获异常：</p>
-<p>  捕获控制器抛出的异常可以到达消息传递的目的，通过新建一个专门处理异常的类来捕获和处理异常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//新建一个专门处理异常的类</span><br><span class="line">@ControllerAdvice</span><br><span class="line">public class ExceptionHandle &#123;</span><br><span class="line">    </span><br><span class="line">    //要捕获的异常的类型为 Exception</span><br><span class="line">    @ExceptionHandler(value = Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Result hanles(Exception e)&#123;</span><br><span class="line">        //e.getMessage() 就是我们要捕获的异常消息</span><br><span class="line">        return ResultUtil.error(100, e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>编写表类</p>
+<p>  @Entity表示这个类对应数据库中的一个表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span>   <span class="comment">//关键字段</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>   <span class="comment">//自增长，等同于 @GeneratedValue(strategy = GenerationType.AUTO)</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String cupSize;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Girl</span><span class="params">()</span> </span>&#123;   <span class="comment">//必须为无参的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCupSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cupSize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCupSize</span><span class="params">(String cupSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cupSize = cupSize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编写自己的抛出异常的函数：</p>
-<p>  编写自己的异常可以让异常携带更多的信息，方便我们的管理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//注意继承的是 RuntimeException 类</span><br><span class="line">public class GirlException extends RuntimeException &#123;</span><br><span class="line">    private Integer code;</span><br><span class="line"></span><br><span class="line">    public GirlException(Integer code, String message) &#123;</span><br><span class="line">        super(message);   //调用父类的构造方法</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>编写接口</p>
+<p>  接口自动生成了18中方法，通过实例化对象就可以调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Girl是实体名，Integer是关键字的类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GirlRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Girl</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>捕获自己编写的异常：</p>
-<p>  修改捕获异常的类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class ExceptionHandle &#123;</span><br><span class="line">    </span><br><span class="line">    @ExceptionHandler(value = Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Result hanles(Exception e)&#123;</span><br><span class="line">        //验证为我们自己编写的异常</span><br><span class="line">        //instanceof 运算符是用来在运行时指出对象是否是特定类的一个实例</span><br><span class="line">        if (e instanceof GirlException)&#123;</span><br><span class="line">            GirlException girlException = (GirlException) e;</span><br><span class="line">            return ResultUtil.error(girlException.getCode(), girlException.getMessage());</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return ResultUtil.error(-1, &quot;未知错误&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>编写控制器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例化接口对象</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询女生列表</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlRepository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建一个女生</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@RequestParam(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                          @<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setCupSize(cupSize);</span><br><span class="line">        girl.setAge(age);</span><br><span class="line">        <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 查询，返回 Girl 对象</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlFindone</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlRepository.findOne(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 更新一个女生</span></span><br><span class="line">    <span class="meta">@PutMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlUpdate</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id,</span></span><br><span class="line"><span class="function">                           @<span class="title">PathVariable</span><span class="params">(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                           @<span class="title">PathVariable</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setId(id);</span><br><span class="line">        girl.setCupSize(cupSize);</span><br><span class="line">        girl.setAge(age);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过 id 删除一个女生</span></span><br><span class="line">    <span class="meta">@DeleteMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlDelete</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        girlRepository.delete(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>优化：通过枚举类型维护所有的异常：</p>
-<p>  新建枚举类型，然后在抛出和捕获异常时将枚举传入抛出的参数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ResultEnum &#123;</span><br><span class="line">    UNKONW_ERROR(-<span class="number">1</span>,<span class="string">"未知错误"</span>),</span><br><span class="line">    SUCCESS(<span class="number">0</span>,<span class="string">"成功"</span>),</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    ResultEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p>控制器简化：<br>  如果方法传入的方法过多，可以直接传入对象进行简化，如下所示两个方法等价：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//创建一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Girl girlAdd(@RequestParam(&quot;cupSize&quot;) String cupSize,</span><br><span class="line">                      @RequestParam(&quot;age&quot;) Integer age)&#123;</span><br><span class="line">    Girl girl = new Girl();</span><br><span class="line">    girl.setCupSize(cupSize);</span><br><span class="line">    girl.setAge(age);</span><br><span class="line">    return girlRepository.save(girl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//创建一个女生</span><br><span class="line">@PostMapping(value = &quot;/girls&quot;)</span><br><span class="line">public Girl girlAdd(Girl girl)&#123;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    return girlRepository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果要通过 <strong>非关键字字段</strong> 来查询：</p>
 </li>
 </ul>
-<p>修改自定义的抛出异常的函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class GirlException extends RuntimeException &#123;</span><br><span class="line">    private Integer code;</span><br><span class="line"></span><br><span class="line">    //传入枚举类型作为参数</span><br><span class="line">    public GirlException(ResultEnum resultEnum) &#123;</span><br><span class="line">        super(resultEnum.getMsg());   //调用父类的构造方法</span><br><span class="line">        this.code = resultEnum.getCode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setCode(Integer code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>修改接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GirlRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Girl</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//通过年龄来查询</span></span><br><span class="line">    <span class="comment">//注意 findByAge 这个函数名必须要这么写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">findByAge</span><span class="params">(Integer age)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在控制器中添加：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过年龄来查询</span></span><br><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"girls/age"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlListByAge</span><span class="params">(@PathVariable(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> girlRepository.findByAge(age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/4、事务管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/技术教程/Spring Boot/4、事务管理/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>事务管理指的是涉及数据库时，作为单个逻辑工作单元执行的一系列操作，要么这些操作完全执行，要么都不执行。</p>
+<p>例如插入两条记录，要么都成功，要么都不要插入：</p>
+<p>先建一个类定义数据库操作类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Service注解，将自动注册到Spring容器</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//事物管理注解，只有当下面的函数中的语句都能正确执行，才进行插入操作</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girlA = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlA.setCupSize(<span class="string">"A"</span>);</span><br><span class="line">        girlA.setAge(<span class="number">18</span>);</span><br><span class="line">        girlRepository.save(girlA);</span><br><span class="line"></span><br><span class="line">        Girl girlB = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlB.setCupSize(<span class="string">"B"</span>);</span><br><span class="line">        girlB.setAge(<span class="number">19</span>);</span><br><span class="line">        girlRepository.save(girlB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改控制器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入 GirlService 类</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlService girlService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/two"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        girlService.insertTwo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2122,166 +2273,6 @@ def max_poo_2x2(x):
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/4、事务管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Spring Boot/4、事务管理/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>事务管理指的是涉及数据库时，作为单个逻辑工作单元执行的一系列操作，要么这些操作完全执行，要么都不执行。</p>
-<p>例如插入两条记录，要么都成功，要么都不要插入：</p>
-<p>先建一个类定义数据库操作类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Service注解，将自动注册到Spring容器</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//事物管理注解，只有当下面的函数中的语句都能正确执行，才进行插入操作</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girlA = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlA.setCupSize(<span class="string">"A"</span>);</span><br><span class="line">        girlA.setAge(<span class="number">18</span>);</span><br><span class="line">        girlRepository.save(girlA);</span><br><span class="line"></span><br><span class="line">        Girl girlB = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlB.setCupSize(<span class="string">"B"</span>);</span><br><span class="line">        girlB.setAge(<span class="number">19</span>);</span><br><span class="line">        girlRepository.save(girlB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改控制器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入 GirlService 类</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlService girlService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/two"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        girlService.insertTwo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2351,7 +2342,9 @@ def max_poo_2x2(x):
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/数学/矩阵/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/图数据挖掘/图聚类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/数学/矩阵/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/理论知识/图数据挖掘/图聚类/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -375,7 +375,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
               
             
           </span>
@@ -411,279 +411,114 @@
       
         
           
-            <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>Gauss-Jordan消元法最终将矩阵变为：主元所在的列，除主元为1外，其他元素都为0。</p>
-<p>主元所在的列是基列，主元的个数是秩的值。</p>
-<p>方程组有解的物理含义：每一行组成的超平面有一个共同的交点。</p>
-<hr>
-<p>A的共轭矩阵：<code>$\overline{A}=[\overline{a}_{ij}]$</code></p>
-<p>A的共轭转置：<code>$A^*=\overline{A}^T=\overline{A^T} \quad
-\text{也即：}[A^*]_{ij}=\overline{a_{ji}}$</code> </p>
-<p>注：<code>$A^*$</code>又被称为A的伴随矩阵，在本文中全部表示共轭转置</p>
+            <h1 id="1、图划分"><a href="#1、图划分" class="headerlink" title="1、图划分"></a>1、图划分</h1><p><a href="http://blog.csdn.net/yansmile1/article/details/48346141" target="_blank" rel="noopener"><strong>详细</strong></a></p>
+<p>##Min-cut</p>
+<p>图G=(V,E)，V为节点集合，E为边集，寻找一个划分，使得划分的各个分量之间的<strong>连边权重之和</strong>最小。</p>
+<p><strong>Min Cut的问题</strong></p>
 <ul>
-<li>性质：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(A^*)^*=A</span><br><span class="line"></span><br><span class="line">\text&#123;当A只包含实数时：&#125;A^*=A^T</span><br><span class="line"></span><br><span class="line">(A+B)^T=A^T+B^T \quad (A+B)^*=A^*+B^*</span><br><span class="line"></span><br><span class="line">(\alpha A)^T=\alpha A^T \quad (\alpha A)^*=\alpha A^*</span><br></pre></td></tr></table></figure>
-
+<li><p>平凡解</p>
+<blockquote>
+<p>所有节点划分到同一个分量中</p>
+<p>解决办法：指定K</p>
+</blockquote>
+</li>
+<li><p>不均衡解</p>
+<blockquote>
+<p>划分的各个分量，大小差异大</p>
+</blockquote>
+<blockquote>
+<p>解决办法：限制分量大小</p>
+</blockquote>
 </li>
 </ul>
-<hr>
-<p>对称矩阵：<code>$A=A^T \quad a_{ij}=a_{ji}$</code></p>
-<p>斜对称矩阵：<code>$A=-A^T \quad a_{ij}=-a_{ji}$</code></p>
-<p>埃尔米特矩阵：<code>$A=A^* \quad a_{ij}=a_{ji}$</code></p>
-<p>斜埃尔米特矩阵：<code>$ A=-A^* \quad a_{ij}=-a_{ji}$</code></p>
-<hr>
-<p>线性函数：<code>$f(x+y)=f(x)+f(y) \quad\text{且:}\quad f(\alpha x)=\alpha x$</code></p>
-<p>线性函数的变换被称为仿射变换函数，如：<code>$f(x)=\alpha x+\beta \quad\text{与}\quad f(x_1,x_2)=\alpha _1x_1+\alpha _2x_2+\beta$</code></p>
-<p>线性函数的一般形式为：<code>$f(x_1,x_2,\cdots,x_n)=\alpha _1x_1+\alpha _2x_2+\cdots+\alpha x_n$</code></p>
-<hr>
-<p>矩阵的迹，<code>$A_{m*n}\text{与}B_{n*m}:\quad trace(AB)=trace(BA)\quad\quad trace(ABC)=trace(BCA)=trace(CAB)$</code></p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A^&#123;-1&#125;\text&#123;存在&#125;\Leftrightarrow A\text&#123;是非歧义&#125;</span><br><span class="line">\Leftrightarrow rank(A)=n \Leftrightarrow A \rightarrow I(G-J) \Leftrightarrow Ax=0\text&#123;只有0解&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>$A^{-1}$</code>的计算：<code>$[A|I] \rightarrow [I|A^{-1}]$</code></p>
-<p><code>$A^{-1}$</code>的性质：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(A^&#123;-1&#125;)^&#123;-1&#125;=A</span><br><span class="line"></span><br><span class="line">AB\text&#123;依然非奇异&#125;</span><br><span class="line"></span><br><span class="line">(AB)^&#123;-1&#125;=B^&#123;-1&#125;A^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;T&#125;=(A^&#123;T&#125;)^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;*&#125;=(A^&#123;*&#125;)^&#123;-1&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>Sherman-Morrison Formula:<br><code>$(A+cd^{T})=\frac{A^{-1}-A^{-1}cd^{T}A^{-1}}{1+d^{T}A^{-1}c}$</code></p>
-<p>通过该公式可以快速通过<code>$A^{-1}$</code>求<code>$A+cd^{T}$</code>的逆。</p>
-<hr>
-<p>初等矩阵：可以写成<code>$I-uv^{T}$</code>形式的矩阵是初等矩阵，是<code>$I$</code>经过一次初等变换得到的，所有的初等矩阵非奇异，初等矩阵的逆还是初等矩阵。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(I-uv^&#123;T&#125;)^&#123;-1&#125;=I-\frac&#123;uv^&#123;T&#125;&#125;&#123;v^&#123;T&#125;u-1&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A是非奇异的当且仅当A能有初等矩阵产生：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G-J\text&#123;把A变为I：&#125;G_&#123;n&#125;\cdots G_&#123;2&#125;G_&#123;1&#125;=I\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;\cdots G^&#123;-1&#125;_&#123;n&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><code>$A\sim B\Leftrightarrow PAQ=B$</code>（P、Q是非奇异的，即P、Q是一系列初等矩阵相乘，A能通过初等变换变到B）</p>
-<p><code>$A\sim B\Leftrightarrow rank(A)=rank(B)~$</code>推论：非奇异矩阵的乘法不能改变秩。</p>
-<p>转置也不能改变秩。</p>
-<hr>
-<p>A的LU分解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G_&#123;3&#125;G_&#123;2&#125;G_&#123;1&#125;A=U\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;G^&#123;-1&#125;_&#123;3&#125;U=LU\text&#123;（U的主元必须非0）&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以用来解Ax=b的方程：</p>
-<p>LUx=b  令 Ux=y,先通过 Ly=b 解出 y，再通过 Ux=y 解出 x。</p>
-<p>PA=LU 可以完成任意非奇异矩阵 A 的分解。</p>
-<p>LDU 分解就是把 LU 分解中的 U 变成 DU。</p>
-<hr>
-<p>向量空间的定义（共十条规则）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;V空间的非空子集S是V的子空间&#125;\Leftrightarrow \left\&#123;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x,y\in S &amp; \Rightarrow &amp; x+y\Rightarrow S \\</span><br><span class="line">x\in S &amp; \Rightarrow &amp; \alpha x \Rightarrow S</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\right.</span><br></pre></td></tr></table></figure>
-
-<p>V空间中只包含0向量的子空间是平凡子空间。</p>
-<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线是子空间。</p>
-<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线和平面是子空间。</p>
-<hr>
-<p>生成集，向量集<code>$S=\{V^1,V^2,\cdots,V^r\},(V^r\text{是V空间中的向量})$</code>，</p>
-<p>则：<code>$span(S)=\{\alpha_1V_1+\alpha_2V_2+\cdots+\alpha_rV_r\}$</code>是空间V的子空间W，S称为s张成的空间span(S)的生成集。</p>
-<p>比如：<code>$\{e_1,e_2,\cdots,e_n\}$</code>张成<code>$\mathbb{R}^{2}$</code>空间，<code>$\{1,x,x^2,\cdots,x^n\}$</code>张成多项式的空间。</p>
-<p>把S写成矩阵A，<code>$\alpha_r$</code>用x表示，则：Ax=b, b可以表示W空间中的任意向量，也即b取任意向量此方程有解。这可以验证S是否可以张成r维空间：方程有解就可以张成。</p>
-<p>子空间<code>$\mathcal{X,Y}$</code>，则<code>$S_x\bigcup S_y$</code>张成<code>$\mathcal{X+Y}$</code>，比如：</p>
-<p><code>$\mathcal{X,Y\subseteq \mathbb{R}^{2}}$</code>是两条不同的穿过原点的子空间，则：<code>$\mathcal{X+Y = \mathbb{R}^{2}}$</code>。</p>
-<hr>
-<p>对于<code>$A_{mn}$</code>，<code>$rank(A)=r$</code>，有：</p>
-<p><code>$R(A)$</code>：A的列空间，<code>$R(A)=\{Ax\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimR(A)=r$</code></p>
-<p><code>$R(A^T)$</code>：A的行空间，<code>$R(A^T)=\{A^Ty\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimR(A^T)=r$</code></p>
-<p><code>$N(A)$</code>：A的零空间，<code>$N(A)=\{x|Ax=0\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimN(A)=n-r$</code></p>
-<p><code>$N(A^T)$</code>：A的左零空间，<code>$N(A^T)=\{y|A^Ty=0\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimN(A^T)=m-r$</code></p>
-<p>空间基的个数是空间的维度，维度也代表自由度。（区别维度与单个向量中包含的分量的个数）</p>
-<p>如果<code>$\mathcal{X,Y}$</code>是<code>$V$</code>的子空间，则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim(\mathcal&#123;X+Y&#125;)=dim(\mathcal&#123;X&#125;)+dim(\mathcal&#123;Y&#125;)-dim(\mathcal&#123;X \cap Y&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><code>$rank(A+B) \leq rank(A)+rank(B)$</code></p>
-<p>非奇异阵乘矩阵A，不改变A的秩：<code>$rank(A)=rank(PAQ)$</code>，P、Q为非奇异阵。</p>
-<p>若<code>$B_{N*P}$</code></p>
-<p><code>$r(AB) \leq min\{r(A),r(B)\}$</code></p>
-<p><code>$r(A)+r(B)-n \leq r(AB)$</code></p>
-<p><code>$rank(A^TA)=r(A)=r(AA^T)$</code></p>
-<hr>
-<p>正规方程：<code>$A^TAx=A^Tb$</code>总是有解，可以解决最小二乘法的求解问题。</p>
-<p>T被称为线性变换，若：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(\alpha x+y)=\alpha T(x)+T(y)</span><br><span class="line">\Leftrightarrow </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">T(x+y)=T(x)+T(y) \\ </span><br><span class="line">T(\alpha x)=\alpha T(x)</span><br><span class="line">\end&#123;cases&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每一个矩阵变换都是线性变换，反之不成立。</p>
-<hr>
-<p>B相似于C：<code>$B\simeq C$</code>，存在可逆矩阵Q使<code>$B=Q^{-1}CQ$</code>。
-线性变换通过指定基下的矩阵来表示，同一个线性变换，不同基下的矩阵称为相似矩阵。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/理论知识/知识图谱/第一周/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。</p>
-<h2 id="知识图谱相关"><a href="#知识图谱相关" class="headerlink" title="知识图谱相关"></a>知识图谱相关</h2><h4 id="漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><a href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25" class="headerlink" title="漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25."></a><em>漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</em></h4><p>这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个大型的关系型数据库。</p>
-<p>知识图谱是一个大型的工程，相比于我们通常构建的E-R图，知识图谱主要是对关系和实体进行构建。主要步骤为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">知识获取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识计算及应用</span><br></pre></td></tr></table></figure>
-
-<p>其中知识获取阶段，数据可以从结构化、半结构化、非结构化数据中获取。知识融合阶段，指用统一的术语将各个数据源获取的知识融合成一个统一的知识库。知识计算主要指通过构建好的图谱提供的信息得到更多的隐含知识。里面涉及到的关键技术有实体关系识别技术、知识融汇技术、实体链接技术和知识推理技术。</p>
-<p>实体关系识别技术的目的是通过填充关系模板槽的方式抽取文本中特定的关系，主要有基于统计学的方法，它将问题转化为分类问题进行处理。</p>
-<p>知识融汇技术中，本体匹配非常重要，一般可以分为模式匹配和实例匹配两种算法。</p>
-<p>实体链接技术的目的是解决命名实体歧义问题，主要有基于概率生成模型的方法、基于主题的方法、基于图的方法、基于深度神经网络的方法。</p>
-<p>知识推理技术可以分为基于符合的推理和基于统计的推理。</p>
-<p>在文章最后，介绍了一些开放知识图谱和一些应用。</p>
-<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600."></a><em>刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</em></h4><p>知识图谱从逻辑上可以分为2个层次：数据层和逻辑层。在数据层通常以“实体-关系-实体”或者“实体-属性-性值”三元组作为单元存储在图数据库。模式层在数据层之上，存储的是经过提炼的知识。</p>
-<p>知识图谱有自顶向下和自底向上2种构建方法，现在以自底向上为主。包括三个步骤：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">信息抽取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识加工</span><br></pre></td></tr></table></figure>
-
-<p><strong>信息抽取</strong>涉及的关键技术包括：实体抽取、关系抽取和属性抽取。</p>
-<p>早期的关系抽取研究方法主要通过人工构造语法和语义规则，据此采用模式匹配的方法类识别实体间的关系。后来又出现了有监督、半监督和无监督学习方法。这些方法都需要预先定义实体关系类型，而面向开发领域的关系抽取技术直接利用语料库中的关系词汇对实体关系进行建模。</p>
-<p><strong>知识融合</strong>包括：实体链接、知识合并。</p>
-<p>实体链接是指对从文本中抽取得到的实体对象，将其链接到知识库中对应的正确实体对象的操作。实体链接技术的难点在于实体消歧和共指消解。</p>
-<p>实体消歧专门用于解决同名实体产生歧义问题的技术，主要采用聚类法，该方法的关键是如何定义实体对象与指称项之间的相似度。共指消解技术主要用于解决多个指称项对应同一实体对象的问题，又称对象对齐、实体匹配、实体同义。基于自然语言处理的共指消解以句法分析为基础，代表方法是Hobbs算法和向心理论。后来统计机器学习的方法引入。</p>
-<p>知识合并分为合并外部知识库、合并关系数据库。</p>
-<p><strong>知识加工</strong>包括：本体构建、知识推理和质量评估。通过信息抽取与知识融合可以得到一系列的事实表达，但是事实并不等于知识，还需要知识加工才能得到结构化、网络化的知识体系。</p>
-<p>本体是同一领域内的不同主体之间进行交流的语义基础。（这可以把本体理解为类，信息抽取中的命名实体相当于对象）本体是树状结构，相邻层次的节点之间具有严格的“IsA”关系。数据驱动的自动化本体构建包括：实体并列关系相似度计算、实体上下位关系抽取和本体的生成。</p>
-<p>知识推理方法可以分为：基于逻辑的推理、基于图的推理。基于逻辑的推理主要包括一阶谓词逻辑、描述逻辑以及基于规则的推理。基于图的推理主要基于神经网络模型或Path Ranking算法。</p>
-<p>文章最后对知识图谱面临的困难与挑战进行的阐述。</p>
-<h2 id="命名实体相关"><a href="#命名实体相关" class="headerlink" title="命名实体相关"></a>命名实体相关</h2><p>命名实体识别本来属于自然语言处理的内容，但是在知识图谱中的信息抽取阶段有应用，自然语言处理这门课又打算选择这个题目做一个project，所以看了许多这方面的内容，在此就不一一列举。</p>
-<p>现阶段主要有CRF和深度学习的方法。</p>
+<p><strong>Min Cut的扩展</strong>：Ratio-cut， Normalized-cut</p>
+<p><strong>图划分求解算法</strong></p>
+<ul>
+<li><p>局部方法：KL算法</p>
+<p>  目标：寻找图的最优两路划分</p>
+<blockquote>
+<p>第一步：构造初始划分C=C1+C2</p>
+</blockquote>
+<blockquote>
+<p>第二步：从C1中选择一个节点a，从C2中选择一个节点b，交换a和b可以使cut<strong><em>C</em></strong>减小，则交换</p>
+</blockquote>
+<blockquote>
+<p>重复第二步直至cut<strong><em>C</em></strong>不再减小</p>
+</blockquote>
+</li>
+<li><p>全局方法：谱划分</p>
+<p>  谱聚类的基本思想便是利用样本数据之间的相似矩阵（拉普拉斯矩阵）进行特征分解（ 通过Laplacian Eigenmap 的降维方式降维），然后将得到的特征向量进行 K-means聚类。</p>
+</li>
+</ul>
+<h1 id="2、社区发现"><a href="#2、社区发现" class="headerlink" title="2、社区发现"></a>2、社区发现</h1><p>识别出网络中“内部连接紧密、与外部连接稀疏”的节点组。</p>
+<p><strong>和图划分的区别</strong></p>
+<ul>
+<li><p>图划分</p>
+<blockquote>
+<p>按照任务需求对网络进行划分</p>
+</blockquote>
+<blockquote>
+<p>划分的分量数通常已知</p>
+</blockquote>
+<blockquote>
+<p>各个分量彼此不重叠</p>
+</blockquote>
+</li>
+<li><p>社区发现</p>
+<blockquote>
+<p>寻找网络固有的结构规则</p>
+</blockquote>
+<blockquote>
+<p>社区个数通常未知</p>
+</blockquote>
+<blockquote>
+<p>社区可以重叠、嵌套</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>GN算法</strong>：基于边介数的算法   <a href="http://blog.csdn.net/aspirinvagrant/article/details/45599071" target="_blank" rel="noopener"><strong>详细</strong></a></p>
+<blockquote>
+<p>步骤1：计算每条边的介数</p>
+</blockquote>
+<blockquote>
+<p>步骤2：删除介数最大的边</p>
+</blockquote>
+<h2 id="模块度"><a href="#模块度" class="headerlink" title="模块度"></a>模块度</h2><p><a href="http://blog.csdn.net/marywbrown/article/details/62059231" target="_blank" rel="noopener"><strong>详细</strong></a></p>
+<p>回答的问题：什么样的网络划分是一个好划分？</p>
+<p>直观认识：内部连边多、外部连边少</p>
+<p>模块度的<strong>性质</strong>：</p>
+<blockquote>
+<p>取值范围：-1和1之间值越大，划分质量越好</p>
+<p>可加性：社区上的定义和节点上的定义一致</p>
+</blockquote>
+<p>社区发现问题变成了<strong>模块度优化问题</strong></p>
+<blockquote>
+<p>给定一个网络，寻找该模块度最大的划分</p>
+<p>这是一个NP-hard问题，可使用多中优化算法</p>
+</blockquote>
+<ul>
+<li>模块度优化算法示例-<strong>局部优化</strong></li>
+</ul>
+<blockquote>
+<p>初始化：每个节点属于一个社区</p>
+</blockquote>
+<blockquote>
+<p>步骤1，对于每个节点，判定加入其邻居节点所属的社区是否可以增加模块度，如果能够增加，加入使模块度增加最大的社区，直到所有节点所属的社区都不再变动为止</p>
+</blockquote>
+<blockquote>
+<p>步骤2，将每个社区视为一个节点， 构造新网络</p>
+</blockquote>
+<blockquote>
+<p>重复上述步骤至模块度不再增加</p>
+</blockquote>
+<h2 id="InfoMap"><a href="#InfoMap" class="headerlink" title="InfoMap"></a>InfoMap</h2><p>两级哈夫曼编码</p>
+<p><img src="https://i.imgur.com/xm7oK5s.jpg" alt="案例"></p>
+<h1 id="3、图建模"><a href="#3、图建模" class="headerlink" title="3、图建模"></a>3、图建模</h1><ul>
+<li><p>非负矩阵分解</p>
+</li>
+<li><p>随机块模型</p>
+</li>
+</ul>
 
           
         
@@ -936,7 +771,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/图数据挖掘/图聚类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -956,7 +791,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/图数据挖掘/图聚类/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/理论知识/云资源调度/云资源调度/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -998,7 +833,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+                <time title="修改时间：2018-09-07 15:18:59" itemprop="dateModified" datetime="2018-09-07T15:18:59+08:00">2018-09-07</time>
               
             
           </span>
@@ -1034,114 +869,449 @@
       
         
           
-            <h1 id="1、图划分"><a href="#1、图划分" class="headerlink" title="1、图划分"></a>1、图划分</h1><p><a href="http://blog.csdn.net/yansmile1/article/details/48346141" target="_blank" rel="noopener"><strong>详细</strong></a></p>
-<p>##Min-cut</p>
-<p>图G=(V,E)，V为节点集合，E为边集，寻找一个划分，使得划分的各个分量之间的<strong>连边权重之和</strong>最小。</p>
-<p><strong>Min Cut的问题</strong></p>
+            <h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>面向对象：基础设施即服务（IaaS）</p>
+<p>主要调配的资源：CPU、内存</p>
+<p>建立在资源管理系统基础之上，如：Apache YARN，Xen</p>
+<p>可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。</p>
+<p>好的调度策略的特点：</p>
+<ol>
+<li>贡献越多，回报越大；</li>
+<li>每个用户不会谎报资源；</li>
+<li>帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。</li>
+</ol>
+<h2 id="Max-min-Fairness-算法："><a href="#Max-min-Fairness-算法：" class="headerlink" title="Max-min Fairness 算法："></a>Max-min Fairness 算法：</h2><p>分配过程是每次先把资源平分，如果有用户分到多余的资源就拿出来继续给其他的平分，这样保证申请者都可以公平分到资源。</p>
+<h2 id="Dominant-Resource-Fairness-算法："><a href="#Dominant-Resource-Fairness-算法：" class="headerlink" title="Dominant Resource Fairness 算法："></a>Dominant Resource Fairness 算法：</h2><p>假设：不同类型资源的等份额比率具有相等的价值。</p>
+<p>DRF方法的设想是在多资源的环境中，用户被分配的量应该由其 dominant share 来决定，dominant share 是该用户被分配的任何资源中最大的份额。</p>
+<p>DRF目的是在所有用户中，寻求最小份额的最大值。比如说，如果用户A启动了CPU密集型任务，用户B启动了内存密集型任务，DRF尝试均等用户A的CPU份额和用户B的内存份额。在单一资源的场景下，DRF退化成 max-min fairness 方法。</p>
+<h2 id="Hybrid-Multi-Resource-Fairness-算法："><a href="#Hybrid-Multi-Resource-Fairness-算法：" class="headerlink" title="Hybrid Multi-Resource Fairness 算法："></a>Hybrid Multi-Resource Fairness 算法：</h2><p>思想：分配给每个用户的累计份额相等。</p>
+<p>来自于 DRF。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/理论知识/知识图谱/第一周/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。</p>
+<h2 id="知识图谱相关"><a href="#知识图谱相关" class="headerlink" title="知识图谱相关"></a>知识图谱相关</h2><h4 id="漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><a href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25" class="headerlink" title="漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25."></a><em>漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</em></h4><p>这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个大型的关系型数据库。</p>
+<p>知识图谱是一个大型的工程，相比于我们通常构建的E-R图，知识图谱主要是对关系和实体进行构建。主要步骤为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">知识获取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识计算及应用</span><br></pre></td></tr></table></figure>
+
+<p>其中知识获取阶段，数据可以从结构化、半结构化、非结构化数据中获取。知识融合阶段，指用统一的术语将各个数据源获取的知识融合成一个统一的知识库。知识计算主要指通过构建好的图谱提供的信息得到更多的隐含知识。里面涉及到的关键技术有实体关系识别技术、知识融汇技术、实体链接技术和知识推理技术。</p>
+<p>实体关系识别技术的目的是通过填充关系模板槽的方式抽取文本中特定的关系，主要有基于统计学的方法，它将问题转化为分类问题进行处理。</p>
+<p>知识融汇技术中，本体匹配非常重要，一般可以分为模式匹配和实例匹配两种算法。</p>
+<p>实体链接技术的目的是解决命名实体歧义问题，主要有基于概率生成模型的方法、基于主题的方法、基于图的方法、基于深度神经网络的方法。</p>
+<p>知识推理技术可以分为基于符合的推理和基于统计的推理。</p>
+<p>在文章最后，介绍了一些开放知识图谱和一些应用。</p>
+<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600."></a><em>刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</em></h4><p>知识图谱从逻辑上可以分为2个层次：数据层和逻辑层。在数据层通常以“实体-关系-实体”或者“实体-属性-性值”三元组作为单元存储在图数据库。模式层在数据层之上，存储的是经过提炼的知识。</p>
+<p>知识图谱有自顶向下和自底向上2种构建方法，现在以自底向上为主。包括三个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">信息抽取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识加工</span><br></pre></td></tr></table></figure>
+
+<p><strong>信息抽取</strong>涉及的关键技术包括：实体抽取、关系抽取和属性抽取。</p>
+<p>早期的关系抽取研究方法主要通过人工构造语法和语义规则，据此采用模式匹配的方法类识别实体间的关系。后来又出现了有监督、半监督和无监督学习方法。这些方法都需要预先定义实体关系类型，而面向开发领域的关系抽取技术直接利用语料库中的关系词汇对实体关系进行建模。</p>
+<p><strong>知识融合</strong>包括：实体链接、知识合并。</p>
+<p>实体链接是指对从文本中抽取得到的实体对象，将其链接到知识库中对应的正确实体对象的操作。实体链接技术的难点在于实体消歧和共指消解。</p>
+<p>实体消歧专门用于解决同名实体产生歧义问题的技术，主要采用聚类法，该方法的关键是如何定义实体对象与指称项之间的相似度。共指消解技术主要用于解决多个指称项对应同一实体对象的问题，又称对象对齐、实体匹配、实体同义。基于自然语言处理的共指消解以句法分析为基础，代表方法是Hobbs算法和向心理论。后来统计机器学习的方法引入。</p>
+<p>知识合并分为合并外部知识库、合并关系数据库。</p>
+<p><strong>知识加工</strong>包括：本体构建、知识推理和质量评估。通过信息抽取与知识融合可以得到一系列的事实表达，但是事实并不等于知识，还需要知识加工才能得到结构化、网络化的知识体系。</p>
+<p>本体是同一领域内的不同主体之间进行交流的语义基础。（这可以把本体理解为类，信息抽取中的命名实体相当于对象）本体是树状结构，相邻层次的节点之间具有严格的“IsA”关系。数据驱动的自动化本体构建包括：实体并列关系相似度计算、实体上下位关系抽取和本体的生成。</p>
+<p>知识推理方法可以分为：基于逻辑的推理、基于图的推理。基于逻辑的推理主要包括一阶谓词逻辑、描述逻辑以及基于规则的推理。基于图的推理主要基于神经网络模型或Path Ranking算法。</p>
+<p>文章最后对知识图谱面临的困难与挑战进行的阐述。</p>
+<h2 id="命名实体相关"><a href="#命名实体相关" class="headerlink" title="命名实体相关"></a>命名实体相关</h2><p>命名实体识别本来属于自然语言处理的内容，但是在知识图谱中的信息抽取阶段有应用，自然语言处理这门课又打算选择这个题目做一个project，所以看了许多这方面的内容，在此就不一一列举。</p>
+<p>现阶段主要有CRF和深度学习的方法。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/数学/矩阵/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/28/理论知识/数学/矩阵/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>Gauss-Jordan消元法最终将矩阵变为：主元所在的列，除主元为1外，其他元素都为0。</p>
+<p>主元所在的列是基列，主元的个数是秩的值。</p>
+<p>方程组有解的物理含义：每一行组成的超平面有一个共同的交点。</p>
+<hr>
+<p>A的共轭矩阵：<code>$\overline{A}=[\overline{a}_{ij}]$</code></p>
+<p>A的共轭转置：<code>$A^*=\overline{A}^T=\overline{A^T} \quad
+\text{也即：}[A^*]_{ij}=\overline{a_{ji}}$</code> </p>
+<p>注：<code>$A^*$</code>又被称为A的伴随矩阵，在本文中全部表示共轭转置</p>
 <ul>
-<li><p>平凡解</p>
-<blockquote>
-<p>所有节点划分到同一个分量中</p>
-<p>解决办法：指定K</p>
-</blockquote>
-</li>
-<li><p>不均衡解</p>
-<blockquote>
-<p>划分的各个分量，大小差异大</p>
-</blockquote>
-<blockquote>
-<p>解决办法：限制分量大小</p>
-</blockquote>
+<li>性质：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(A^*)^*=A</span><br><span class="line"></span><br><span class="line">\text&#123;当A只包含实数时：&#125;A^*=A^T</span><br><span class="line"></span><br><span class="line">(A+B)^T=A^T+B^T \quad (A+B)^*=A^*+B^*</span><br><span class="line"></span><br><span class="line">(\alpha A)^T=\alpha A^T \quad (\alpha A)^*=\alpha A^*</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<p><strong>Min Cut的扩展</strong>：Ratio-cut， Normalized-cut</p>
-<p><strong>图划分求解算法</strong></p>
-<ul>
-<li><p>局部方法：KL算法</p>
-<p>  目标：寻找图的最优两路划分</p>
-<blockquote>
-<p>第一步：构造初始划分C=C1+C2</p>
-</blockquote>
-<blockquote>
-<p>第二步：从C1中选择一个节点a，从C2中选择一个节点b，交换a和b可以使cut<strong><em>C</em></strong>减小，则交换</p>
-</blockquote>
-<blockquote>
-<p>重复第二步直至cut<strong><em>C</em></strong>不再减小</p>
-</blockquote>
-</li>
-<li><p>全局方法：谱划分</p>
-<p>  谱聚类的基本思想便是利用样本数据之间的相似矩阵（拉普拉斯矩阵）进行特征分解（ 通过Laplacian Eigenmap 的降维方式降维），然后将得到的特征向量进行 K-means聚类。</p>
-</li>
-</ul>
-<h1 id="2、社区发现"><a href="#2、社区发现" class="headerlink" title="2、社区发现"></a>2、社区发现</h1><p>识别出网络中“内部连接紧密、与外部连接稀疏”的节点组。</p>
-<p><strong>和图划分的区别</strong></p>
-<ul>
-<li><p>图划分</p>
-<blockquote>
-<p>按照任务需求对网络进行划分</p>
-</blockquote>
-<blockquote>
-<p>划分的分量数通常已知</p>
-</blockquote>
-<blockquote>
-<p>各个分量彼此不重叠</p>
-</blockquote>
-</li>
-<li><p>社区发现</p>
-<blockquote>
-<p>寻找网络固有的结构规则</p>
-</blockquote>
-<blockquote>
-<p>社区个数通常未知</p>
-</blockquote>
-<blockquote>
-<p>社区可以重叠、嵌套</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>GN算法</strong>：基于边介数的算法   <a href="http://blog.csdn.net/aspirinvagrant/article/details/45599071" target="_blank" rel="noopener"><strong>详细</strong></a></p>
-<blockquote>
-<p>步骤1：计算每条边的介数</p>
-</blockquote>
-<blockquote>
-<p>步骤2：删除介数最大的边</p>
-</blockquote>
-<h2 id="模块度"><a href="#模块度" class="headerlink" title="模块度"></a>模块度</h2><p><a href="http://blog.csdn.net/marywbrown/article/details/62059231" target="_blank" rel="noopener"><strong>详细</strong></a></p>
-<p>回答的问题：什么样的网络划分是一个好划分？</p>
-<p>直观认识：内部连边多、外部连边少</p>
-<p>模块度的<strong>性质</strong>：</p>
-<blockquote>
-<p>取值范围：-1和1之间值越大，划分质量越好</p>
-<p>可加性：社区上的定义和节点上的定义一致</p>
-</blockquote>
-<p>社区发现问题变成了<strong>模块度优化问题</strong></p>
-<blockquote>
-<p>给定一个网络，寻找该模块度最大的划分</p>
-<p>这是一个NP-hard问题，可使用多中优化算法</p>
-</blockquote>
-<ul>
-<li>模块度优化算法示例-<strong>局部优化</strong></li>
-</ul>
-<blockquote>
-<p>初始化：每个节点属于一个社区</p>
-</blockquote>
-<blockquote>
-<p>步骤1，对于每个节点，判定加入其邻居节点所属的社区是否可以增加模块度，如果能够增加，加入使模块度增加最大的社区，直到所有节点所属的社区都不再变动为止</p>
-</blockquote>
-<blockquote>
-<p>步骤2，将每个社区视为一个节点， 构造新网络</p>
-</blockquote>
-<blockquote>
-<p>重复上述步骤至模块度不再增加</p>
-</blockquote>
-<h2 id="InfoMap"><a href="#InfoMap" class="headerlink" title="InfoMap"></a>InfoMap</h2><p>两级哈夫曼编码</p>
-<p><img src="https://i.imgur.com/xm7oK5s.jpg" alt="案例"></p>
-<h1 id="3、图建模"><a href="#3、图建模" class="headerlink" title="3、图建模"></a>3、图建模</h1><ul>
-<li><p>非负矩阵分解</p>
-</li>
-<li><p>随机块模型</p>
-</li>
-</ul>
+<hr>
+<p>对称矩阵：<code>$A=A^T \quad a_{ij}=a_{ji}$</code></p>
+<p>斜对称矩阵：<code>$A=-A^T \quad a_{ij}=-a_{ji}$</code></p>
+<p>埃尔米特矩阵：<code>$A=A^* \quad a_{ij}=a_{ji}$</code></p>
+<p>斜埃尔米特矩阵：<code>$ A=-A^* \quad a_{ij}=-a_{ji}$</code></p>
+<hr>
+<p>线性函数：<code>$f(x+y)=f(x)+f(y) \quad\text{且:}\quad f(\alpha x)=\alpha x$</code></p>
+<p>线性函数的变换被称为仿射变换函数，如：<code>$f(x)=\alpha x+\beta \quad\text{与}\quad f(x_1,x_2)=\alpha _1x_1+\alpha _2x_2+\beta$</code></p>
+<p>线性函数的一般形式为：<code>$f(x_1,x_2,\cdots,x_n)=\alpha _1x_1+\alpha _2x_2+\cdots+\alpha x_n$</code></p>
+<hr>
+<p>矩阵的迹，<code>$A_{m*n}\text{与}B_{n*m}:\quad trace(AB)=trace(BA)\quad\quad trace(ABC)=trace(BCA)=trace(CAB)$</code></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A^&#123;-1&#125;\text&#123;存在&#125;\Leftrightarrow A\text&#123;是非歧义&#125;</span><br><span class="line">\Leftrightarrow rank(A)=n \Leftrightarrow A \rightarrow I(G-J) \Leftrightarrow Ax=0\text&#123;只有0解&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>$A^{-1}$</code>的计算：<code>$[A|I] \rightarrow [I|A^{-1}]$</code></p>
+<p><code>$A^{-1}$</code>的性质：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(A^&#123;-1&#125;)^&#123;-1&#125;=A</span><br><span class="line"></span><br><span class="line">AB\text&#123;依然非奇异&#125;</span><br><span class="line"></span><br><span class="line">(AB)^&#123;-1&#125;=B^&#123;-1&#125;A^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;T&#125;=(A^&#123;T&#125;)^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;*&#125;=(A^&#123;*&#125;)^&#123;-1&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Sherman-Morrison Formula:<br><code>$(A+cd^{T})=\frac{A^{-1}-A^{-1}cd^{T}A^{-1}}{1+d^{T}A^{-1}c}$</code></p>
+<p>通过该公式可以快速通过<code>$A^{-1}$</code>求<code>$A+cd^{T}$</code>的逆。</p>
+<hr>
+<p>初等矩阵：可以写成<code>$I-uv^{T}$</code>形式的矩阵是初等矩阵，是<code>$I$</code>经过一次初等变换得到的，所有的初等矩阵非奇异，初等矩阵的逆还是初等矩阵。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(I-uv^&#123;T&#125;)^&#123;-1&#125;=I-\frac&#123;uv^&#123;T&#125;&#125;&#123;v^&#123;T&#125;u-1&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A是非奇异的当且仅当A能有初等矩阵产生：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G-J\text&#123;把A变为I：&#125;G_&#123;n&#125;\cdots G_&#123;2&#125;G_&#123;1&#125;=I\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;\cdots G^&#123;-1&#125;_&#123;n&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><code>$A\sim B\Leftrightarrow PAQ=B$</code>（P、Q是非奇异的，即P、Q是一系列初等矩阵相乘，A能通过初等变换变到B）</p>
+<p><code>$A\sim B\Leftrightarrow rank(A)=rank(B)~$</code>推论：非奇异矩阵的乘法不能改变秩。</p>
+<p>转置也不能改变秩。</p>
+<hr>
+<p>A的LU分解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G_&#123;3&#125;G_&#123;2&#125;G_&#123;1&#125;A=U\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;G^&#123;-1&#125;_&#123;3&#125;U=LU\text&#123;（U的主元必须非0）&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以用来解Ax=b的方程：</p>
+<p>LUx=b  令 Ux=y,先通过 Ly=b 解出 y，再通过 Ux=y 解出 x。</p>
+<p>PA=LU 可以完成任意非奇异矩阵 A 的分解。</p>
+<p>LDU 分解就是把 LU 分解中的 U 变成 DU。</p>
+<hr>
+<p>向量空间的定义（共十条规则）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;V空间的非空子集S是V的子空间&#125;\Leftrightarrow \left\&#123;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x,y\in S &amp; \Rightarrow &amp; x+y\Rightarrow S \\</span><br><span class="line">x\in S &amp; \Rightarrow &amp; \alpha x \Rightarrow S</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\right.</span><br></pre></td></tr></table></figure>
+
+<p>V空间中只包含0向量的子空间是平凡子空间。</p>
+<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线是子空间。</p>
+<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线和平面是子空间。</p>
+<hr>
+<p>生成集，向量集<code>$S=\{V^1,V^2,\cdots,V^r\},(V^r\text{是V空间中的向量})$</code>，</p>
+<p>则：<code>$span(S)=\{\alpha_1V_1+\alpha_2V_2+\cdots+\alpha_rV_r\}$</code>是空间V的子空间W，S称为s张成的空间span(S)的生成集。</p>
+<p>比如：<code>$\{e_1,e_2,\cdots,e_n\}$</code>张成<code>$\mathbb{R}^{2}$</code>空间，<code>$\{1,x,x^2,\cdots,x^n\}$</code>张成多项式的空间。</p>
+<p>把S写成矩阵A，<code>$\alpha_r$</code>用x表示，则：Ax=b, b可以表示W空间中的任意向量，也即b取任意向量此方程有解。这可以验证S是否可以张成r维空间：方程有解就可以张成。</p>
+<p>子空间<code>$\mathcal{X,Y}$</code>，则<code>$S_x\bigcup S_y$</code>张成<code>$\mathcal{X+Y}$</code>，比如：</p>
+<p><code>$\mathcal{X,Y\subseteq \mathbb{R}^{2}}$</code>是两条不同的穿过原点的子空间，则：<code>$\mathcal{X+Y = \mathbb{R}^{2}}$</code>。</p>
+<hr>
+<p>对于<code>$A_{mn}$</code>，<code>$rank(A)=r$</code>，有：</p>
+<p><code>$R(A)$</code>：A的列空间，<code>$R(A)=\{Ax\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimR(A)=r$</code></p>
+<p><code>$R(A^T)$</code>：A的行空间，<code>$R(A^T)=\{A^Ty\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimR(A^T)=r$</code></p>
+<p><code>$N(A)$</code>：A的零空间，<code>$N(A)=\{x|Ax=0\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimN(A)=n-r$</code></p>
+<p><code>$N(A^T)$</code>：A的左零空间，<code>$N(A^T)=\{y|A^Ty=0\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimN(A^T)=m-r$</code></p>
+<p>空间基的个数是空间的维度，维度也代表自由度。（区别维度与单个向量中包含的分量的个数）</p>
+<p>如果<code>$\mathcal{X,Y}$</code>是<code>$V$</code>的子空间，则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim(\mathcal&#123;X+Y&#125;)=dim(\mathcal&#123;X&#125;)+dim(\mathcal&#123;Y&#125;)-dim(\mathcal&#123;X \cap Y&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>$rank(A+B) \leq rank(A)+rank(B)$</code></p>
+<p>非奇异阵乘矩阵A，不改变A的秩：<code>$rank(A)=rank(PAQ)$</code>，P、Q为非奇异阵。</p>
+<p>若<code>$B_{N*P}$</code></p>
+<p><code>$r(AB) \leq min\{r(A),r(B)\}$</code></p>
+<p><code>$r(A)+r(B)-n \leq r(AB)$</code></p>
+<p><code>$rank(A^TA)=r(A)=r(AA^T)$</code></p>
+<hr>
+<p>正规方程：<code>$A^TAx=A^Tb$</code>总是有解，可以解决最小二乘法的求解问题。</p>
+<p>T被称为线性变换，若：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(\alpha x+y)=\alpha T(x)+T(y)</span><br><span class="line">\Leftrightarrow </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">T(x+y)=T(x)+T(y) \\ </span><br><span class="line">T(\alpha x)=\alpha T(x)</span><br><span class="line">\end&#123;cases&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一个矩阵变换都是线性变换，反之不成立。</p>
+<hr>
+<p>B相似于C：<code>$B\simeq C$</code>，存在可逆矩阵Q使<code>$B=Q^{-1}CQ$</code>。
+线性变换通过指定基下的矩阵来表示，同一个线性变换，不同基下的矩阵称为相似矩阵。</p>
 
           
         
@@ -1405,7 +1575,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/0、基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1425,7 +1595,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/云资源调度/云资源调度/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/Spring Boot/0、基础/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1467,7 +1637,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-07 15:18:59" itemprop="dateModified" datetime="2018-09-07T15:18:59+08:00">2018-09-07</time>
+                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
               
             
           </span>
@@ -1503,22 +1673,65 @@
       
         
           
-            <h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>面向对象：基础设施即服务（IaaS）</p>
-<p>主要调配的资源：CPU、内存</p>
-<p>建立在资源管理系统基础之上，如：Apache YARN，Xen</p>
-<p>可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。</p>
-<p>好的调度策略的特点：</p>
-<ol>
-<li>贡献越多，回报越大；</li>
-<li>每个用户不会谎报资源；</li>
-<li>帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。</li>
-</ol>
-<h2 id="Max-min-Fairness-算法："><a href="#Max-min-Fairness-算法：" class="headerlink" title="Max-min Fairness 算法："></a>Max-min Fairness 算法：</h2><p>分配过程是每次先把资源平分，如果有用户分到多余的资源就拿出来继续给其他的平分，这样保证申请者都可以公平分到资源。</p>
-<h2 id="Dominant-Resource-Fairness-算法："><a href="#Dominant-Resource-Fairness-算法：" class="headerlink" title="Dominant Resource Fairness 算法："></a>Dominant Resource Fairness 算法：</h2><p>假设：不同类型资源的等份额比率具有相等的价值。</p>
-<p>DRF方法的设想是在多资源的环境中，用户被分配的量应该由其 dominant share 来决定，dominant share 是该用户被分配的任何资源中最大的份额。</p>
-<p>DRF目的是在所有用户中，寻求最小份额的最大值。比如说，如果用户A启动了CPU密集型任务，用户B启动了内存密集型任务，DRF尝试均等用户A的CPU份额和用户B的内存份额。在单一资源的场景下，DRF退化成 max-min fairness 方法。</p>
-<h2 id="Hybrid-Multi-Resource-Fairness-算法："><a href="#Hybrid-Multi-Resource-Fairness-算法：" class="headerlink" title="Hybrid Multi-Resource Fairness 算法："></a>Hybrid Multi-Resource Fairness 算法：</h2><p>思想：分配给每个用户的累计份额相等。</p>
-<p>来自于 DRF。</p>
+            <ul>
+<li><p>@</p>
+<p>  语法: @关键字(值)</p>
+<p>  用于把关键字和值传递给编译器，更精确低控制编译器的动作。</p>
+</li>
+<li><p>javaBean</p>
+<p>  JavaBean在MVC设计模型中是model，又称模型层，在一般的程序中，我们称它为数据层，就是用来设置数据的属性和一些行为，然后提供获取属性和设置属性的get/set方法。</p>
+</li>
+<li><p>postman 工具</p>
+</li>
+<li><p>RESTful API</p>
+<p>  PUT，DELETE操作是幂等的。所谓幂等是指不管进行多少次操作，结果都一样。比如我用PUT修改一篇文章，然后在做同样的操作，每次操作后的结果并没有不同，DELETE也是一样。顺便说一句，因为GET操作是安全的，所以它自然也是幂等的。</p>
+<p>  POST操作既不是安全的，也不是幂等的，比如常见的POST重复加载问题：当我们多次发出同样的POST请求后，其结果是创建出了若干的资源。</p>
+<p>  创建操作可以使用POST，也可以使用PUT，区别在于POST 是作用在一个集合资源之上的（/uri），而PUT操作是作用在一个具体资源之上的（/uri/xxx），再通俗点说，如果URL可以在客户端确定，那么就使用PUT，如果是在服务端确定，那么就使用POST，比如说很多资源使用数据库自增主键作为标识信息，而创建的资源的标识信息到底是什么只能由服务端提供，这个时候就必须使用POST。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>请求类型</th>
+<th>请求路径</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/girls</td>
+<td>获取女生列表</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/girls</td>
+<td>创建一个女生</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/girls/id</td>
+<td>通过id查询一个女生</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/girls/id</td>
+<td>通过id更新一个女生</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/girls/id</td>
+<td>通过id删除一个女生</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>@Autowired</p>
+<p>  这个注解的作用是将其他的类，接口引入，类似于之前的类的初始化等，用这个注解，类中或接口的方法就可以直接调用了。</p>
+</li>
+<li><p>修改页面后实时刷新</p>
+<p>  1、禁用缓存，配置文件中加 <code>spring.thymeleaf.cache=false</code></p>
+<p>  2、修改模板后 <code>Ctrl+F9</code> 重新编译就可以刷新了</p>
+</li>
+</ul>
 
           
         
@@ -1575,7 +1788,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/1、配置文件使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/os与sys模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1595,7 +1808,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/1、配置文件使用/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2019/06/28/技术教程/python3/os与sys模块/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1637,7 +1850,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:44" itemprop="dateModified" datetime="2018-08-12T09:24:44+08:00">2018-08-12</time>
+                <time title="修改时间：2019-05-08 14:24:57" itemprop="dateModified" datetime="2019-05-08T14:24:57+08:00">2019-05-08</time>
               
             
           </span>
@@ -1673,14 +1886,52 @@
       
         
           
-            <p>配置文件有 application.properties 与 application.yml 两种类型，推荐使用后面一种。</p>
-<h2 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h2><p>以 application.yml 类型为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line"></span><br><span class="line">cupSize: B</span><br><span class="line">age: 18</span><br><span class="line"></span><br><span class="line">content: &quot;cupSize: $&#123;cupSize&#125;, age: $&#123;age&#125;&quot;</span><br></pre></td></tr></table></figure>
+            <h2 id="os-模块"><a href="#os-模块" class="headerlink" title="os 模块"></a>os 模块</h2><p>Python 的 os 模块封装了常见的和操作系统交互的文件和目录操作。</p>
+<ul>
+<li><p>os.mkdir 创建文件</p>
+</li>
+<li><p>os.rmdir 删除文件</p>
+</li>
+<li><p>os.rename 重命名</p>
+</li>
+<li><p>os.remove 删除文件</p>
+</li>
+<li><p>os.getcwd 获取当前工作路径</p>
+</li>
+<li><p>os.walk 遍历目录</p>
+</li>
+<li><p>os.path.join 连接目录与文件名</p>
+</li>
+<li><p>os.path.split 分割文件名与目录</p>
+</li>
+<li><p>os.path.abspath 获取绝对路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不管从哪里开始调用，都是写这句代码的文件的绝对路径</span></span><br><span class="line">os.path.abspath(__file__)  <span class="comment"># 当前文件绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取的路径总是程序入口的路径</span></span><br><span class="line">os.path.abspath(<span class="string">'.'</span>)  <span class="comment"># 当前目录的绝对路径</span></span><br><span class="line">os.path.abspath(<span class="string">'..'</span>)  <span class="comment"># 上一级目录的绝对路径</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.path.dirname 获取文件夹路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.path.basename 获取文件名或文件夹名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># 'hello.py'</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># ''</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># 'python'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.path.splitext 分离文件名与扩展名</p>
+</li>
+<li><p>os.path.isfile 判断给出的路径是否是一个文件</p>
+</li>
+<li><p>os.path.isdir    判断给出的路径是否是一个目录</p>
+</li>
+</ul>
+<h2 id="sys-模块"><a href="#sys-模块" class="headerlink" title="sys 模块"></a>sys 模块</h2><p>sys 模块包含了与 Python 解释器和它的环境有关的函数。</p>
+<ul>
+<li>sys.argv</li>
+</ul>
+<p>通过命令行传入参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># Filename: using_sys.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'The command line arguments are:'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> sys.argv:</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意，脚本的名称总是 sys.argv 列表的第一个参数</span></span><br><span class="line"><span class="comment"># $ python using_sys.py we are arguments</span></span><br><span class="line"><span class="comment">#    The command line arguments are:</span></span><br><span class="line"><span class="comment">#    using_sys.py</span></span><br><span class="line"><span class="comment">#    we</span></span><br><span class="line"><span class="comment">#    are</span></span><br><span class="line"><span class="comment">#    arguments</span></span><br></pre></td></tr></table></figure>
 
-<p>则其他地方可以这用使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;cupSize&#125;&quot;)</span><br><span class="line">private String cupSize;   //cupSize 的值为 B</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;age&#125;&quot;)</span><br><span class="line">private String age;   //age 的值为 18</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;content&#125;&quot;)</span><br><span class="line">private String content;   //content 的值为 cupSize: B, age: 18</span><br></pre></td></tr></table></figure>
-
-
+<ul>
+<li>sys.path</li>
+</ul>
+<p>功能：获取指定模块搜索路径的字符串集合，可以将写好的模块放在得到的某个路径下，就可以在程序中import时正确找到。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加搜索路径，一般配合 os 模块使用</span></span><br><span class="line">sys.path.append(<span class="string">"自定义模块路径"</span>)</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2083,169 +2334,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/原类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/python3/原类/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-28 17:39:54" itemprop="dateModified" datetime="2019-04-28T17:39:54+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>python 中一切皆对象，类也是一种对象，只不过这个对象（类）自身拥有创建对象（类实例）的能力。</p>
-<p><code>type</code> 是 python 的内建<strong>原类</strong>，<code>type</code> 对象本身又是 <code>type</code> 类的实例，可以用其动态的创建类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">echo_bar</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(self.bar)</span><br><span class="line"><span class="comment"># type(类名, 父类的元组（针对继承的情况，可以为空），包含属性的字典（名称和值）)</span></span><br><span class="line">FooChild = type(<span class="string">'FooChild'</span>, (), &#123;<span class="string">'echo_bar'</span>: echo_bar&#125;)</span><br><span class="line">my_foo = FooChild()</span><br><span class="line">my_foo.echo_bar()</span><br></pre></td></tr></table></figure>
-
-<p>在写一个类的时候为其添加 <code>__metaclass__</code> 属性，用于指定原类。Python 会在类的定义中寻找 <code>__metaclass__</code> 属性，如果找到了，Python 就会用它来创建类 Foo，如果没有找到，就会用内建的 type 来创建这个类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Metaclass</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, dct)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'HAHAHA'</span></span><br><span class="line">        dct[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, dct)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'before Create OBJ'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OBJ</span><span class="params">(object)</span>:</span></span><br><span class="line">    __metaclass__ = Metaclass</span><br><span class="line"><span class="keyword">print</span> <span class="string">'after Create OBJ'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">print</span> OBJ.a</span><br><span class="line">    </span><br><span class="line"><span class="comment"># before Create OBJ</span></span><br><span class="line"><span class="comment"># HAHAHA</span></span><br><span class="line"><span class="comment"># after Create OBJ</span></span><br><span class="line"><span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
-
-<p>在创建OBJ这个类的时候，<code>__metaclass__</code> 起了作用，为 OBJ 增加了一个类属性 <code>a</code>。</p>
-<p><em>references：<a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">1</a>, <a href="https://www.cnblogs.com/xybaby/p/7927407.html" target="_blank" rel="noopener">2</a></em></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2315,7 +2403,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

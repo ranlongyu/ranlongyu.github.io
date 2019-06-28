@@ -90,17 +90,17 @@
 
 
 
-  <meta name="description" content="1. 获取镜像获取镜像的命令格式： 1$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]  如果没有仓库名，默认仓库为 Docker Hub，如： 1$ docker pull ubuntu:18.04  运行123$ docker run -it --rm \    ubuntu:18.04 \    bash   -it：这是两个参数，">
+  <meta name="description" content="1. Dockerfile 文本Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。 比如： 12FROM nginxRUN echo &amp;apos;&amp;lt;h1&amp;gt;Hello, Docker!&amp;lt;/h1&amp;gt;&amp;apos; &amp;gt; /usr/share/nginx/html/index.html  我们都是在基">
 <meta property="og:type" content="article">
-<meta property="og:title" content="龙宇的博客小站">
-<meta property="og:url" content="http://yoursite.com/2019/06/28/技术教程/docker/使用镜像/index.html">
+<meta property="og:title" content="使用 Dockerfile 定制镜像">
+<meta property="og:url" content="http://yoursite.com/2017/02/02/技术教程/docker/2017-2-2-使用 Dockerfile 定制镜像/index.html">
 <meta property="og:site_name" content="龙宇的博客小站">
-<meta property="og:description" content="1. 获取镜像获取镜像的命令格式： 1$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]  如果没有仓库名，默认仓库为 Docker Hub，如： 1$ docker pull ubuntu:18.04  运行123$ docker run -it --rm \    ubuntu:18.04 \    bash   -it：这是两个参数，">
+<meta property="og:description" content="1. Dockerfile 文本Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。 比如： 12FROM nginxRUN echo &amp;apos;&amp;lt;h1&amp;gt;Hello, Docker!&amp;lt;/h1&amp;gt;&amp;apos; &amp;gt; /usr/share/nginx/html/index.html  我们都是在基">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-28T01:21:45.000Z">
+<meta property="og:updated_time" content="2019-06-28T06:24:28.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="龙宇的博客小站">
-<meta name="twitter:description" content="1. 获取镜像获取镜像的命令格式： 1$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]  如果没有仓库名，默认仓库为 Docker Hub，如： 1$ docker pull ubuntu:18.04  运行123$ docker run -it --rm \    ubuntu:18.04 \    bash   -it：这是两个参数，">
+<meta name="twitter:title" content="使用 Dockerfile 定制镜像">
+<meta name="twitter:description" content="1. Dockerfile 文本Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。 比如： 12FROM nginxRUN echo &amp;apos;&amp;lt;h1&amp;gt;Hello, Docker!&amp;lt;/h1&amp;gt;&amp;apos; &amp;gt; /usr/share/nginx/html/index.html  我们都是在基">
 
 
 
@@ -108,7 +108,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/06/28/技术教程/docker/使用镜像/">
+  <link rel="canonical" href="http://yoursite.com/2017/02/02/技术教程/docker/2017-2-2-使用 Dockerfile 定制镜像/">
 
 
 
@@ -118,7 +118,7 @@
   };
 </script>
 
-  <title> | 龙宇的博客小站</title>
+  <title>使用 Dockerfile 定制镜像 | 龙宇的博客小站</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/docker/使用镜像/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/技术教程/docker/2017-2-2-使用 Dockerfile 定制镜像/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">使用 Dockerfile 定制镜像
 
               
             
@@ -356,7 +356,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-02T00:00:00+08:00">2017-02-02</time>
             
 
             
@@ -373,11 +373,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-28 09:21:45" itemprop="dateModified" datetime="2019-04-28T09:21:45+08:00">2019-04-28</time>
+                <time title="修改时间：2019-06-28 14:24:28" itemprop="dateModified" datetime="2019-06-28T14:24:28+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -407,51 +425,37 @@
       
 
       
-        <h2 id="1-获取镜像"><a href="#1-获取镜像" class="headerlink" title="1. 获取镜像"></a>1. 获取镜像</h2><p>获取镜像的命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</span><br></pre></td></tr></table></figure>
+        <h2 id="1-Dockerfile-文本"><a href="#1-Dockerfile-文本" class="headerlink" title="1. Dockerfile 文本"></a>1. Dockerfile 文本</h2><p>Dockerfile 是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">RUN echo &apos;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&apos; &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
 
-<p>如果没有仓库名，默认仓库为 Docker Hub，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm \</span><br><span class="line">    ubuntu:18.04 \</span><br><span class="line">    bash</span><br></pre></td></tr></table></figure>
-
+<p>我们都是在基础镜像之上构建新镜像，因此一个 Dockerfile 中 <code>FROM</code> 是必备的指令，并且必须是第一条指令。</p>
+<p><code>RUN</code> 是在基础进行之上用来执行命令的，有两种格式：</p>
 <ul>
-<li>-it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端。</li>
-<li>–rm：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。</li>
-<li>ubuntu:18.04：这是指用 ubuntu:18.04 镜像为基础来启动容器。</li>
-<li>bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash。</li>
+<li><em>shell</em> 格式：<code>RUN &lt;命令&gt;</code>，就像直接在命令行中输入的命令一样。</li>
+<li><em>exec</em> 格式：<code>RUN [&quot;可执行文件&quot;, &quot;参数1&quot;, &quot;参数2&quot;]</code>，这更像是函数调用中的格式。</li>
 </ul>
-<h2 id="2-列出镜像"><a href="#2-列出镜像" class="headerlink" title="2. 列出镜像"></a>2. 列出镜像</h2><p>列表包含了 <code>仓库名</code>、<code>标签</code>、<code>镜像 ID</code>、<code>创建时间</code> 以及 <code>所占用的空间</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br></pre></td></tr></table></figure>
+<p>每一个 <code>RUN</code> 都会新建一层，当我们要用多个 <code>RUN</code> 来完成一件事时我们可以变换如下写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y gcc libc6-dev make wget</span><br><span class="line">RUN wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot;</span><br><span class="line">RUN mkdir -p /usr/src/redis</span><br><span class="line">RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1</span><br><span class="line">RUN make -C /usr/src/redis</span><br><span class="line">RUN make -C /usr/src/redis install</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker system df</span><br></pre></td></tr></table></figure>
+<p>为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:stretch</span><br><span class="line"></span><br><span class="line">RUN buildDeps=&apos;gcc libc6-dev make wget&apos; \</span><br><span class="line">    &amp;&amp; apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y $buildDeps \</span><br><span class="line">    &amp;&amp; wget -O redis.tar.gz &quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot; \</span><br><span class="line">    &amp;&amp; mkdir -p /usr/src/redis \</span><br><span class="line">    &amp;&amp; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis \</span><br><span class="line">    &amp;&amp; make -C /usr/src/redis install \</span><br><span class="line">    # 清理不需要的东西</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span><br><span class="line">    &amp;&amp; rm redis.tar.gz \</span><br><span class="line">    &amp;&amp; rm -r /usr/src/redis \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps</span><br></pre></td></tr></table></figure>
 
-<h3 id="虚悬镜像"><a href="#虚悬镜像" class="headerlink" title="虚悬镜像"></a>虚悬镜像</h3><p>既没有仓库名，也没有标签，均为 <none> 的镜像。显示虚悬镜像：</none></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -f dangling=true</span><br></pre></td></tr></table></figure>
+<p>之前所有的命令只有一个目的，就是编译、安装 redis 可执行文件。因此没有必要建立很多层，通过下面这种写法只新建了一层。</p>
+<p>Dockerfile 支持 Shell 类的行尾添加 <code>\</code> 的命令换行方式，以及行首 <code>#</code> 进行注释的格式。</p>
+<p>这一组命令的最后还添加了<strong>清理工作</strong>的命令，删除了为了编译构建所需要的软件，清理了所有下载、展开的文件，并且还清理了<code>apt</code> 缓存文件。</p>
+<h2 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2. 构建镜像"></a>2. 构建镜像</h2><p>可以在 Dockerfile 所在的文件目录执行如下命名构建镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># docker build [选项] &lt;上下文路径/URL/-&gt;</span><br><span class="line">$ docker build -t nginx:v3 .</span><br></pre></td></tr></table></figure>
 
-<p>虚悬镜像没有用，可以使用如下命令删除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
+<p>这里我们通过 <code>-t nginx:v3</code> 命令指定了新镜像的名称，命令末尾的 <code>.</code> 表示当前文件目录，也是指定的<strong>上下文</strong>目录。</p>
+<p>我们在构建镜像时，其实是通过把 Dockerfile 和<strong>上下文</strong>目录中的文件传给远程服务器的 Docker 引擎进行构建的。</p>
+<p>如果在 Dockerfile 中这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY ./package.json /app/</span><br></pre></td></tr></table></figure>
 
-<h3 id="中间层镜像"><a href="#中间层镜像" class="headerlink" title="中间层镜像"></a>中间层镜像</h3><p>为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls -a</span><br></pre></td></tr></table></figure>
+<p>表示把<strong>上下文</strong>目录中的 <code>package.json</code> 文件复制到镜像中的 <code>/app/</code> 目录。</p>
+<p>通常<strong>上下文</strong>目录包含 Deckerfile 和构建镜像必要的文件。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 <code>.gitignore</code> 一样的语法写一个 <code>.dockerignore</code>，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。</p>
+<p>另外 docker build 还支持从 <code>URL</code> 构建。</p>
 
-<h3 id="列出部分镜像"><a href="#列出部分镜像" class="headerlink" title="列出部分镜像"></a>列出部分镜像</h3><p>根据仓库名列出镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls ubuntu:18.04</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-删除本地镜像"><a href="#3-删除本地镜像" class="headerlink" title="3. 删除本地镜像"></a>3. 删除本地镜像</h2><p>可以使用 docker image rm 命令，其格式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br></pre></td></tr></table></figure>
-
-<p>可以用 <code>ID</code>、<code>镜像名</code>、<code>摘要</code> 代表镜像，然后删除镜像。<code>docker image ls</code> 默认列出的就已经是短 <code>ID</code> ，一般取前3个字符以上，只要足够区分于别的镜像就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 501</span><br></pre></td></tr></table></figure>
-
-<p>上面的命令删除 <code>ID</code> 前三位为 501 的镜像。</p>
-<h2 id="4-docker-commit-命令"><a href="#4-docker-commit-命令" class="headerlink" title="4. docker commit 命令"></a>4. docker commit 命令</h2><p>容器修改镜像之上存储层，而镜像是多层的叠加，通过 <code>docker commit</code> 命令，可以把容器层叠加到镜像之上形成新的容器。但是并不推荐怎么做，因为这会找出许多的冗余。该命令适合一些特殊的应用场合，比如被入侵后保存现场等。</p>
-<p>通过 <code>docker diff [container id]</code> 命令可以查看容器对存储层的修改信息。</p>
-<p>通过如下命令将容器保存为镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</span><br></pre></td></tr></table></figure>
-
-<p>查看镜像的历史记录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker history [image id]</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -481,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/28/技术教程/docker/使用网络/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/02/01/技术教程/docker/2017-2-1-docker安装/" rel="next" title="docker 安装">
+                <i class="fa fa-chevron-left"></i> docker 安装
               </a>
             
           </div>
@@ -491,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/28/技术教程/docker/操作 Docker 容器/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/03/技术教程/docker/2017-2-3-使用镜像/" rel="prev" title="使用镜像">
+                使用镜像 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -585,7 +589,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -625,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取镜像"><span class="nav-number">1.</span> <span class="nav-text">1. 获取镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">1.1.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-列出镜像"><span class="nav-number">2.</span> <span class="nav-text">2. 列出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像体积"><span class="nav-number">2.1.</span> <span class="nav-text">镜像体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚悬镜像"><span class="nav-number">2.2.</span> <span class="nav-text">虚悬镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间层镜像"><span class="nav-number">2.3.</span> <span class="nav-text">中间层镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出部分镜像"><span class="nav-number">2.4.</span> <span class="nav-text">列出部分镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-删除本地镜像"><span class="nav-number">3.</span> <span class="nav-text">3. 删除本地镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-docker-commit-命令"><span class="nav-number">4.</span> <span class="nav-text">4. docker commit 命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Dockerfile-文本"><span class="nav-number">1.</span> <span class="nav-text">1. Dockerfile 文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-构建镜像"><span class="nav-number">2.</span> <span class="nav-text">2. 构建镜像</span></a></li></ol></div>
             
 
           </div>
