@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="neo4jneo4j 边没有方向之分。 支持的类型有： Number: Integer, Float String Boolean Spatial types: Point Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration   一个节点能有多个 label 。  Cypher 允许对将模式（patter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="龙宇的博客小站">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/技术教程/Neo4j/neo4j/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="neo4jneo4j 边没有方向之分。 支持的类型有： Number: Integer, Float String Boolean Spatial types: Point Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration   一个节点能有多个 label 。  Cypher 允许对将模式（patter">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-b3411d1d.svg">
+<meta property="og:image" content="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-36eb9048.svg">
+<meta property="og:image" content="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-199ba358.svg">
+<meta property="og:image" content="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc--ee5ee0f8.svg">
+<meta property="og:updated_time" content="2018-08-12T01:24:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="龙宇的博客小站">
+<meta name="twitter:description" content="neo4jneo4j 边没有方向之分。 支持的类型有： Number: Integer, Float String Boolean Spatial types: Point Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration   一个节点能有多个 label 。  Cypher 允许对将模式（patter">
+<meta name="twitter:image" content="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-b3411d1d.svg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/技术教程/Neo4j/neo4j/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Neo4j/neo4j/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="neo4j"><a href="#neo4j" class="headerlink" title="neo4j"></a>neo4j</h1><h2 id="neo4j-1"><a href="#neo4j-1" class="headerlink" title="neo4j"></a>neo4j</h2><ul>
+<li>边没有方向之分。</li>
+<li>支持的类型有：<ul>
+<li>Number: Integer, Float</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Spatial types: Point</li>
+<li>Temporal types: Date, Time, LocalTime, DateTime, LoaclDateTime, Duration</li>
+</ul>
+</li>
+<li>一个节点能有多个 label 。</li>
+</ul>
+<h2 id="Cypher"><a href="#Cypher" class="headerlink" title="Cypher"></a>Cypher</h2><ul>
+<li>允许对将模式（pattern）赋值给变量：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acted_in = (:Person)-[:ACTED_IN]-&gt;(:Movie)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们可以将变量分配给节点和关系，并在以后使用它们，无论它们是创建还是匹配。</li>
+</ul>
+<h3 id="1-创建数据"><a href="#1-创建数据" class="headerlink" title="1. 创建数据"></a>1. 创建数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE (:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line"></span><br><span class="line">CREATE (p:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">CREATE (a:Person &#123; name:&quot;Tom Hanks&quot;,born:1956 &#125;)-[r:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(m:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (d:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)-[:DIRECTED]-&gt;(m)</span><br><span class="line">RETURN a,d,r,m</span><br></pre></td></tr></table></figure>
+
+<p>最后一句将创建如图所示的图：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-b3411d1d.svg" alt="image"></p>
+<h3 id="2-匹配模式"><a href="#2-匹配模式" class="headerlink" title="2. 匹配模式"></a>2. 匹配模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie)</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Keanu Reeves&quot; &#125;)</span><br><span class="line">RETURN p</span><br><span class="line"></span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN m.title, r.roles</span><br></pre></td></tr></table></figure>
+
+<p>查找语句最后必须加上 <strong>RETURN</strong> 语句。</p>
+<h3 id="3-附加结构"><a href="#3-附加结构" class="headerlink" title="3. 附加结构"></a>3. 附加结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">CREATE (m:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (p)-[r:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(m)</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
+
+<p>将添加 Cloud Atlas 作为 Tom Hanks 的新电影：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-36eb9048.svg" alt="image"></p>
+<h3 id="4-完成模式"><a href="#4-完成模式" class="headerlink" title="4. 完成模式"></a>4. 完成模式</h3><p><strong>MERGE</strong> 相当于是 <strong>MATCH</strong> 和 <strong>CREATE</strong> 的组合，如果我们不确定图中是否包含节点，可以用 <strong>MERGE</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MERGE (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">ON CREATE SET m.released = 2012</span><br><span class="line">RETURN m</span><br></pre></td></tr></table></figure>
+
+<p><strong>MERGE</strong> 还可以声明只创建一次关系:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MATCH (m:Movie &#123; title:&quot;Cloud Atlas&quot; &#125;)</span><br><span class="line">MATCH (p:Person &#123; name:&quot;Tom Hanks&quot; &#125;)</span><br><span class="line">MERGE (p)-[r:ACTED_IN]-&gt;(m)</span><br><span class="line">ON CREATE SET r.roles =[&apos;Zachry&apos;]</span><br><span class="line">RETURN p,r,m</span><br></pre></td></tr></table></figure>
+
+<p>如果只从前一个子句传入一个节点，<strong>MERGE</strong> 将仅在所提供节点的直接邻域内匹配，并且如果未找到则创建它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE (y:Year &#123; year:2014 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m10:Month &#123; month:10 &#125;)</span><br><span class="line">MERGE (y)&lt;-[:IN_YEAR]-(m11:Month &#123; month:11 &#125;)</span><br><span class="line">RETURN y,m10,m11</span><br></pre></td></tr></table></figure>
+
+<p>创建了下面的图结构：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc-result-199ba358.svg" alt="image"></p>
+<p>不会全局搜索两个Month节点，仅在2014年节点的上下文中搜索。</p>
+<h3 id="5-结果处理"><a href="#5-结果处理" class="headerlink" title="5. 结果处理"></a>5. 结果处理</h3><p>对于图：</p>
+<p><img src="https://neo4j.com/docs/developer-manual/3.4/images/cypherdoc--ee5ee0f8.svg" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE (matrix:Movie &#123; title:&quot;The Matrix&quot;,released:1997 &#125;)</span><br><span class="line">CREATE (cloudAtlas:Movie &#123; title:&quot;Cloud Atlas&quot;,released:2012 &#125;)</span><br><span class="line">CREATE (forrestGump:Movie &#123; title:&quot;Forrest Gump&quot;,released:1994 &#125;)</span><br><span class="line">CREATE (keanu:Person &#123; name:&quot;Keanu Reeves&quot;, born:1964 &#125;)</span><br><span class="line">CREATE (robert:Person &#123; name:&quot;Robert Zemeckis&quot;, born:1951 &#125;)</span><br><span class="line">CREATE (tom:Person &#123; name:&quot;Tom Hanks&quot;, born:1956 &#125;)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&quot;Forrest&quot;]&#125;]-&gt;(forrestGump)</span><br><span class="line">CREATE (tom)-[:ACTED_IN &#123; roles: [&apos;Zachry&apos;]&#125;]-&gt;(cloudAtlas)</span><br><span class="line">CREATE (robert)-[:DIRECTED]-&gt;(forrestGump)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>WHERE</strong> 结果过滤</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 通过 m 的属性过滤</span><br><span class="line">MATCH (m:Movie)</span><br><span class="line">WHERE m.title = &quot;The Matrix&quot;</span><br><span class="line">RETURN m</span><br><span class="line"></span><br><span class="line"># 加了正则</span><br><span class="line">MATCH (p:Person)-[r:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">WHERE p.name =~ &quot;K.+&quot; OR m.released &gt; 2000 OR &quot;Neo&quot; IN r.roles</span><br><span class="line">RETURN p,r,m</span><br><span class="line"></span><br><span class="line"># WHERE 后加了 NOT</span><br><span class="line">MATCH (p:Person)-[:ACTED_IN]-&gt;(m)</span><br><span class="line">WHERE NOT (p)-[:DIRECTED]-&gt;()</span><br><span class="line">RETURN p,m</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用一些函数对结果进行<strong>变换、聚合</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">names[0]</span><br><span class="line">length(array)</span><br><span class="line">toInteger(&quot;12&quot;)</span><br><span class="line">count</span><br><span class="line">sum</span><br><span class="line">avg</span><br><span class="line">min</span><br><span class="line">max</span><br><span class="line"></span><br><span class="line">MATCH (p:Person)</span><br><span class="line">RETURN p, p.name AS name, toUpper(p.name)</span><br><span class="line"></span><br><span class="line">MATCH (:Person)</span><br><span class="line">RETURN count(*) AS people</span><br><span class="line"></span><br><span class="line"># 聚会唯一值使用 DISTINCT</span><br><span class="line">count(DISTINCT role)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <strong>ORDER BY</strong> 对结果排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person)-[:ACTED_IN]-&gt;(m:Movie)</span><br><span class="line">RETURN a</span><br><span class="line">ORDER BY a.born</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>聚合函数 <strong>collect()</strong> ，将所有聚合值收集到列表中：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在我们的数据库中检索每部电影的演员表</span><br><span class="line">MATCH (m:Movie)&lt;-[:ACTED_IN]-(a:Person)</span><br><span class="line">RETURN m.title AS movie, collect(a.name) AS cast</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-约束"><a href="#6-约束" class="headerlink" title="6. 约束"></a>6. 约束</h3><ul>
+<li>可以指定唯一约束，以保证具有特定标签的节点上某个属性的唯一性，MERGE 子句也使用这些约束来确保节点只存在一次。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每个Movie节点都应该有一个唯一的标题</span><br><span class="line">CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/技术教程/MySQL/MySQL语法/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/28/技术教程/linux/Ubuntu 18.04安装JDK8/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#neo4j"><span class="nav-number">1.</span> <span class="nav-text">neo4j</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#neo4j-1"><span class="nav-number">1.1.</span> <span class="nav-text">neo4j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cypher"><span class="nav-number">1.2.</span> <span class="nav-text">Cypher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建数据"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 创建数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-匹配模式"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 匹配模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-附加结构"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 附加结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-完成模式"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 完成模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-结果处理"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 结果处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-约束"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. 约束</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

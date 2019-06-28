@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第一周本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。 知识图谱相关漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="龙宇的博客小站">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="第一周本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。 知识图谱相关漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-12T01:24:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="龙宇的博客小站">
+<meta name="twitter:description" content="第一周本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。 知识图谱相关漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。</p>
+<h2 id="知识图谱相关"><a href="#知识图谱相关" class="headerlink" title="知识图谱相关"></a>知识图谱相关</h2><h4 id="漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><a href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25" class="headerlink" title="漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25."></a><em>漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</em></h4><p>这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个大型的关系型数据库。</p>
+<p>知识图谱是一个大型的工程，相比于我们通常构建的E-R图，知识图谱主要是对关系和实体进行构建。主要步骤为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">知识获取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识计算及应用</span><br></pre></td></tr></table></figure>
+
+<p>其中知识获取阶段，数据可以从结构化、半结构化、非结构化数据中获取。知识融合阶段，指用统一的术语将各个数据源获取的知识融合成一个统一的知识库。知识计算主要指通过构建好的图谱提供的信息得到更多的隐含知识。里面涉及到的关键技术有实体关系识别技术、知识融汇技术、实体链接技术和知识推理技术。</p>
+<p>实体关系识别技术的目的是通过填充关系模板槽的方式抽取文本中特定的关系，主要有基于统计学的方法，它将问题转化为分类问题进行处理。</p>
+<p>知识融汇技术中，本体匹配非常重要，一般可以分为模式匹配和实例匹配两种算法。</p>
+<p>实体链接技术的目的是解决命名实体歧义问题，主要有基于概率生成模型的方法、基于主题的方法、基于图的方法、基于深度神经网络的方法。</p>
+<p>知识推理技术可以分为基于符合的推理和基于统计的推理。</p>
+<p>在文章最后，介绍了一些开放知识图谱和一些应用。</p>
+<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600."></a><em>刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</em></h4><p>知识图谱从逻辑上可以分为2个层次：数据层和逻辑层。在数据层通常以“实体-关系-实体”或者“实体-属性-性值”三元组作为单元存储在图数据库。模式层在数据层之上，存储的是经过提炼的知识。</p>
+<p>知识图谱有自顶向下和自底向上2种构建方法，现在以自底向上为主。包括三个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">信息抽取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识加工</span><br></pre></td></tr></table></figure>
+
+<p><strong>信息抽取</strong>涉及的关键技术包括：实体抽取、关系抽取和属性抽取。</p>
+<p>早期的关系抽取研究方法主要通过人工构造语法和语义规则，据此采用模式匹配的方法类识别实体间的关系。后来又出现了有监督、半监督和无监督学习方法。这些方法都需要预先定义实体关系类型，而面向开发领域的关系抽取技术直接利用语料库中的关系词汇对实体关系进行建模。</p>
+<p><strong>知识融合</strong>包括：实体链接、知识合并。</p>
+<p>实体链接是指对从文本中抽取得到的实体对象，将其链接到知识库中对应的正确实体对象的操作。实体链接技术的难点在于实体消歧和共指消解。</p>
+<p>实体消歧专门用于解决同名实体产生歧义问题的技术，主要采用聚类法，该方法的关键是如何定义实体对象与指称项之间的相似度。共指消解技术主要用于解决多个指称项对应同一实体对象的问题，又称对象对齐、实体匹配、实体同义。基于自然语言处理的共指消解以句法分析为基础，代表方法是Hobbs算法和向心理论。后来统计机器学习的方法引入。</p>
+<p>知识合并分为合并外部知识库、合并关系数据库。</p>
+<p><strong>知识加工</strong>包括：本体构建、知识推理和质量评估。通过信息抽取与知识融合可以得到一系列的事实表达，但是事实并不等于知识，还需要知识加工才能得到结构化、网络化的知识体系。</p>
+<p>本体是同一领域内的不同主体之间进行交流的语义基础。（这可以把本体理解为类，信息抽取中的命名实体相当于对象）本体是树状结构，相邻层次的节点之间具有严格的“IsA”关系。数据驱动的自动化本体构建包括：实体并列关系相似度计算、实体上下位关系抽取和本体的生成。</p>
+<p>知识推理方法可以分为：基于逻辑的推理、基于图的推理。基于逻辑的推理主要包括一阶谓词逻辑、描述逻辑以及基于规则的推理。基于图的推理主要基于神经网络模型或Path Ranking算法。</p>
+<p>文章最后对知识图谱面临的困难与挑战进行的阐述。</p>
+<h2 id="命名实体相关"><a href="#命名实体相关" class="headerlink" title="命名实体相关"></a>命名实体相关</h2><p>命名实体识别本来属于自然语言处理的内容，但是在知识图谱中的信息抽取阶段有应用，自然语言处理这门课又打算选择这个题目做一个project，所以看了许多这方面的内容，在此就不一一列举。</p>
+<p>现阶段主要有CRF和深度学习的方法。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/理论知识/图数据挖掘/图预测/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/28/理论知识/数学/矩阵/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一周"><span class="nav-number">1.</span> <span class="nav-text">第一周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识图谱相关"><span class="nav-number">1.1.</span> <span class="nav-text">知识图谱相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名实体相关"><span class="nav-number">1.2.</span> <span class="nav-text">命名实体相关</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="总述面向对象：基础设施即服务（IaaS） 主要调配的资源：CPU、内存 建立在资源管理系统基础之上，如：Apache YARN，Xen 可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。 好的调度策略的特点：  贡献越多，回报越大； 每个用户不会谎报资源； 帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。  Max-min Fairness 算法：分配过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="龙宇的博客小站">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="总述面向对象：基础设施即服务（IaaS） 主要调配的资源：CPU、内存 建立在资源管理系统基础之上，如：Apache YARN，Xen 可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。 好的调度策略的特点：  贡献越多，回报越大； 每个用户不会谎报资源； 帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。  Max-min Fairness 算法：分配过程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-07T07:18:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="龙宇的博客小站">
+<meta name="twitter:description" content="总述面向对象：基础设施即服务（IaaS） 主要调配的资源：CPU、内存 建立在资源管理系统基础之上，如：Apache YARN，Xen 可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。 好的调度策略的特点：  贡献越多，回报越大； 每个用户不会谎报资源； 帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。  Max-min Fairness 算法：分配过程">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-07 15:18:59" itemprop="dateModified" datetime="2018-09-07T15:18:59+08:00">2018-09-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>面向对象：基础设施即服务（IaaS）</p>
+<p>主要调配的资源：CPU、内存</p>
+<p>建立在资源管理系统基础之上，如：Apache YARN，Xen</p>
+<p>可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。</p>
+<p>好的调度策略的特点：</p>
+<ol>
+<li>贡献越多，回报越大；</li>
+<li>每个用户不会谎报资源；</li>
+<li>帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。</li>
+</ol>
+<h2 id="Max-min-Fairness-算法："><a href="#Max-min-Fairness-算法：" class="headerlink" title="Max-min Fairness 算法："></a>Max-min Fairness 算法：</h2><p>分配过程是每次先把资源平分，如果有用户分到多余的资源就拿出来继续给其他的平分，这样保证申请者都可以公平分到资源。</p>
+<h2 id="Dominant-Resource-Fairness-算法："><a href="#Dominant-Resource-Fairness-算法：" class="headerlink" title="Dominant Resource Fairness 算法："></a>Dominant Resource Fairness 算法：</h2><p>假设：不同类型资源的等份额比率具有相等的价值。</p>
+<p>DRF方法的设想是在多资源的环境中，用户被分配的量应该由其 dominant share 来决定，dominant share 是该用户被分配的任何资源中最大的份额。</p>
+<p>DRF目的是在所有用户中，寻求最小份额的最大值。比如说，如果用户A启动了CPU密集型任务，用户B启动了内存密集型任务，DRF尝试均等用户A的CPU份额和用户B的内存份额。在单一资源的场景下，DRF退化成 max-min fairness 方法。</p>
+<h2 id="Hybrid-Multi-Resource-Fairness-算法："><a href="#Hybrid-Multi-Resource-Fairness-算法：" class="headerlink" title="Hybrid Multi-Resource Fairness 算法："></a>Hybrid Multi-Resource Fairness 算法：</h2><p>思想：分配给每个用户的累计份额相等。</p>
+<p>来自于 DRF。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/技术教程/Spring Boot/1、配置文件使用/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/28/理论知识/图数据挖掘/图排序/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总述"><span class="nav-number">1.</span> <span class="nav-text">总述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-min-Fairness-算法："><span class="nav-number">2.</span> <span class="nav-text">Max-min Fairness 算法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dominant-Resource-Fairness-算法："><span class="nav-number">3.</span> <span class="nav-text">Dominant Resource Fairness 算法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hybrid-Multi-Resource-Fairness-算法："><span class="nav-number">4.</span> <span class="nav-text">Hybrid Multi-Resource Fairness 算法：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

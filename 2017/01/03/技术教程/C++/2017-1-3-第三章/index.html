@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第三章 字符串、向量和数组命名空间 using 声明 using namespace::name; 一旦有上述的语句，就可以直接访问命名空间中的名字，如： using std::cin; using std::cout; using std::endl;注：头文件中不应该使用 using 声明。 标准库类型 string使用 string 需包含： #include &amp;lt;string&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三章 字符串、向量和数组">
+<meta property="og:url" content="http://yoursite.com/2017/01/03/技术教程/C++/2017-1-3-第三章/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="第三章 字符串、向量和数组命名空间 using 声明 using namespace::name; 一旦有上述的语句，就可以直接访问命名空间中的名字，如： using std::cin; using std::cout; using std::endl;注：头文件中不应该使用 using 声明。 标准库类型 string使用 string 需包含： #include &amp;lt;string&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-28T00:59:54.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三章 字符串、向量和数组">
+<meta name="twitter:description" content="第三章 字符串、向量和数组命名空间 using 声明 using namespace::name; 一旦有上述的语句，就可以直接访问命名空间中的名字，如： using std::cin; using std::cout; using std::endl;注：头文件中不应该使用 using 声明。 标准库类型 string使用 string 需包含： #include &amp;lt;string&amp;gt;">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/01/03/技术教程/C++/2017-1-3-第三章/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第三章 字符串、向量和数组 | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/03/技术教程/C++/2017-1-3-第三章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第三章 字符串、向量和数组
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-01-03 00:00:00" itemprop="dateCreated datePublished" datetime="2017-01-03T00:00:00+08:00">2017-01-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 08:59:54" itemprop="dateModified" datetime="2019-06-28T08:59:54+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第三章-字符串、向量和数组"><a href="#第三章-字符串、向量和数组" class="headerlink" title="第三章 字符串、向量和数组"></a>第三章 字符串、向量和数组</h1><p><strong>命名空间 using 声明</strong></p>
+<p>using namespace::name;</p>
+<p>一旦有上述的语句，就可以直接访问命名空间中的名字，如：</p>
+<pre><code>using std::cin;
+using std::cout; using std::endl;</code></pre><p>注：头文件中不应该使用 using 声明。</p>
+<h2 id="标准库类型-string"><a href="#标准库类型-string" class="headerlink" title="标准库类型 string"></a>标准库类型 string</h2><p>使用 string 需包含：</p>
+<pre><code>#include &lt;string&gt; 
+using std::string; // C++标准库</code></pre><p><strong>初始化</strong></p>
+<pre><code>string s1;
+string s2 = s1;
+string s3 = &quot;hello&quot;;
+string s4(10,&apos;c&apos;); // s内容为十个c</code></pre><p><strong>读写 string 对象</strong></p>
+<p>string 对象从第一个正真字符开始读取，直到遇到下一个空格为止，如输入“  Hello World  ”，实际存的是“Hello”。</p>
+<p>输出时没有限制。</p>
+<pre><code>string s,s1,s2;
+cin &gt;&gt; s;
+cin &gt;&gt; s1 &gt;&gt; s2; // 多个输入输出可以连在一起
+cout &lt;&lt; s1 &lt;&lt; s2 &lt;&lt; endl;</code></pre><p>使用 getline 输入整行，保留空格，遇到换行符结束：</p>
+<pre><code>string line;
+getline(cin, line);</code></pre><p><strong>string 类型操作</strong></p>
+<p>字面值与 string 类型相加</p>
+<pre><code>string s2 = s1 + &quot;,&quot;;    //正确，把一个string对象（s1）与一个字面值相加
+string s3 = &quot;hello&quot; + &quot;word&quot;;  //错误，两个运算对象都不是string,C++中的字符串字面值并不是标准库类型string的对象</code></pre><p>用 for 循环处理字符串中每个字符</p>
+<pre><code>string str(&quot;some string&quot;);
+for (auto c : str)      //对于字符串str中的每个c，执行某个操作，如果要修改str对象中字符的值，用引用，如把c改为&amp;c
+    cout &lt;&lt; c &lt;&lt;endl;</code></pre><p>用下标访问 string 对象单个字符</p>
+<pre><code>string s(&quot;some string&quot;)
+if (!s.empty())
+    s[0] = toupper(s[0]);   //只要字符串不是常量，就能修改下标运算符返回的值</code></pre><h2 id="标准库类型-vector"><a href="#标准库类型-vector" class="headerlink" title="标准库类型 vector"></a>标准库类型 vector</h2><p>vector 表示对象的集合，其中所有对象的类型都相同，常被称为容器，需包含如下头文件</p>
+<pre><code>#include &lt;vector&gt;
+using std::vector;</code></pre><p><strong>vector 初始化</strong></p>
+<p>最常见的方式是定义空 vector，然后当运行时获取元素的值逐一添加。</p>
+<pre><code>vector&lt;int&gt; v1;  //初始化v1为空
+vector&lt;int&gt; v2(3);  //v2包涵3个初始值为0的int类型元素
+vector&lt;int&gt; v3(3,2);   //v3包涵3个初始值为2的int类型元素
+vector&lt;int&gt; v4{3,2};   //列表初始化，v4包涵2个int类型元素,值分别是3和2
+vector&lt;int&gt; v5(v4);   //拷贝初始化，v5是v4的副本</code></pre><p>使用函数 push_back 向 cector 对象添加元素</p>
+<pre><code>string word;
+vector&lt;string&gt; text;
+while (cin &gt;&gt; word){
+    text.push_back(word);  //把word添加到text后面
+}</code></pre><p>vector 对象的其他操作和 string 类型很像，vector 对象（以及 string 对象）的下标只能用来访问已经存在的元素，而不能去添加元素！</p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>类似于指针功能，迭代器提供对对象的间接访问，相当于是下标。所有标准库容器都可以使用迭代器，但不一定支持下标。</p>
+<p><strong>迭代运算符</strong></p>
+<pre><code>*iter      //返回迭代器所指元素的引用（注）
+++iter     //令iter指示容器中的下一个元素
+--iter     //令iter指示容器中的上一个元素
+iter-&gt;mem  //解引用iter并获得该元素的名为mem的成员，等价于(*iter).mem</code></pre><p>如</p>
+<pre><code>string s(&quot;some&quot;);
+if (s.begin() != s.end()){      //确保s非空，注意s.end()指的是s尾元素的下一位置
+    auto it = s.begin()；       //it指代s的第一个字符
+    *it = toupper(*it);            //将s中的第一个字符改写为大写形式
+}</code></pre><p>任何改变 vector 对象容量的操作，比如 push_back 都会使该对象的迭代器失效。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组是类似于 vector 的数据结构，数组大小确定不变，没有 vector 灵活，不清楚元素个数，用 vector。</p>
+<pre><code>unsigned cnt = 42;
+string bad[cnt];     //错误，cnt不是常量表达式（数组维度必须是一个常量表达式）。</code></pre><p>字符数组的特殊形式，可以用字符串字面量进行初始化，注意结尾处有一个空字符。</p>
+<pre><code>char a1[] = &quot;c++&quot;;  //结尾自动添加空字符，维度为4
+char a2[] = {&apos;c&apos;,&apos;+&apos;,&apos;+&apos;};   //列表初始，维度为3</code></pre><p>不能将数组的内容拷贝给其他数组作为初始值，也不能用数组为其他数组赋值</p>
+<pre><code>int a[] = {0,1,2};
+int a2[] = a;     //错误
+a2 = a;   //错误</code></pre><p>数组其他用法于 vector 基本类似。</p>
+<p><strong>指针和数组</strong></p>
+<p>使用数组的下标时，编译器一般会把它转换成指针</p>
+<pre><code>string nums[] = {&quot;one&quot;,&quot;two&quot;,&quot;three&quot;};
+string *p = &amp;nums[0];    //p指向nums的第一个元素
+string *p2 = nums;   //与上面等价
+string *p3 = nums + 1;   //指针可以相加一个数，p3指向第二个元素</code></pre><p>用函数 begin 和 end 访问数组，用其遍历数组较为方便，定义在标准库中 std::begin</p>
+<pre><code>string *p4 = begin(nums);    //指向首元素
+string *p5 = end(nums);    //指向arr尾元素的下一位置</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/02/技术教程/C++/2017-1-2-第二章/" rel="next" title="第二章 变量和基本类型">
+                <i class="fa fa-chevron-left"></i> 第二章 变量和基本类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/06/技术教程/C++/2017-1-6-第六章/" rel="prev" title="第六章 函数">
+                第六章 函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-字符串、向量和数组"><span class="nav-number">1.</span> <span class="nav-text">第三章 字符串、向量和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准库类型-string"><span class="nav-number">1.1.</span> <span class="nav-text">标准库类型 string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准库类型-vector"><span class="nav-number">1.2.</span> <span class="nav-text">标准库类型 vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">1.3.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.4.</span> <span class="nav-text">数组</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

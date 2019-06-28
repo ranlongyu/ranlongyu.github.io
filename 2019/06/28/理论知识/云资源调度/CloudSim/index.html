@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CloudSim核心类 Cloudlet类：构建云环境下的任务。 DataCenter类：数据中心，提供虚拟化的网格资源，处理虚拟机信息的查询，包含虚拟机对资源的分配策略，云计算采用VMProvisioner处理虚拟机。 DataCenterBroker类：隐藏了虚拟机的管理，如创建、任务提交、虚拟机的销毁等。 Host类：扩展了机器对虚拟机除处理单元(PE)之外的参数分配策略，如带宽、存储空间、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="龙宇的博客小站">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/理论知识/云资源调度/CloudSim/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="CloudSim核心类 Cloudlet类：构建云环境下的任务。 DataCenter类：数据中心，提供虚拟化的网格资源，处理虚拟机信息的查询，包含虚拟机对资源的分配策略，云计算采用VMProvisioner处理虚拟机。 DataCenterBroker类：隐藏了虚拟机的管理，如创建、任务提交、虚拟机的销毁等。 Host类：扩展了机器对虚拟机除处理单元(PE)之外的参数分配策略，如带宽、存储空间、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-19T11:33:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="龙宇的博客小站">
+<meta name="twitter:description" content="CloudSim核心类 Cloudlet类：构建云环境下的任务。 DataCenter类：数据中心，提供虚拟化的网格资源，处理虚拟机信息的查询，包含虚拟机对资源的分配策略，云计算采用VMProvisioner处理虚拟机。 DataCenterBroker类：隐藏了虚拟机的管理，如创建、任务提交、虚拟机的销毁等。 Host类：扩展了机器对虚拟机除处理单元(PE)之外的参数分配策略，如带宽、存储空间、">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/CloudSim/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/CloudSim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-19 19:33:41" itemprop="dateModified" datetime="2018-10-19T19:33:41+08:00">2018-10-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CloudSim核心类"><a href="#CloudSim核心类" class="headerlink" title="CloudSim核心类"></a>CloudSim核心类</h2><ol>
+<li><strong>Cloudlet类</strong>：构建云环境下的任务。</li>
+<li><strong>DataCenter类</strong>：数据中心，提供虚拟化的网格资源，处理虚拟机信息的查询，包含虚拟机对资源的分配策略，云计算采用VMProvisioner处理虚拟机。</li>
+<li><strong>DataCenterBroker类</strong>：隐藏了虚拟机的管理，如创建、任务提交、虚拟机的销毁等。</li>
+<li><strong>Host类</strong>：扩展了机器对虚拟机除处理单元(PE)之外的参数分配策略，如带宽、存储空间、内存等，一台Host可对应多台虚拟机。</li>
+<li><strong>VirtualMachine类</strong>：虚拟机类，运行在Host上，与其它虚拟机共享资源，每台虚拟机由一个拥有者所有，可提交任务，并由VMScheduler类定制该虚拟机的调度策略。</li>
+<li><strong>VMScheduler类</strong>：虚拟机的调度策略，用来管理执行任务，实现了任务接口。</li>
+<li><strong>VMCharacteristics类</strong>：提供虚拟机描述。</li>
+<li><strong>VMMAllocationPolicy类</strong>：虚拟机监视器策略类，描述同一Host上的多台虚拟机共享资源的策略。</li>
+<li><strong>VMProvisioner类</strong>：实现数据中心的主机到虚拟机的映射。</li>
+<li><strong>CloudInformationService</strong>.java（org.cloudbus.cloudsim.core）<ul>
+<li>Cloudsim 中最重要的类之一，它在 CloudSim的仿真过程中保存资源列表（在现实生活中作为数据库）。这个类实现了processEvent（SimEvent）方法，在模拟过程中，它处理七个离散类别的事件。如果仔细分析所有基本示例，将调用 CloudSim.Init（）方法，该方法将初始化 CloudInformationService 类的实例。这个类实例提供的基本服务将注册新的资源，索引和它们的发现。</li>
+</ul>
+</li>
+<li><strong>DataCenter</strong>.java（org.cloudbus.cloudsim）<ul>
+<li>该类通过持有主机，处理元素（Pe）和存储为列表的实例来模仿真实数据中心的基础架构功能。同时，为了方便您的模型和地理位置的可用性，它将初始化 DataCenterCharacteristics。这个类还实现了自己的 processEvent（SimEvent）方法，在模拟过程中，它处理了二十七个默认离散事件类别，如资源信息收集，虚拟机生命周期，云端提交状态等。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/技术教程/python3/面向对象/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/28/技术教程/Spring Boot/1、配置文件使用/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CloudSim核心类"><span class="nav-number">1.</span> <span class="nav-text">CloudSim核心类</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
