@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/图数据挖掘/图聚类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/理论知识/知识图谱/2018-4-1-知识图谱综述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/图数据挖掘/图聚类/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2018/04/01/理论知识/知识图谱/2018-4-1-知识图谱综述/" class="post-title-link" itemprop="url">知识图谱综述</a>
               
             
           </h1>
@@ -358,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2018-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-04-01T00:00:00+08:00">2018-04-01</time>
             
 
             
@@ -375,11 +375,706 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:59:29" itemprop="dateModified" datetime="2019-06-28T16:59:29+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/知识图谱/" itemprop="url" rel="index"><span itemprop="name">知识图谱</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。</p>
+<h2 id="知识图谱相关"><a href="#知识图谱相关" class="headerlink" title="知识图谱相关"></a>知识图谱相关</h2><h4 id="漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><a href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25" class="headerlink" title="漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25."></a><em>漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</em></h4><p>这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个大型的关系型数据库。</p>
+<p>知识图谱是一个大型的工程，相比于我们通常构建的E-R图，知识图谱主要是对关系和实体进行构建。主要步骤为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">知识获取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识计算及应用</span><br></pre></td></tr></table></figure>
+
+<p>其中知识获取阶段，数据可以从结构化、半结构化、非结构化数据中获取。知识融合阶段，指用统一的术语将各个数据源获取的知识融合成一个统一的知识库。知识计算主要指通过构建好的图谱提供的信息得到更多的隐含知识。里面涉及到的关键技术有实体关系识别技术、知识融汇技术、实体链接技术和知识推理技术。</p>
+<p>实体关系识别技术的目的是通过填充关系模板槽的方式抽取文本中特定的关系，主要有基于统计学的方法，它将问题转化为分类问题进行处理。</p>
+<p>知识融汇技术中，本体匹配非常重要，一般可以分为模式匹配和实例匹配两种算法。</p>
+<p>实体链接技术的目的是解决命名实体歧义问题，主要有基于概率生成模型的方法、基于主题的方法、基于图的方法、基于深度神经网络的方法。</p>
+<p>知识推理技术可以分为基于符合的推理和基于统计的推理。</p>
+<p>在文章最后，介绍了一些开放知识图谱和一些应用。</p>
+<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600."></a><em>刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</em></h4><p>知识图谱从逻辑上可以分为2个层次：数据层和逻辑层。在数据层通常以“实体-关系-实体”或者“实体-属性-性值”三元组作为单元存储在图数据库。模式层在数据层之上，存储的是经过提炼的知识。</p>
+<p>知识图谱有自顶向下和自底向上2种构建方法，现在以自底向上为主。包括三个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">信息抽取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识加工</span><br></pre></td></tr></table></figure>
+
+<p><strong>信息抽取</strong>涉及的关键技术包括：实体抽取、关系抽取和属性抽取。</p>
+<p>早期的关系抽取研究方法主要通过人工构造语法和语义规则，据此采用模式匹配的方法类识别实体间的关系。后来又出现了有监督、半监督和无监督学习方法。这些方法都需要预先定义实体关系类型，而面向开发领域的关系抽取技术直接利用语料库中的关系词汇对实体关系进行建模。</p>
+<p><strong>知识融合</strong>包括：实体链接、知识合并。</p>
+<p>实体链接是指对从文本中抽取得到的实体对象，将其链接到知识库中对应的正确实体对象的操作。实体链接技术的难点在于实体消歧和共指消解。</p>
+<p>实体消歧专门用于解决同名实体产生歧义问题的技术，主要采用聚类法，该方法的关键是如何定义实体对象与指称项之间的相似度。共指消解技术主要用于解决多个指称项对应同一实体对象的问题，又称对象对齐、实体匹配、实体同义。基于自然语言处理的共指消解以句法分析为基础，代表方法是Hobbs算法和向心理论。后来统计机器学习的方法引入。</p>
+<p>知识合并分为合并外部知识库、合并关系数据库。</p>
+<p><strong>知识加工</strong>包括：本体构建、知识推理和质量评估。通过信息抽取与知识融合可以得到一系列的事实表达，但是事实并不等于知识，还需要知识加工才能得到结构化、网络化的知识体系。</p>
+<p>本体是同一领域内的不同主体之间进行交流的语义基础。（这可以把本体理解为类，信息抽取中的命名实体相当于对象）本体是树状结构，相邻层次的节点之间具有严格的“IsA”关系。数据驱动的自动化本体构建包括：实体并列关系相似度计算、实体上下位关系抽取和本体的生成。</p>
+<p>知识推理方法可以分为：基于逻辑的推理、基于图的推理。基于逻辑的推理主要包括一阶谓词逻辑、描述逻辑以及基于规则的推理。基于图的推理主要基于神经网络模型或Path Ranking算法。</p>
+<p>文章最后对知识图谱面临的困难与挑战进行的阐述。</p>
+<h2 id="命名实体相关"><a href="#命名实体相关" class="headerlink" title="命名实体相关"></a>命名实体相关</h2><p>命名实体识别本来属于自然语言处理的内容，但是在知识图谱中的信息抽取阶段有应用，自然语言处理这门课又打算选择这个题目做一个project，所以看了许多这方面的内容，在此就不一一列举。</p>
+<p>现阶段主要有CRF和深度学习的方法。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/理论知识/数学/2018-3-1-矩阵/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/01/理论知识/数学/2018-3-1-矩阵/" class="post-title-link" itemprop="url">矩阵</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-01T00:00:00+08:00">2018-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:58:01" itemprop="dateModified" datetime="2019-06-28T16:58:01+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>Gauss-Jordan消元法最终将矩阵变为：主元所在的列，除主元为1外，其他元素都为0。</p>
+<p>主元所在的列是基列，主元的个数是秩的值。</p>
+<p>方程组有解的物理含义：每一行组成的超平面有一个共同的交点。</p>
+<hr>
+<p>A的共轭矩阵：<code>$\overline{A}=[\overline{a}_{ij}]$</code></p>
+<p>A的共轭转置：<code>$A^*=\overline{A}^T=\overline{A^T} \quad
+\text{也即：}[A^*]_{ij}=\overline{a_{ji}}$</code> </p>
+<p>注：<code>$A^*$</code>又被称为A的伴随矩阵，在本文中全部表示共轭转置</p>
+<ul>
+<li>性质：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(A^*)^*=A</span><br><span class="line"></span><br><span class="line">\text&#123;当A只包含实数时：&#125;A^*=A^T</span><br><span class="line"></span><br><span class="line">(A+B)^T=A^T+B^T \quad (A+B)^*=A^*+B^*</span><br><span class="line"></span><br><span class="line">(\alpha A)^T=\alpha A^T \quad (\alpha A)^*=\alpha A^*</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<p>对称矩阵：<code>$A=A^T \quad a_{ij}=a_{ji}$</code></p>
+<p>斜对称矩阵：<code>$A=-A^T \quad a_{ij}=-a_{ji}$</code></p>
+<p>埃尔米特矩阵：<code>$A=A^* \quad a_{ij}=a_{ji}$</code></p>
+<p>斜埃尔米特矩阵：<code>$ A=-A^* \quad a_{ij}=-a_{ji}$</code></p>
+<hr>
+<p>线性函数：<code>$f(x+y)=f(x)+f(y) \quad\text{且:}\quad f(\alpha x)=\alpha x$</code></p>
+<p>线性函数的变换被称为仿射变换函数，如：<code>$f(x)=\alpha x+\beta \quad\text{与}\quad f(x_1,x_2)=\alpha _1x_1+\alpha _2x_2+\beta$</code></p>
+<p>线性函数的一般形式为：<code>$f(x_1,x_2,\cdots,x_n)=\alpha _1x_1+\alpha _2x_2+\cdots+\alpha x_n$</code></p>
+<hr>
+<p>矩阵的迹，<code>$A_{m*n}\text{与}B_{n*m}:\quad trace(AB)=trace(BA)\quad\quad trace(ABC)=trace(BCA)=trace(CAB)$</code></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A^&#123;-1&#125;\text&#123;存在&#125;\Leftrightarrow A\text&#123;是非歧义&#125;</span><br><span class="line">\Leftrightarrow rank(A)=n \Leftrightarrow A \rightarrow I(G-J) \Leftrightarrow Ax=0\text&#123;只有0解&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>$A^{-1}$</code>的计算：<code>$[A|I] \rightarrow [I|A^{-1}]$</code></p>
+<p><code>$A^{-1}$</code>的性质：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(A^&#123;-1&#125;)^&#123;-1&#125;=A</span><br><span class="line"></span><br><span class="line">AB\text&#123;依然非奇异&#125;</span><br><span class="line"></span><br><span class="line">(AB)^&#123;-1&#125;=B^&#123;-1&#125;A^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;T&#125;=(A^&#123;T&#125;)^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;*&#125;=(A^&#123;*&#125;)^&#123;-1&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Sherman-Morrison Formula:<br><code>$(A+cd^{T})=\frac{A^{-1}-A^{-1}cd^{T}A^{-1}}{1+d^{T}A^{-1}c}$</code></p>
+<p>通过该公式可以快速通过<code>$A^{-1}$</code>求<code>$A+cd^{T}$</code>的逆。</p>
+<hr>
+<p>初等矩阵：可以写成<code>$I-uv^{T}$</code>形式的矩阵是初等矩阵，是<code>$I$</code>经过一次初等变换得到的，所有的初等矩阵非奇异，初等矩阵的逆还是初等矩阵。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(I-uv^&#123;T&#125;)^&#123;-1&#125;=I-\frac&#123;uv^&#123;T&#125;&#125;&#123;v^&#123;T&#125;u-1&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A是非奇异的当且仅当A能有初等矩阵产生：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G-J\text&#123;把A变为I：&#125;G_&#123;n&#125;\cdots G_&#123;2&#125;G_&#123;1&#125;=I\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;\cdots G^&#123;-1&#125;_&#123;n&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><code>$A\sim B\Leftrightarrow PAQ=B$</code>（P、Q是非奇异的，即P、Q是一系列初等矩阵相乘，A能通过初等变换变到B）</p>
+<p><code>$A\sim B\Leftrightarrow rank(A)=rank(B)~$</code>推论：非奇异矩阵的乘法不能改变秩。</p>
+<p>转置也不能改变秩。</p>
+<hr>
+<p>A的LU分解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G_&#123;3&#125;G_&#123;2&#125;G_&#123;1&#125;A=U\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;G^&#123;-1&#125;_&#123;3&#125;U=LU\text&#123;（U的主元必须非0）&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以用来解Ax=b的方程：</p>
+<p>LUx=b  令 Ux=y,先通过 Ly=b 解出 y，再通过 Ux=y 解出 x。</p>
+<p>PA=LU 可以完成任意非奇异矩阵 A 的分解。</p>
+<p>LDU 分解就是把 LU 分解中的 U 变成 DU。</p>
+<hr>
+<p>向量空间的定义（共十条规则）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;V空间的非空子集S是V的子空间&#125;\Leftrightarrow \left\&#123;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x,y\in S &amp; \Rightarrow &amp; x+y\Rightarrow S \\</span><br><span class="line">x\in S &amp; \Rightarrow &amp; \alpha x \Rightarrow S</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\right.</span><br></pre></td></tr></table></figure>
+
+<p>V空间中只包含0向量的子空间是平凡子空间。</p>
+<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线是子空间。</p>
+<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线和平面是子空间。</p>
+<hr>
+<p>生成集，向量集<code>$S=\{V^1,V^2,\cdots,V^r\},(V^r\text{是V空间中的向量})$</code>，</p>
+<p>则：<code>$span(S)=\{\alpha_1V_1+\alpha_2V_2+\cdots+\alpha_rV_r\}$</code>是空间V的子空间W，S称为s张成的空间span(S)的生成集。</p>
+<p>比如：<code>$\{e_1,e_2,\cdots,e_n\}$</code>张成<code>$\mathbb{R}^{2}$</code>空间，<code>$\{1,x,x^2,\cdots,x^n\}$</code>张成多项式的空间。</p>
+<p>把S写成矩阵A，<code>$\alpha_r$</code>用x表示，则：Ax=b, b可以表示W空间中的任意向量，也即b取任意向量此方程有解。这可以验证S是否可以张成r维空间：方程有解就可以张成。</p>
+<p>子空间<code>$\mathcal{X,Y}$</code>，则<code>$S_x\bigcup S_y$</code>张成<code>$\mathcal{X+Y}$</code>，比如：</p>
+<p><code>$\mathcal{X,Y\subseteq \mathbb{R}^{2}}$</code>是两条不同的穿过原点的子空间，则：<code>$\mathcal{X+Y = \mathbb{R}^{2}}$</code>。</p>
+<hr>
+<p>对于<code>$A_{mn}$</code>，<code>$rank(A)=r$</code>，有：</p>
+<p><code>$R(A)$</code>：A的列空间，<code>$R(A)=\{Ax\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimR(A)=r$</code></p>
+<p><code>$R(A^T)$</code>：A的行空间，<code>$R(A^T)=\{A^Ty\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimR(A^T)=r$</code></p>
+<p><code>$N(A)$</code>：A的零空间，<code>$N(A)=\{x|Ax=0\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimN(A)=n-r$</code></p>
+<p><code>$N(A^T)$</code>：A的左零空间，<code>$N(A^T)=\{y|A^Ty=0\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimN(A^T)=m-r$</code></p>
+<p>空间基的个数是空间的维度，维度也代表自由度。（区别维度与单个向量中包含的分量的个数）</p>
+<p>如果<code>$\mathcal{X,Y}$</code>是<code>$V$</code>的子空间，则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim(\mathcal&#123;X+Y&#125;)=dim(\mathcal&#123;X&#125;)+dim(\mathcal&#123;Y&#125;)-dim(\mathcal&#123;X \cap Y&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>$rank(A+B) \leq rank(A)+rank(B)$</code></p>
+<p>非奇异阵乘矩阵A，不改变A的秩：<code>$rank(A)=rank(PAQ)$</code>，P、Q为非奇异阵。</p>
+<p>若<code>$B_{N*P}$</code></p>
+<p><code>$r(AB) \leq min\{r(A),r(B)\}$</code></p>
+<p><code>$r(A)+r(B)-n \leq r(AB)$</code></p>
+<p><code>$rank(A^TA)=r(A)=r(AA^T)$</code></p>
+<hr>
+<p>正规方程：<code>$A^TAx=A^Tb$</code>总是有解，可以解决最小二乘法的求解问题。</p>
+<p>T被称为线性变换，若：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(\alpha x+y)=\alpha T(x)+T(y)</span><br><span class="line">\Leftrightarrow </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">T(x+y)=T(x)+T(y) \\ </span><br><span class="line">T(\alpha x)=\alpha T(x)</span><br><span class="line">\end&#123;cases&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一个矩阵变换都是线性变换，反之不成立。</p>
+<hr>
+<p>B相似于C：<code>$B\simeq C$</code>，存在可逆矩阵Q使<code>$B=Q^{-1}CQ$</code>。
+线性变换通过指定基下的矩阵来表示，同一个线性变换，不同基下的矩阵称为相似矩阵。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/03/理论知识/图数据挖掘/2018-2-3-图预测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/03/理论知识/图数据挖掘/2018-2-3-图预测/" class="post-title-link" itemprop="url">图预测</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-03T00:00:00+08:00">2018-02-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:56:09" itemprop="dateModified" datetime="2019-06-28T16:56:09+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图数据挖掘/" itemprop="url" rel="index"><span itemprop="name">图数据挖掘</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1、信息传播模型"><a href="#1、信息传播模型" class="headerlink" title="1、信息传播模型"></a>1、信息传播模型</h1><p>网络信息传播的<strong>特点</strong>：</p>
+<blockquote>
+<p>网络效应</p>
+</blockquote>
+<blockquote>
+<p>阵发性</p>
+</blockquote>
+<p><strong>两类信息传播模型</strong></p>
+<ul>
+<li>阈值模型：线性阈值模型</li>
+</ul>
+<p>每个时间步节点被周围节点的影响力的和所激活。</p>
+<p><a href="https://i.imgur.com/eOZAIjJ.png" target="_blank" rel="noopener">线性阈值模型示例</a></p>
+<ul>
+<li>级联模型：独立级联模型</li>
+</ul>
+<p>被激活的每个节点，有且只有一次机会去尝试激活其未被激活的邻居节点，成功激活的概率各不相同。</p>
+<p><a href="https://i.imgur.com/t3LkUOy.png" target="_blank" rel="noopener">独立级联模型示例</a></p>
+<p>节点的影响范围：通过蒙特卡罗模拟得到多次传播的范围，取平均值。</p>
+<p>节点传播范围：可以事先通过抛硬币的方式确定每条边是否存在，从而得到传播过程的一个快照网络，取平均值得到传播范围。</p>
+<h1 id="2、影响最大化"><a href="#2、影响最大化" class="headerlink" title="2、影响最大化"></a>2、影响最大化</h1><p>核心问题：如何选择一组种子节点，获得最大的影响范围？</p>
+<p>是一个NP-hard问题</p>
+<p><strong>影响最大化的贪心算法</strong></p>
+<p>逐个选择边际效益最大的节点加入。</p>
+<p>关注对贪心算法的优化。</p>
+<h1 id="3、传播网络推断"><a href="#3、传播网络推断" class="headerlink" title="3、传播网络推断"></a>3、传播网络推断</h1><p>问题：根据信息传播记录，推断背后的传播网络。</p>
+<blockquote>
+<p>输入：节点u在t时刻被激活</p>
+<p>输出：节点u与v之间的传播概率</p>
+</blockquote>
+<p><strong>点对性模型</strong></p>
+<p>基本思路：</p>
+<blockquote>
+<p>u在v之前被激活的次数越多，概率越大</p>
+</blockquote>
+<blockquote>
+<p>u被激活的时刻和t被激活的时刻之间的<br>时间间隔越小，概率越大。</p>
+</blockquote>
+<h1 id="4、流行度预测"><a href="#4、流行度预测" class="headerlink" title="4、流行度预测"></a>4、流行度预测</h1><p>问题：给定一个对象一段时间内的群体关注情况，预测其最终流行度</p>
+<p>基于时序分析的预测</p>
+<p>基于结构多样性的预测</p>
+<p>建模传播过程进行流行度预测：基于自增强泊松过程的流行度预测</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/02/理论知识/图数据挖掘/2018-2-2-图聚类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/02/理论知识/图数据挖掘/2018-2-2-图聚类/" class="post-title-link" itemprop="url">图聚类</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-02T00:00:00+08:00">2018-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:56:39" itemprop="dateModified" datetime="2019-06-28T16:56:39+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图数据挖掘/" itemprop="url" rel="index"><span itemprop="name">图数据挖掘</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -575,7 +1270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/图数据挖掘/图预测/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/理论知识/图数据挖掘/2018-2-1-图排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -595,7 +1290,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/图数据挖掘/图预测/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2018/02/01/理论知识/图数据挖掘/2018-2-1-图排序/" class="post-title-link" itemprop="url">图排序</a>
               
             
           </h1>
@@ -620,7 +1315,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2018-02-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-01T00:00:00+08:00">2018-02-01</time>
             
 
             
@@ -637,804 +1332,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:57:07" itemprop="dateModified" datetime="2019-06-28T16:57:07+08:00">2019-06-28</time>
               
             
           </span>
 
           
-
-          
+            <span class="post-category">
             
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1、信息传播模型"><a href="#1、信息传播模型" class="headerlink" title="1、信息传播模型"></a>1、信息传播模型</h1><p>网络信息传播的<strong>特点</strong>：</p>
-<blockquote>
-<p>网络效应</p>
-</blockquote>
-<blockquote>
-<p>阵发性</p>
-</blockquote>
-<p><strong>两类信息传播模型</strong></p>
-<ul>
-<li>阈值模型：线性阈值模型</li>
-</ul>
-<p>每个时间步节点被周围节点的影响力的和所激活。</p>
-<p><a href="https://i.imgur.com/eOZAIjJ.png" target="_blank" rel="noopener">线性阈值模型示例</a></p>
-<ul>
-<li>级联模型：独立级联模型</li>
-</ul>
-<p>被激活的每个节点，有且只有一次机会去尝试激活其未被激活的邻居节点，成功激活的概率各不相同。</p>
-<p><a href="https://i.imgur.com/t3LkUOy.png" target="_blank" rel="noopener">独立级联模型示例</a></p>
-<p>节点的影响范围：通过蒙特卡罗模拟得到多次传播的范围，取平均值。</p>
-<p>节点传播范围：可以事先通过抛硬币的方式确定每条边是否存在，从而得到传播过程的一个快照网络，取平均值得到传播范围。</p>
-<h1 id="2、影响最大化"><a href="#2、影响最大化" class="headerlink" title="2、影响最大化"></a>2、影响最大化</h1><p>核心问题：如何选择一组种子节点，获得最大的影响范围？</p>
-<p>是一个NP-hard问题</p>
-<p><strong>影响最大化的贪心算法</strong></p>
-<p>逐个选择边际效益最大的节点加入。</p>
-<p>关注对贪心算法的优化。</p>
-<h1 id="3、传播网络推断"><a href="#3、传播网络推断" class="headerlink" title="3、传播网络推断"></a>3、传播网络推断</h1><p>问题：根据信息传播记录，推断背后的传播网络。</p>
-<blockquote>
-<p>输入：节点u在t时刻被激活</p>
-<p>输出：节点u与v之间的传播概率</p>
-</blockquote>
-<p><strong>点对性模型</strong></p>
-<p>基本思路：</p>
-<blockquote>
-<p>u在v之前被激活的次数越多，概率越大</p>
-</blockquote>
-<blockquote>
-<p>u被激活的时刻和t被激活的时刻之间的<br>时间间隔越小，概率越大。</p>
-</blockquote>
-<h1 id="4、流行度预测"><a href="#4、流行度预测" class="headerlink" title="4、流行度预测"></a>4、流行度预测</h1><p>问题：给定一个对象一段时间内的群体关注情况，预测其最终流行度</p>
-<p>基于时序分析的预测</p>
-<p>基于结构多样性的预测</p>
-<p>建模传播过程进行流行度预测：基于自增强泊松过程的流行度预测</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/云资源调度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/理论知识/云资源调度/云资源调度/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
+              <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">分类于</span>
               
-
               
-                
-              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图数据挖掘/" itemprop="url" rel="index"><span itemprop="name">图数据挖掘</span></a></span>
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-07 15:18:59" itemprop="dateModified" datetime="2018-09-07T15:18:59+08:00">2018-09-07</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>面向对象：基础设施即服务（IaaS）</p>
-<p>主要调配的资源：CPU、内存</p>
-<p>建立在资源管理系统基础之上，如：Apache YARN，Xen</p>
-<p>可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。</p>
-<p>好的调度策略的特点：</p>
-<ol>
-<li>贡献越多，回报越大；</li>
-<li>每个用户不会谎报资源；</li>
-<li>帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。</li>
-</ol>
-<h2 id="Max-min-Fairness-算法："><a href="#Max-min-Fairness-算法：" class="headerlink" title="Max-min Fairness 算法："></a>Max-min Fairness 算法：</h2><p>分配过程是每次先把资源平分，如果有用户分到多余的资源就拿出来继续给其他的平分，这样保证申请者都可以公平分到资源。</p>
-<h2 id="Dominant-Resource-Fairness-算法："><a href="#Dominant-Resource-Fairness-算法：" class="headerlink" title="Dominant Resource Fairness 算法："></a>Dominant Resource Fairness 算法：</h2><p>假设：不同类型资源的等份额比率具有相等的价值。</p>
-<p>DRF方法的设想是在多资源的环境中，用户被分配的量应该由其 dominant share 来决定，dominant share 是该用户被分配的任何资源中最大的份额。</p>
-<p>DRF目的是在所有用户中，寻求最小份额的最大值。比如说，如果用户A启动了CPU密集型任务，用户B启动了内存密集型任务，DRF尝试均等用户A的CPU份额和用户B的内存份额。在单一资源的场景下，DRF退化成 max-min fairness 方法。</p>
-<h2 id="Hybrid-Multi-Resource-Fairness-算法："><a href="#Hybrid-Multi-Resource-Fairness-算法：" class="headerlink" title="Hybrid Multi-Resource Fairness 算法："></a>Hybrid Multi-Resource Fairness 算法：</h2><p>思想：分配给每个用户的累计份额相等。</p>
-<p>来自于 DRF。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/知识图谱/第一周/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/理论知识/知识图谱/第一周/" class="post-title-link" itemprop="url">未命名</a>
               
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>本周时间不多，现在大概对自己以前读过的这方面的论文进行一下总结。大概可以分为两个部分，第一个部分是知识图谱相关，第二部分是命名实体相关。</p>
-<h2 id="知识图谱相关"><a href="#知识图谱相关" class="headerlink" title="知识图谱相关"></a>知识图谱相关</h2><h4 id="漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25"><a href="#漆桂林-高桓-吴天星-知识图谱研究进展-J-情报工程-2017-3-1-4-25" class="headerlink" title="漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25."></a><em>漆桂林, 高桓, 吴天星. 知识图谱研究进展[J]. 情报工程, 2017, 3(1):4-25.</em></h4><p>这是我读的第一篇这方面的论文，文章对知识图谱的历史、关键技术进行了比较全面的总结。知识图谱来源于语义网络，可以看成是一个实体-关系的有向图，像一个大型的关系型数据库。</p>
-<p>知识图谱是一个大型的工程，相比于我们通常构建的E-R图，知识图谱主要是对关系和实体进行构建。主要步骤为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">知识获取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识计算及应用</span><br></pre></td></tr></table></figure>
-
-<p>其中知识获取阶段，数据可以从结构化、半结构化、非结构化数据中获取。知识融合阶段，指用统一的术语将各个数据源获取的知识融合成一个统一的知识库。知识计算主要指通过构建好的图谱提供的信息得到更多的隐含知识。里面涉及到的关键技术有实体关系识别技术、知识融汇技术、实体链接技术和知识推理技术。</p>
-<p>实体关系识别技术的目的是通过填充关系模板槽的方式抽取文本中特定的关系，主要有基于统计学的方法，它将问题转化为分类问题进行处理。</p>
-<p>知识融汇技术中，本体匹配非常重要，一般可以分为模式匹配和实例匹配两种算法。</p>
-<p>实体链接技术的目的是解决命名实体歧义问题，主要有基于概率生成模型的方法、基于主题的方法、基于图的方法、基于深度神经网络的方法。</p>
-<p>知识推理技术可以分为基于符合的推理和基于统计的推理。</p>
-<p>在文章最后，介绍了一些开放知识图谱和一些应用。</p>
-<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600."></a><em>刘峤, 李杨, 段宏,等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3):582-600.</em></h4><p>知识图谱从逻辑上可以分为2个层次：数据层和逻辑层。在数据层通常以“实体-关系-实体”或者“实体-属性-性值”三元组作为单元存储在图数据库。模式层在数据层之上，存储的是经过提炼的知识。</p>
-<p>知识图谱有自顶向下和自底向上2种构建方法，现在以自底向上为主。包括三个步骤：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">信息抽取--&gt;知识融合</span><br><span class="line">知识融合--&gt;知识加工</span><br></pre></td></tr></table></figure>
-
-<p><strong>信息抽取</strong>涉及的关键技术包括：实体抽取、关系抽取和属性抽取。</p>
-<p>早期的关系抽取研究方法主要通过人工构造语法和语义规则，据此采用模式匹配的方法类识别实体间的关系。后来又出现了有监督、半监督和无监督学习方法。这些方法都需要预先定义实体关系类型，而面向开发领域的关系抽取技术直接利用语料库中的关系词汇对实体关系进行建模。</p>
-<p><strong>知识融合</strong>包括：实体链接、知识合并。</p>
-<p>实体链接是指对从文本中抽取得到的实体对象，将其链接到知识库中对应的正确实体对象的操作。实体链接技术的难点在于实体消歧和共指消解。</p>
-<p>实体消歧专门用于解决同名实体产生歧义问题的技术，主要采用聚类法，该方法的关键是如何定义实体对象与指称项之间的相似度。共指消解技术主要用于解决多个指称项对应同一实体对象的问题，又称对象对齐、实体匹配、实体同义。基于自然语言处理的共指消解以句法分析为基础，代表方法是Hobbs算法和向心理论。后来统计机器学习的方法引入。</p>
-<p>知识合并分为合并外部知识库、合并关系数据库。</p>
-<p><strong>知识加工</strong>包括：本体构建、知识推理和质量评估。通过信息抽取与知识融合可以得到一系列的事实表达，但是事实并不等于知识，还需要知识加工才能得到结构化、网络化的知识体系。</p>
-<p>本体是同一领域内的不同主体之间进行交流的语义基础。（这可以把本体理解为类，信息抽取中的命名实体相当于对象）本体是树状结构，相邻层次的节点之间具有严格的“IsA”关系。数据驱动的自动化本体构建包括：实体并列关系相似度计算、实体上下位关系抽取和本体的生成。</p>
-<p>知识推理方法可以分为：基于逻辑的推理、基于图的推理。基于逻辑的推理主要包括一阶谓词逻辑、描述逻辑以及基于规则的推理。基于图的推理主要基于神经网络模型或Path Ranking算法。</p>
-<p>文章最后对知识图谱面临的困难与挑战进行的阐述。</p>
-<h2 id="命名实体相关"><a href="#命名实体相关" class="headerlink" title="命名实体相关"></a>命名实体相关</h2><p>命名实体识别本来属于自然语言处理的内容，但是在知识图谱中的信息抽取阶段有应用，自然语言处理这门课又打算选择这个题目做一个project，所以看了许多这方面的内容，在此就不一一列举。</p>
-<p>现阶段主要有CRF和深度学习的方法。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/数学/矩阵/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/理论知识/数学/矩阵/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>Gauss-Jordan消元法最终将矩阵变为：主元所在的列，除主元为1外，其他元素都为0。</p>
-<p>主元所在的列是基列，主元的个数是秩的值。</p>
-<p>方程组有解的物理含义：每一行组成的超平面有一个共同的交点。</p>
-<hr>
-<p>A的共轭矩阵：<code>$\overline{A}=[\overline{a}_{ij}]$</code></p>
-<p>A的共轭转置：<code>$A^*=\overline{A}^T=\overline{A^T} \quad
-\text{也即：}[A^*]_{ij}=\overline{a_{ji}}$</code> </p>
-<p>注：<code>$A^*$</code>又被称为A的伴随矩阵，在本文中全部表示共轭转置</p>
-<ul>
-<li>性质：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(A^*)^*=A</span><br><span class="line"></span><br><span class="line">\text&#123;当A只包含实数时：&#125;A^*=A^T</span><br><span class="line"></span><br><span class="line">(A+B)^T=A^T+B^T \quad (A+B)^*=A^*+B^*</span><br><span class="line"></span><br><span class="line">(\alpha A)^T=\alpha A^T \quad (\alpha A)^*=\alpha A^*</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<p>对称矩阵：<code>$A=A^T \quad a_{ij}=a_{ji}$</code></p>
-<p>斜对称矩阵：<code>$A=-A^T \quad a_{ij}=-a_{ji}$</code></p>
-<p>埃尔米特矩阵：<code>$A=A^* \quad a_{ij}=a_{ji}$</code></p>
-<p>斜埃尔米特矩阵：<code>$ A=-A^* \quad a_{ij}=-a_{ji}$</code></p>
-<hr>
-<p>线性函数：<code>$f(x+y)=f(x)+f(y) \quad\text{且:}\quad f(\alpha x)=\alpha x$</code></p>
-<p>线性函数的变换被称为仿射变换函数，如：<code>$f(x)=\alpha x+\beta \quad\text{与}\quad f(x_1,x_2)=\alpha _1x_1+\alpha _2x_2+\beta$</code></p>
-<p>线性函数的一般形式为：<code>$f(x_1,x_2,\cdots,x_n)=\alpha _1x_1+\alpha _2x_2+\cdots+\alpha x_n$</code></p>
-<hr>
-<p>矩阵的迹，<code>$A_{m*n}\text{与}B_{n*m}:\quad trace(AB)=trace(BA)\quad\quad trace(ABC)=trace(BCA)=trace(CAB)$</code></p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A^&#123;-1&#125;\text&#123;存在&#125;\Leftrightarrow A\text&#123;是非歧义&#125;</span><br><span class="line">\Leftrightarrow rank(A)=n \Leftrightarrow A \rightarrow I(G-J) \Leftrightarrow Ax=0\text&#123;只有0解&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>$A^{-1}$</code>的计算：<code>$[A|I] \rightarrow [I|A^{-1}]$</code></p>
-<p><code>$A^{-1}$</code>的性质：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(A^&#123;-1&#125;)^&#123;-1&#125;=A</span><br><span class="line"></span><br><span class="line">AB\text&#123;依然非奇异&#125;</span><br><span class="line"></span><br><span class="line">(AB)^&#123;-1&#125;=B^&#123;-1&#125;A^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;T&#125;=(A^&#123;T&#125;)^&#123;-1&#125;</span><br><span class="line"></span><br><span class="line">(A^&#123;-1&#125;)^&#123;*&#125;=(A^&#123;*&#125;)^&#123;-1&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>Sherman-Morrison Formula:<br><code>$(A+cd^{T})=\frac{A^{-1}-A^{-1}cd^{T}A^{-1}}{1+d^{T}A^{-1}c}$</code></p>
-<p>通过该公式可以快速通过<code>$A^{-1}$</code>求<code>$A+cd^{T}$</code>的逆。</p>
-<hr>
-<p>初等矩阵：可以写成<code>$I-uv^{T}$</code>形式的矩阵是初等矩阵，是<code>$I$</code>经过一次初等变换得到的，所有的初等矩阵非奇异，初等矩阵的逆还是初等矩阵。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(I-uv^&#123;T&#125;)^&#123;-1&#125;=I-\frac&#123;uv^&#123;T&#125;&#125;&#123;v^&#123;T&#125;u-1&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A是非奇异的当且仅当A能有初等矩阵产生：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G-J\text&#123;把A变为I：&#125;G_&#123;n&#125;\cdots G_&#123;2&#125;G_&#123;1&#125;=I\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;\cdots G^&#123;-1&#125;_&#123;n&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><code>$A\sim B\Leftrightarrow PAQ=B$</code>（P、Q是非奇异的，即P、Q是一系列初等矩阵相乘，A能通过初等变换变到B）</p>
-<p><code>$A\sim B\Leftrightarrow rank(A)=rank(B)~$</code>推论：非奇异矩阵的乘法不能改变秩。</p>
-<p>转置也不能改变秩。</p>
-<hr>
-<p>A的LU分解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G_&#123;3&#125;G_&#123;2&#125;G_&#123;1&#125;A=U\Rightarrow A=G^&#123;-1&#125;_&#123;1&#125;G^&#123;-1&#125;_&#123;2&#125;G^&#123;-1&#125;_&#123;3&#125;U=LU\text&#123;（U的主元必须非0）&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以用来解Ax=b的方程：</p>
-<p>LUx=b  令 Ux=y,先通过 Ly=b 解出 y，再通过 Ux=y 解出 x。</p>
-<p>PA=LU 可以完成任意非奇异矩阵 A 的分解。</p>
-<p>LDU 分解就是把 LU 分解中的 U 变成 DU。</p>
-<hr>
-<p>向量空间的定义（共十条规则）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;V空间的非空子集S是V的子空间&#125;\Leftrightarrow \left\&#123;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x,y\in S &amp; \Rightarrow &amp; x+y\Rightarrow S \\</span><br><span class="line">x\in S &amp; \Rightarrow &amp; \alpha x \Rightarrow S</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\right.</span><br></pre></td></tr></table></figure>
-
-<p>V空间中只包含0向量的子空间是平凡子空间。</p>
-<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线是子空间。</p>
-<p>在<code>$\mathbb{R}^{2}$</code>中过原点的直线和平面是子空间。</p>
-<hr>
-<p>生成集，向量集<code>$S=\{V^1,V^2,\cdots,V^r\},(V^r\text{是V空间中的向量})$</code>，</p>
-<p>则：<code>$span(S)=\{\alpha_1V_1+\alpha_2V_2+\cdots+\alpha_rV_r\}$</code>是空间V的子空间W，S称为s张成的空间span(S)的生成集。</p>
-<p>比如：<code>$\{e_1,e_2,\cdots,e_n\}$</code>张成<code>$\mathbb{R}^{2}$</code>空间，<code>$\{1,x,x^2,\cdots,x^n\}$</code>张成多项式的空间。</p>
-<p>把S写成矩阵A，<code>$\alpha_r$</code>用x表示，则：Ax=b, b可以表示W空间中的任意向量，也即b取任意向量此方程有解。这可以验证S是否可以张成r维空间：方程有解就可以张成。</p>
-<p>子空间<code>$\mathcal{X,Y}$</code>，则<code>$S_x\bigcup S_y$</code>张成<code>$\mathcal{X+Y}$</code>，比如：</p>
-<p><code>$\mathcal{X,Y\subseteq \mathbb{R}^{2}}$</code>是两条不同的穿过原点的子空间，则：<code>$\mathcal{X+Y = \mathbb{R}^{2}}$</code>。</p>
-<hr>
-<p>对于<code>$A_{mn}$</code>，<code>$rank(A)=r$</code>，有：</p>
-<p><code>$R(A)$</code>：A的列空间，<code>$R(A)=\{Ax\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimR(A)=r$</code></p>
-<p><code>$R(A^T)$</code>：A的行空间，<code>$R(A^T)=\{A^Ty\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimR(A^T)=r$</code></p>
-<p><code>$N(A)$</code>：A的零空间，<code>$N(A)=\{x|Ax=0\} \subseteq \mathbb{R}^{n} $</code>，<code>$dimN(A)=n-r$</code></p>
-<p><code>$N(A^T)$</code>：A的左零空间，<code>$N(A^T)=\{y|A^Ty=0\} \subseteq \mathbb{R}^{m} $</code>，<code>$dimN(A^T)=m-r$</code></p>
-<p>空间基的个数是空间的维度，维度也代表自由度。（区别维度与单个向量中包含的分量的个数）</p>
-<p>如果<code>$\mathcal{X,Y}$</code>是<code>$V$</code>的子空间，则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim(\mathcal&#123;X+Y&#125;)=dim(\mathcal&#123;X&#125;)+dim(\mathcal&#123;Y&#125;)-dim(\mathcal&#123;X \cap Y&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><code>$rank(A+B) \leq rank(A)+rank(B)$</code></p>
-<p>非奇异阵乘矩阵A，不改变A的秩：<code>$rank(A)=rank(PAQ)$</code>，P、Q为非奇异阵。</p>
-<p>若<code>$B_{N*P}$</code></p>
-<p><code>$r(AB) \leq min\{r(A),r(B)\}$</code></p>
-<p><code>$r(A)+r(B)-n \leq r(AB)$</code></p>
-<p><code>$rank(A^TA)=r(A)=r(AA^T)$</code></p>
-<hr>
-<p>正规方程：<code>$A^TAx=A^Tb$</code>总是有解，可以解决最小二乘法的求解问题。</p>
-<p>T被称为线性变换，若：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T(\alpha x+y)=\alpha T(x)+T(y)</span><br><span class="line">\Leftrightarrow </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">T(x+y)=T(x)+T(y) \\ </span><br><span class="line">T(\alpha x)=\alpha T(x)</span><br><span class="line">\end&#123;cases&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每一个矩阵变换都是线性变换，反之不成立。</p>
-<hr>
-<p>B相似于C：<code>$B\simeq C$</code>，存在可逆矩阵Q使<code>$B=Q^{-1}CQ$</code>。
-线性变换通过指定基下的矩阵来表示，同一个线性变换，不同基下的矩阵称为相似矩阵。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/图数据挖掘/图排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/理论知识/图数据挖掘/图排序/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
-              
-            
-          </span>
-
+            </span>
           
 
           
@@ -1575,7 +1495,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/0、基础/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/理论知识/云资源调度/2018-1-2-云资源调度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1595,7 +1515,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/0、基础/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2018/01/02/理论知识/云资源调度/2018-1-2-云资源调度/" class="post-title-link" itemprop="url">云资源调度算法</a>
               
             
           </h1>
@@ -1620,7 +1540,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2018-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-01-02T00:00:00+08:00">2018-01-02</time>
             
 
             
@@ -1637,11 +1557,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:54:38" itemprop="dateModified" datetime="2019-06-28T16:54:38+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云资源调度/" itemprop="url" rel="index"><span itemprop="name">云资源调度</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1673,65 +1611,22 @@
       
         
           
-            <ul>
-<li><p>@</p>
-<p>  语法: @关键字(值)</p>
-<p>  用于把关键字和值传递给编译器，更精确低控制编译器的动作。</p>
-</li>
-<li><p>javaBean</p>
-<p>  JavaBean在MVC设计模型中是model，又称模型层，在一般的程序中，我们称它为数据层，就是用来设置数据的属性和一些行为，然后提供获取属性和设置属性的get/set方法。</p>
-</li>
-<li><p>postman 工具</p>
-</li>
-<li><p>RESTful API</p>
-<p>  PUT，DELETE操作是幂等的。所谓幂等是指不管进行多少次操作，结果都一样。比如我用PUT修改一篇文章，然后在做同样的操作，每次操作后的结果并没有不同，DELETE也是一样。顺便说一句，因为GET操作是安全的，所以它自然也是幂等的。</p>
-<p>  POST操作既不是安全的，也不是幂等的，比如常见的POST重复加载问题：当我们多次发出同样的POST请求后，其结果是创建出了若干的资源。</p>
-<p>  创建操作可以使用POST，也可以使用PUT，区别在于POST 是作用在一个集合资源之上的（/uri），而PUT操作是作用在一个具体资源之上的（/uri/xxx），再通俗点说，如果URL可以在客户端确定，那么就使用PUT，如果是在服务端确定，那么就使用POST，比如说很多资源使用数据库自增主键作为标识信息，而创建的资源的标识信息到底是什么只能由服务端提供，这个时候就必须使用POST。</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求类型</th>
-<th>请求路径</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GET</td>
-<td>/girls</td>
-<td>获取女生列表</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>/girls</td>
-<td>创建一个女生</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/girls/id</td>
-<td>通过id查询一个女生</td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>/girls/id</td>
-<td>通过id更新一个女生</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>/girls/id</td>
-<td>通过id删除一个女生</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>@Autowired</p>
-<p>  这个注解的作用是将其他的类，接口引入，类似于之前的类的初始化等，用这个注解，类中或接口的方法就可以直接调用了。</p>
-</li>
-<li><p>修改页面后实时刷新</p>
-<p>  1、禁用缓存，配置文件中加 <code>spring.thymeleaf.cache=false</code></p>
-<p>  2、修改模板后 <code>Ctrl+F9</code> 重新编译就可以刷新了</p>
-</li>
-</ul>
+            <h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>面向对象：基础设施即服务（IaaS）</p>
+<p>主要调配的资源：CPU、内存</p>
+<p>建立在资源管理系统基础之上，如：Apache YARN，Xen</p>
+<p>可以获取系统总资源、给用户分配的资源、用户需要的资源、用户分享的资源。</p>
+<p>好的调度策略的特点：</p>
+<ol>
+<li>贡献越多，回报越大；</li>
+<li>每个用户不会谎报资源；</li>
+<li>帕累托效率：如果不减少至少一个用户的分配，就不可能增加一个用户的分配。</li>
+</ol>
+<h2 id="Max-min-Fairness-算法："><a href="#Max-min-Fairness-算法：" class="headerlink" title="Max-min Fairness 算法："></a>Max-min Fairness 算法：</h2><p>分配过程是每次先把资源平分，如果有用户分到多余的资源就拿出来继续给其他的平分，这样保证申请者都可以公平分到资源。</p>
+<h2 id="Dominant-Resource-Fairness-算法："><a href="#Dominant-Resource-Fairness-算法：" class="headerlink" title="Dominant Resource Fairness 算法："></a>Dominant Resource Fairness 算法：</h2><p>假设：不同类型资源的等份额比率具有相等的价值。</p>
+<p>DRF方法的设想是在多资源的环境中，用户被分配的量应该由其 dominant share 来决定，dominant share 是该用户被分配的任何资源中最大的份额。</p>
+<p>DRF目的是在所有用户中，寻求最小份额的最大值。比如说，如果用户A启动了CPU密集型任务，用户B启动了内存密集型任务，DRF尝试均等用户A的CPU份额和用户B的内存份额。在单一资源的场景下，DRF退化成 max-min fairness 方法。</p>
+<h2 id="Hybrid-Multi-Resource-Fairness-算法："><a href="#Hybrid-Multi-Resource-Fairness-算法：" class="headerlink" title="Hybrid Multi-Resource Fairness 算法："></a>Hybrid Multi-Resource Fairness 算法：</h2><p>思想：分配给每个用户的累计份额相等。</p>
+<p>来自于 DRF。</p>
 
           
         
@@ -1788,7 +1683,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/os与sys模块/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/理论知识/云资源调度/2018-1-1-CloudSim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1808,7 +1703,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/python3/os与sys模块/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2018/01/01/理论知识/云资源调度/2018-1-1-CloudSim/" class="post-title-link" itemprop="url">CloudSim</a>
               
             
           </h1>
@@ -1833,7 +1728,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2018-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-01-01T00:00:00+08:00">2018-01-01</time>
             
 
             
@@ -1850,210 +1745,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-08 14:24:57" itemprop="dateModified" datetime="2019-05-08T14:24:57+08:00">2019-05-08</time>
+                <time title="修改时间：2019-06-28 16:54:48" itemprop="dateModified" datetime="2019-06-28T16:54:48+08:00">2019-06-28</time>
               
             
           </span>
 
           
-
-          
+            <span class="post-category">
             
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="os-模块"><a href="#os-模块" class="headerlink" title="os 模块"></a>os 模块</h2><p>Python 的 os 模块封装了常见的和操作系统交互的文件和目录操作。</p>
-<ul>
-<li><p>os.mkdir 创建文件</p>
-</li>
-<li><p>os.rmdir 删除文件</p>
-</li>
-<li><p>os.rename 重命名</p>
-</li>
-<li><p>os.remove 删除文件</p>
-</li>
-<li><p>os.getcwd 获取当前工作路径</p>
-</li>
-<li><p>os.walk 遍历目录</p>
-</li>
-<li><p>os.path.join 连接目录与文件名</p>
-</li>
-<li><p>os.path.split 分割文件名与目录</p>
-</li>
-<li><p>os.path.abspath 获取绝对路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不管从哪里开始调用，都是写这句代码的文件的绝对路径</span></span><br><span class="line">os.path.abspath(__file__)  <span class="comment"># 当前文件绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取的路径总是程序入口的路径</span></span><br><span class="line">os.path.abspath(<span class="string">'.'</span>)  <span class="comment"># 当前目录的绝对路径</span></span><br><span class="line">os.path.abspath(<span class="string">'..'</span>)  <span class="comment"># 上一级目录的绝对路径</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.dirname 获取文件夹路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding/python'</span></span><br><span class="line">os.path.dirname(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># '/Users/ethan/coding'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.basename 获取文件名或文件夹名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/hello.py'</span>)</span><br><span class="line"><span class="comment"># 'hello.py'</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python/'</span>)</span><br><span class="line"><span class="comment"># ''</span></span><br><span class="line">os.path.basename(<span class="string">'/Users/ethan/coding/python'</span>)</span><br><span class="line"><span class="comment"># 'python'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.splitext 分离文件名与扩展名</p>
-</li>
-<li><p>os.path.isfile 判断给出的路径是否是一个文件</p>
-</li>
-<li><p>os.path.isdir    判断给出的路径是否是一个目录</p>
-</li>
-</ul>
-<h2 id="sys-模块"><a href="#sys-模块" class="headerlink" title="sys 模块"></a>sys 模块</h2><p>sys 模块包含了与 Python 解释器和它的环境有关的函数。</p>
-<ul>
-<li>sys.argv</li>
-</ul>
-<p>通过命令行传入参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># Filename: using_sys.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'The command line arguments are:'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> sys.argv:</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意，脚本的名称总是 sys.argv 列表的第一个参数</span></span><br><span class="line"><span class="comment"># $ python using_sys.py we are arguments</span></span><br><span class="line"><span class="comment">#    The command line arguments are:</span></span><br><span class="line"><span class="comment">#    using_sys.py</span></span><br><span class="line"><span class="comment">#    we</span></span><br><span class="line"><span class="comment">#    are</span></span><br><span class="line"><span class="comment">#    arguments</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>sys.path</li>
-</ul>
-<p>功能：获取指定模块搜索路径的字符串集合，可以将写好的模块放在得到的某个路径下，就可以在程序中import时正确找到。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加搜索路径，一般配合 os 模块使用</span></span><br><span class="line">sys.path.append(<span class="string">"自定义模块路径"</span>)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/理论知识/云资源调度/CloudSim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/理论知识/云资源调度/CloudSim/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
+              <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">分类于</span>
               
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云资源调度/" itemprop="url" rel="index"><span itemprop="name">云资源调度</span></a></span>
 
-              
+                
                 
               
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-19 19:33:41" itemprop="dateModified" datetime="2018-10-19T19:33:41+08:00">2018-10-19</time>
-              
-            
-          </span>
-
+            </span>
           
 
           
@@ -2160,7 +1874,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/python3/面向对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/05/技术教程/TensorFlow/20170-11-5-numpy教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -2180,7 +1894,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/python3/面向对象/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/11/05/技术教程/TensorFlow/20170-11-5-numpy教程/" class="post-title-link" itemprop="url">numpy教程</a>
               
             
           </h1>
@@ -2205,7 +1919,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-11-05 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-05T00:00:00+08:00">2017-11-05</time>
             
 
             
@@ -2222,11 +1936,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-28 15:52:52" itemprop="dateModified" datetime="2019-04-28T15:52:52+08:00">2019-04-28</time>
+                <time title="修改时间：2019-06-28 16:51:35" itemprop="dateModified" datetime="2019-06-28T16:51:35+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2258,42 +1990,586 @@
       
         
           
-            <h2 id="1-类"><a href="#1-类" class="headerlink" title="1. 类"></a>1. 类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># model1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">people</span>:</span></span><br><span class="line">    <span class="comment"># 定义公开属性</span></span><br><span class="line">    name = <span class="string">''</span></span><br><span class="line">    age = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 定义私有属性</span></span><br><span class="line">    __weight = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 定义构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n,a,w)</span>:</span></span><br><span class="line">        self.name = n</span><br><span class="line">        self.age = a</span><br><span class="line">        self.__weight = w</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">speak</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"%s 说: 我 %d 岁。"</span> %(self.name,self.age))</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sex</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"mysex"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sex</span><span class="params">(self)</span>:</span></span><br><span class="line">        __sex()</span><br></pre></td></tr></table></figure>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">c_dot = np.dot(a,b) <span class="comment">#矩阵相乘</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> A: <span class="comment">#遍历每一行</span></span><br><span class="line"><span class="keyword">for</span> column <span class="keyword">in</span> A.T: <span class="comment">#遍历每一列</span></span><br><span class="line">C = np.vstack((A,B)) <span class="comment">#上下合并</span></span><br><span class="line">D = np.hstack((A,B)) <span class="comment">#左右合并</span></span><br><span class="line">A[np.newaxis,:] <span class="comment">#在行上加上一个维度</span></span><br><span class="line">np.split(A, <span class="number">2</span>, axis=<span class="number">1</span>) <span class="comment">#纵向分割成2块</span></span><br><span class="line">print(np.vsplit(A, <span class="number">3</span>)) <span class="comment">#等于 print(np.split(A, 3, axis=0))</span></span><br><span class="line">b = a.copy()    <span class="comment"># deep copy</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
 
-<ul>
-<li><code>self</code> 代表类的实例，<code>self.class</code> 指向类。</li>
-<li><em>__weight</em>：两下划线开头，申明改属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 <em>self.__weight</em>。</li>
-<li><em>__sex</em>：私有方法，和私有属性一样。</li>
-<li>类的专有方法：<ul>
-<li><strong>init</strong> : 构造函数，在生成对象时调用</li>
-<li><strong>del</strong> : 析构函数，释放对象时使用</li>
-<li><strong>repr</strong> : 打印，转换</li>
-<li><strong>setitem</strong> : 按照索引赋值</li>
-<li><strong>getitem</strong>: 按照索引获取值</li>
-<li><strong>len</strong>: 获得长度</li>
-<li><strong>cmp</strong>: 比较运算</li>
-<li><strong>call</strong>: 函数调用</li>
-<li><strong>add</strong>: 加运算</li>
-<li><strong>sub</strong>: 减运算</li>
-<li><strong>mul</strong>: 乘运算</li>
-<li><strong>truediv</strong>: 除运算</li>
-<li><strong>mod</strong>: 求余运算</li>
-<li><strong>pow</strong>: 乘方</li>
-</ul>
-</li>
-</ul>
-<p>可以对专有方法重载：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vector</span>:</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">      self.a = a</span><br><span class="line">      self.b = b</span><br><span class="line">      </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'Vector (%d, %d)'</span> % (self.a, self.b)</span><br><span class="line">      </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> Vector(self.a + other.a, self.b + other.b)</span><br><span class="line"> </span><br><span class="line">v1 = Vector(<span class="number">2</span>,<span class="number">10</span>)</span><br><span class="line">v2 = Vector(<span class="number">5</span>,<span class="number">-2</span>)</span><br><span class="line"><span class="keyword">print</span> (v1 + v2)</span><br></pre></td></tr></table></figure>
+    
 
-<h2 id="2-继承"><a href="#2-继承" class="headerlink" title="2. 继承"></a>2. 继承</h2><p>子类不能访问双下划线 <code>__</code> 开头的私有变量/方法，可以访问单下划线 <code>_</code> 开头的保护变量。</p>
-<p>单类继承：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># model1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span><span class="params">(people)</span>:</span></span><br><span class="line">    grade = <span class="string">''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n,a,w,g)</span>:</span></span><br><span class="line">        <span class="comment"># 调用父类的构函</span></span><br><span class="line">        people.__init__(self,n,a,w)</span><br><span class="line">        self.grade = g</span><br><span class="line">    <span class="comment"># 覆写父类的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">speak</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"%s 说: 我 %d 岁了，我在读 %d 年级"</span>%(self.name,self.age,self.grade))</span><br><span class="line"></span><br><span class="line">s = student(<span class="string">'ken'</span>,<span class="number">10</span>,<span class="number">60</span>,<span class="number">3</span>)</span><br><span class="line">s.speak()</span><br></pre></td></tr></table></figure>
+    
+    
+    
 
-<p>多类继承：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># model1</span></span><br><span class="line"><span class="comment"># 另一个类，多重继承之前的准备</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">speaker</span><span class="params">()</span>:</span></span><br><span class="line">    topic = <span class="string">''</span></span><br><span class="line">    name = <span class="string">''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n,t)</span>:</span></span><br><span class="line">        self.name = n</span><br><span class="line">        self.topic = t</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">speak</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"我叫 %s，我是一个演说家，我演讲的主题是 %s"</span>%(self.name,self.topic))</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 多重继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sample</span><span class="params">(speaker, student)</span>:</span></span><br><span class="line">    a =<span class="string">''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n,a,w,g,t)</span>:</span></span><br><span class="line">        student.__init__(self,n,a,w,g)</span><br><span class="line">        speaker.__init__(self,n,t)</span><br><span class="line"> </span><br><span class="line">test = sample(<span class="string">"Tim"</span>,<span class="number">25</span>,<span class="number">80</span>,<span class="number">4</span>,<span class="string">"Python"</span>)</span><br><span class="line">test.speak()  <span class="comment"># 方法名同，默认调用的是在括号中排前地父类的方法</span></span><br></pre></td></tr></table></figure>
+    
 
-<p>方法重写，<code>super()</code> 函数用于调用父类的一个方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span>:</span>        <span class="comment"># 定义父类</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">myMethod</span><span class="params">(self)</span>:</span></span><br><span class="line">      <span class="keyword">print</span> (<span class="string">'调用父类方法'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span><span class="params">(Parent)</span>:</span> <span class="comment"># 定义子类</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">myMethod</span><span class="params">(self)</span>:</span></span><br><span class="line">      <span class="keyword">print</span> (<span class="string">'调用子类方法'</span>)</span><br><span class="line"> </span><br><span class="line">c = Child()          <span class="comment"># 子类实例</span></span><br><span class="line">c.myMethod()         <span class="comment"># 子类调用重写方法</span></span><br><span class="line">super(Child,c).myMethod() <span class="comment"># 用子类对象调用父类已被覆盖的方法</span></span><br></pre></td></tr></table></figure>
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/技术教程/TensorFlow/2017-11-4-tensorflow学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/04/技术教程/TensorFlow/2017-11-4-tensorflow学习笔记/" class="post-title-link" itemprop="url">tensorflow学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-04T00:00:00+08:00">2017-11-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:51:46" itemprop="dateModified" datetime="2019-06-28T16:51:46+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="tensorflow笔记"><a href="#tensorflow笔记" class="headerlink" title="tensorflow笔记"></a>tensorflow笔记</h1><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><pre><code># 用numpy构造数据
+x_data = np.random.rand(100).astype(np.float32)
+y_data = x_data*0.1 + 0.3
+#tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值
+#1表示这个变量是一维的，变量的初始范围是-1到1
+Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+#定了变量初始值为0
+biases = tf.Variable(tf.zeros([1]))
+#预测的y，由真实的数据x_data来表示
+y = Weights*x_data + biases
+#定义损失函数，实际的y与定义的y_data的差值
+loss = tf.reduce_mean(tf.square(y-y_data))
+#定义了一个最原始的优化器，0.5为学习率
+optimizer = tf.train.GradientDescentOptimizer(0.5)
+#用优化器减小误差
+train = optimizer.minimize(loss)
+#建立了神经网络的结构，在使用这个结构之前，我们必须先初始化所有之前定义的Variable初始化
+init = tf.global_variables_initializer()
+#用Session来run每一次training的数据
+sess = tf.Session()
+sess.run(init)
+#要训练多少次，就循环多少次
+for step in range(201):
+sess.run(train)
+if step % 20 == 0:
+#每20次训练输出定义的权重和偏置值
+print(step, sess.run(Weights), sess.run(biases))</code></pre><h2 id="Session会话控制"><a href="#Session会话控制" class="headerlink" title="Session会话控制"></a>Session会话控制</h2><pre><code>#定义两个矩阵，tf.constant表示恒量
+matrix1 = tf.constant([[3,3]])
+matrix2 = tf.constant([[2],
+   [2]])
+#tf.matmul表示矩阵乘法
+product = tf.matmul(matrix1,matrix2)
+# 两种Session的打开模式，法1
+sess = tf.Session()
+result = sess.run(product)
+print(result)
+sess.close()
+#法2
+with tf.Session() as sess:
+result2 = sess.run(product)
+print(result2)</code></pre><h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><pre><code>#变量一定要用tf.Variable定义才是变量
+#这里定义了变量名为0，变量名为counter，然后打印了变量名字
+state = tf.Variable(0, name=&apos;counter&apos;)
+print（state.name）
+# 定义常量 one
+one = tf.constant(1)
+# 定义加法步骤 (注: 此步并没有直接计算)
+new_value = tf.add(state, one)
+# 用tf.assign将 State 更新成为 new_value
+update = tf.assign(state, new_value)
+# 如果定义 Variable, 就一定要 initialize
+# 就是初始化我们定义的变量
+init = tf.global_variables_initializer() 
+# 使用 Session
+with tf.Session() as sess:
+    #必须要run一下init激活我们的结构
+    sess.run(init)
+    for _ in range(3):
+        #每run一次update，state变量就会加1
+        sess.run(update)
+        #注意这里直接 print(state) 不起作用
+        print(sess.run(state))</code></pre><h2 id="Placeholder-传入值"><a href="#Placeholder-传入值" class="headerlink" title="Placeholder 传入值"></a>Placeholder 传入值</h2><pre><code>#在 Tensorflow 中需要定义 placeholder 的 type ，一般为 float32 类型
+input1 = tf.placeholder(tf.float32)
+nput2 = tf.placeholder(tf.float32)
+# mul = multiply 是将input1和input2 做乘法运算，并输出为 output 
+ouput = tf.multiply(input1, input2)
+with tf.Session() as sess:
+    # 需要传入的值放在了feed_dict={} 并一一对应每一个 
+    # input. placeholder 与 feed_dict={} 是绑定在一起出现的
+    print(sess.run(ouput, feed_dict={input1: [7.], input2: [2.]}))</code></pre><h2 id="添加层-def-add-layer"><a href="#添加层-def-add-layer" class="headerlink" title="添加层 def add_layer()"></a>添加层 def add_layer()</h2><pre><code>#定义添加神经层的函数def add_layer(),
+#它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。
+def add_layer(inputs, in_size, out_size, activation_function=None):  
+    #随机变量(normal distribution)会比全部为0要好很多
+    #这里的weights为一个in_size行, out_size列的随机变量矩阵。
+    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
+    #biases的推荐值不为0，所以我们这里是在0向量的基础上又加了0.1
+    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
+    #定义Wx_plus_b, 即神经网络未激活的值
+    Wx_plus_b = tf.matmul(inputs, Weights) + biases
+
+    if activation_function is None:
+        outputs = Wx_plus_b
+    else:
+        outputs = activation_function(Wx_plus_b)
+    #返回输出，添加一个神经层的函数——def add_layer()就定义好了
+    return outputs</code></pre><h2 id="建造神经网络"><a href="#建造神经网络" class="headerlink" title="建造神经网络"></a>建造神经网络</h2><pre><code>#利用占位符定义我们所需的神经网络的输入，训练时再传值！ 
+#tf.placeholder()就是代表占位符
+#这里的None代表无论输入样本有多少都可以，因为输入只有一个特征，所以这里是1。
+xs = tf.placeholder(tf.float32, [None, 1])
+ys = tf.placeholder(tf.float32, [None, 1])
+#构建输入层1个、隐藏层10个、输出层1个神经元的神经网络
+#虽然有三个层，但是只需要定义两个层构造函数即可
+#用上面的添加层函数定义隐藏层，激活函数用relu
+l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
+#定义输出层，输出层输入的数据是隐藏层l1的输出
+prediction = add_layer(l1, 10, 1, activation_function=None)
+#计算预测值prediction和真实值的误差，对二者差的平方求和再取平均。
+loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
+     reduction_indices=[1]))
+#用优化器以0.1的效率来最小化误差loss。
+train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+#下面，让机器开始学习。
+#机器学习的内容是train_step
+#当运算要用到placeholder时，就需要feed_dict这个字典来指定输入。
+for i in range(1000):
+    # training
+    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+    if i % 50 == 0:
+        # to see the step improvement
+        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
+#预测对应x值的y值
+prediction_value = sess.run(prediction, feed_dict={xs: x_data})</code></pre><h2 id="Classification-分类学习"><a href="#Classification-分类学习" class="headerlink" title="Classification 分类学习"></a>Classification 分类学习</h2><pre><code>#784表示28x28个特征，即一张图片由784个像素构成
+#相当于每个样本有784个输入
+xs = tf.placeholder(tf.float32, [None, 784])
+#每张图片都表示一个数字，所以我们的输出是数字0到9，共10类。
+#相对于每个样本有10个输出的可能
+ys = tf.placeholder(tf.float32, [None, 10])
+#调用add_layer函数搭建一个最简单的训练网络结构，只有输入层和输出层。 
+prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
+#loss函数（即最优化目标函数）选用交叉熵函数。
+#交叉熵用来衡量预测值和真实值的相似程度，如果完全相同，它们的交叉熵等于零。
+cross_entropy = tf.reduce_mean(
+    -tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))
+#优化器，train方法（最优化算法）采用梯度下降法。
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+#现在开始train，每次只取100张图片，免得数据太多训练太慢。
+#mnist是原始样本集
+batch_xs, batch_ys = mnist.train.next_batch(100)
+sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})</code></pre><h2 id="Dropout-解决-overfitting"><a href="#Dropout-解决-overfitting" class="headerlink" title="Dropout 解决 overfitting"></a>Dropout 解决 overfitting</h2><pre><code>#先定义一个keep_prob
+keep_prob = tf.placeholder(tf.float32)
+#keep_prob最后在这里使用，表示有50%的结果不被Dropout掉
+#keep_prob即保留概率，即我们要保留的结果所占比例
+sess.run(train_step, feed_dict={xs: X_train, ys: y_train, keep_prob: 0.5})
+#dropout掉Wx_plus_b的50%的结果
+#Wx_plus_b是我们定义的预测值
+Wx_plus_b = tf.nn.dropout(Wx_plus_b, keep_prob)</code></pre><h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><pre><code>#定义Weight变量，输入shape，返回变量的参数。
+#其中我们使用tf.truncted_normal产生随机变量来进行初始化
+def weight_variable(shape): 
+    inital=tf.truncted_normal(shape,stddev=0.1)
+    return tf.Variable(initial)
+#定义biase变量，输入shape ,返回变量的一些参数。
+#其中我们使用tf.constant常量函数来进行初始化
+def bias_variable(shape): 
+    initial=tf.constant(0.1,shape=shape) 
+    return tf.Variable(initial)
+#定义卷积，tf.nn.conv2d函数是tensoflow里面的二维的卷积函数
+#x是图片的所有参数，W是此卷积层的权重，
+#然后定义卷积的步长strides=[1,1,1,1]值，strides[0]和strides[3]的两个1是默认值，
+#中间两个1代表padding时在x方向运动一步，y方向运动一步，padding采用的方式是SAME。
+def conv2d(x,W):
+    return tf.nn.conv2d(x,W,strides=[1,1,1,1]，padding=&apos;SAME&apos;) 
+#接着定义池化pooling，
+#为了得到更多的图片信息，padding时我们选的是一次一步，也就是strides[1]=strides[2]=1，
+#这样得到的图片尺寸没有变化，而我们希望压缩一下图片也就是参数能少一些从而减小系统的复杂度，
+#因此我们采用pooling来稀疏化参数，也就是卷积神经网络中所谓的下采样层。
+#pooling 有两种，一种是最大值池化，一种是平均值池化，本例采用的是最大值池化tf.max_pool()。
+#池化的核函数大小为2x2，因此ksize=[1,2,2,1]，步长为2，因此strides=[1,2,2,1]:
+def max_poo_2x2(x): 
+    return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1])</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/技术教程/TensorFlow/2017-11-3-第五章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/03/技术教程/TensorFlow/2017-11-3-第五章/" class="post-title-link" itemprop="url">第五章</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-03T00:00:00+08:00">2017-11-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:52:27" itemprop="dateModified" datetime="2019-06-28T16:52:27+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MNIST-数字识别问题"><a href="#MNIST-数字识别问题" class="headerlink" title="MNIST 数字识别问题"></a>MNIST 数字识别问题</h1><h3 id="MNIST-数据处理"><a href="#MNIST-数据处理" class="headerlink" title="MNIST 数据处理"></a>MNIST 数据处理</h3><p>该数据集包含7万张28*28的图片，其中6万张训练，1万张测试集，每张图片代表0～9中的一个数，每一个像素在0～1之间。</p>
+<p>tf 提供了一个处理 MNIST 数据的类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"></span><br><span class="line"><span class="comment">#载入数据集，若指定位置没有数据，将重网下载</span></span><br><span class="line">mnist = input_data.read_data_sets(<span class="string">"./mnist_data"</span>,one_hot = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">print(mnist.train.num_examples)   <span class="comment">#训练集大小：55000</span></span><br><span class="line">print(mnist.validation.num_examples)   <span class="comment">#验证集大小：5000,验证集相当于可见的测试集</span></span><br><span class="line">print(mnist.test.num_examples)   <span class="comment">#测试集大小：10000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将二维图像矩阵放到长度为784的一维数组中，验证集第一个图片的向量</span></span><br><span class="line">print(mnist.train.images[<span class="number">0</span>])</span><br><span class="line"><span class="comment">#验证集第一个图片的标签的向量：[0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]</span></span><br><span class="line">print(mnist.train.labels[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#mnist.train.next_batch函数每读取训练集中一小部分用训练的batch</span></span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">    xs, ys = mnist.train.next_batch(batch_size)   <span class="comment">#xs是图片, ys是标签</span></span><br><span class="line">    print(ys[<span class="number">0</span>])   <span class="comment">#每个batch第一张图片的标签</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="神经网络模型训练"><a href="#神经网络模型训练" class="headerlink" title="神经网络模型训练"></a>神经网络模型训练</h3><p><strong><em>tf.placeholder(dtype, shape=None, name=None)</em></strong> 函数，占位符，可以理解为形参，用于定义过程，在执行的时候再赋具体的值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(tf.float32, shape=(<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">y = tf.matmul(x, x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment">#print(sess.run(y))  # ERROR: 此处x还没有赋值.</span></span><br><span class="line">    print(sess.run(y, feed_dict=&#123;x: [[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">1.0</span>, <span class="number">2.0</span>]]&#125;))  <span class="comment"># Will succeed.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.argmax(V,1)</em></strong> 函数：返回的是V中的最大值的索引号，如果V是一个向量，那就返回一个值，如果是一个矩阵，那就返回一个向量，这个向量的每一个维度都是相对应矩阵行的最大值元素的索引号。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = [[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</span><br><span class="line">B = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">8</span>, <span class="number">7</span>, <span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(tf.argmax(A, <span class="number">1</span>)))   <span class="comment">#[4]</span></span><br><span class="line">    print(sess.run(tf.argmax(B, <span class="number">1</span>)))   <span class="comment">#[2 2 0 0]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>cast(x, dtype, name=None)</em></strong> 函数：将x的数据格式转化成dtype。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">B = tf.cast(A, dtype=tf.float16)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(B))   <span class="comment">#[1. 3. 4. 5. 6.]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="变量管理"><a href="#变量管理" class="headerlink" title="变量管理"></a>变量管理</h3><p>当神经网络的结构更复杂，参数更多时，tf 提供了通过变量名称来创建或获取一个变量的机制。主要通过 tf.get_variable 和 tf.variable_scope 函数实现。</p>
+<p><strong><em>tf.get_variable</em></strong> 函数：当用于创建变量时，和 tf.Variable 的功能基本等价，最大的区别在于 tf.get_variable 的变量名称参数是必填的参数。</p>
+<p><strong><em>tf.variable_scope</em></strong> 函数：如果需要通过 tf.get_variable 获取一个已经创建的变量， 需要通过 tf.variable_scope 函数来生成一个上下文管理器，并明确指定在这个上下文管理器中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在名字为foo的命名空间中创建名字为v的变量</span></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    <span class="comment">#注：tf.constant_initializer是变量初始化函数</span></span><br><span class="line">    v = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>], initializer=tf.constant_initializer(<span class="number">1.0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#因为在foo空间中存在了名字为v的变量，所以下面的代码会报错</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">with tf.variable_scope("foo"):</span></span><br><span class="line"><span class="string">    v = tf.get_variable("v", [1])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<p>参数 reuse=True，则 tf.get_variable 只能获取foo空间下已经创建的对象；reuse=False，则 tf.get_variable 将创建对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>, reuse=<span class="literal">True</span>):</span><br><span class="line">    v1 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">print(v == v1)   <span class="comment">#True</span></span><br></pre></td></tr></table></figure>
+
+<p>命名空间可以嵌套，可以通过 variable_scope 来管理变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    v2 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"bar"</span>):</span><br><span class="line">        v3 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">""</span>, reuse=<span class="literal">True</span>):</span><br><span class="line">    v4 = tf.get_variable(<span class="string">"foo/bar/v"</span>, [<span class="number">1</span>])   <span class="comment">#通过变量的名称来获取变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打印时会自动加上命名空间</span></span><br><span class="line">print(v1.name)   <span class="comment"># v:0</span></span><br><span class="line">print(v2.name)   <span class="comment"># foo/v:0</span></span><br><span class="line">print(v3.name)   <span class="comment"># foo/bar/v:0</span></span><br><span class="line">print(v4.name)   <span class="comment"># foo/bar/v:0</span></span><br></pre></td></tr></table></figure>
+
+<p>变量初始化函数（与第三章的类似）：</p>
+<table>
+<thead>
+<tr>
+<th>初始化函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tf.constant_initializer</td>
+<td>初始化为给定常量</td>
+</tr>
+<tr>
+<td>tf.random_normal_initializer</td>
+<td>正态分布随机数</td>
+</tr>
+<tr>
+<td>tf.truncated_normal_initializer</td>
+<td>截断正态分布</td>
+</tr>
+<tr>
+<td>tf.random_uniform_initializer</td>
+<td>平均分布</td>
+</tr>
+<tr>
+<td>tf.zeros_initializer</td>
+<td>全0</td>
+</tr>
+<tr>
+<td>tf.ones_initializer</td>
+<td>全1</td>
+</tr>
+</tbody></table>
+<h3 id="模型持久化"><a href="#模型持久化" class="headerlink" title="模型持久化"></a>模型持久化</h3><p>保存与加载模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保持</span></span><br><span class="line">saver.save(sess, <span class="string">"Saved_model/model.ckpt"</span>)</span><br><span class="line"><span class="comment">#加载</span></span><br><span class="line">saver.restore(sess, <span class="string">"Saved_model/model.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>tf.train.Saver 类支持在保存或者加载时给变量重命名：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存的模型中v1的名字是v1,和这里声明变量的名称不同</span></span><br><span class="line">v1 = tf.Variable(tf.constant(<span class="number">1.0</span>, shape=[<span class="number">1</span>]), name = <span class="string">"other-v1"</span>)</span><br><span class="line"><span class="comment">#通过字典对变量重命名</span></span><br><span class="line">saver = tf.train.Saver(&#123;<span class="string">"v1"</span>: v1&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="最佳实践样例"><a href="#最佳实践样例" class="headerlink" title="最佳实践样例"></a>最佳实践样例</h3><p>将一个程序拆分为三个部分：</p>
+<ol>
+<li>定义向前传播的过程以及神经网络中的参数；</li>
+<li>定义神经网络训练过程；</li>
+<li>定义测试过程。</li>
+</ol>
+<p>计算过程，假设一个 batch 有100张图片，每张图片是784维向量，则输入层是100*784的矩阵，另设隐藏层500节点，输出层10节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;第一层，从输入层到隐藏层：&#125;</span><br><span class="line">[100*784][784*500]+[1*500]=[100*500]</span><br><span class="line"></span><br><span class="line">\text&#123;第二层，从影藏层到输出层：&#125;</span><br><span class="line">[100*500][500*10]+[1*10]=[100*10]</span><br></pre></td></tr></table></figure>
+
+
           
         
       
@@ -2405,7 +2681,33 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/技术教程/TensorFlow/2017-11-2-第四章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/TensorFlow/tensorflow学习笔记/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/11/02/技术教程/TensorFlow/2017-11-2-第四章/" class="post-title-link" itemprop="url">第四章</a>
               
             
           </h1>
@@ -358,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-11-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-02T00:00:00+08:00">2017-11-02</time>
             
 
             
@@ -375,11 +375,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-25 15:10:08" itemprop="dateModified" datetime="2019-06-25T15:10:08+08:00">2019-06-25</time>
+                <time title="修改时间：2019-06-28 16:52:22" itemprop="dateModified" datetime="2019-06-28T16:52:22+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -411,170 +429,64 @@
       
         
           
-            <h1 id="tensorflow笔记"><a href="#tensorflow笔记" class="headerlink" title="tensorflow笔记"></a>tensorflow笔记</h1><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><pre><code># 用numpy构造数据
-x_data = np.random.rand(100).astype(np.float32)
-y_data = x_data*0.1 + 0.3
-#tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值
-#1表示这个变量是一维的，变量的初始范围是-1到1
-Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
-#定了变量初始值为0
-biases = tf.Variable(tf.zeros([1]))
-#预测的y，由真实的数据x_data来表示
-y = Weights*x_data + biases
-#定义损失函数，实际的y与定义的y_data的差值
-loss = tf.reduce_mean(tf.square(y-y_data))
-#定义了一个最原始的优化器，0.5为学习率
-optimizer = tf.train.GradientDescentOptimizer(0.5)
-#用优化器减小误差
-train = optimizer.minimize(loss)
-#建立了神经网络的结构，在使用这个结构之前，我们必须先初始化所有之前定义的Variable初始化
-init = tf.global_variables_initializer()
-#用Session来run每一次training的数据
-sess = tf.Session()
-sess.run(init)
-#要训练多少次，就循环多少次
-for step in range(201):
-sess.run(train)
-if step % 20 == 0:
-#每20次训练输出定义的权重和偏置值
-print(step, sess.run(Weights), sess.run(biases))</code></pre><h2 id="Session会话控制"><a href="#Session会话控制" class="headerlink" title="Session会话控制"></a>Session会话控制</h2><pre><code>#定义两个矩阵，tf.constant表示恒量
-matrix1 = tf.constant([[3,3]])
-matrix2 = tf.constant([[2],
-   [2]])
-#tf.matmul表示矩阵乘法
-product = tf.matmul(matrix1,matrix2)
-# 两种Session的打开模式，法1
-sess = tf.Session()
-result = sess.run(product)
-print(result)
-sess.close()
-#法2
-with tf.Session() as sess:
-result2 = sess.run(product)
-print(result2)</code></pre><h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><pre><code>#变量一定要用tf.Variable定义才是变量
-#这里定义了变量名为0，变量名为counter，然后打印了变量名字
-state = tf.Variable(0, name=&apos;counter&apos;)
-print（state.name）
-# 定义常量 one
-one = tf.constant(1)
-# 定义加法步骤 (注: 此步并没有直接计算)
-new_value = tf.add(state, one)
-# 用tf.assign将 State 更新成为 new_value
-update = tf.assign(state, new_value)
-# 如果定义 Variable, 就一定要 initialize
-# 就是初始化我们定义的变量
-init = tf.global_variables_initializer() 
-# 使用 Session
-with tf.Session() as sess:
-    #必须要run一下init激活我们的结构
-    sess.run(init)
-    for _ in range(3):
-        #每run一次update，state变量就会加1
-        sess.run(update)
-        #注意这里直接 print(state) 不起作用
-        print(sess.run(state))</code></pre><h2 id="Placeholder-传入值"><a href="#Placeholder-传入值" class="headerlink" title="Placeholder 传入值"></a>Placeholder 传入值</h2><pre><code>#在 Tensorflow 中需要定义 placeholder 的 type ，一般为 float32 类型
-input1 = tf.placeholder(tf.float32)
-nput2 = tf.placeholder(tf.float32)
-# mul = multiply 是将input1和input2 做乘法运算，并输出为 output 
-ouput = tf.multiply(input1, input2)
-with tf.Session() as sess:
-    # 需要传入的值放在了feed_dict={} 并一一对应每一个 
-    # input. placeholder 与 feed_dict={} 是绑定在一起出现的
-    print(sess.run(ouput, feed_dict={input1: [7.], input2: [2.]}))</code></pre><h2 id="添加层-def-add-layer"><a href="#添加层-def-add-layer" class="headerlink" title="添加层 def add_layer()"></a>添加层 def add_layer()</h2><pre><code>#定义添加神经层的函数def add_layer(),
-#它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。
-def add_layer(inputs, in_size, out_size, activation_function=None):  
-    #随机变量(normal distribution)会比全部为0要好很多
-    #这里的weights为一个in_size行, out_size列的随机变量矩阵。
-    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
-    #biases的推荐值不为0，所以我们这里是在0向量的基础上又加了0.1
-    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
-    #定义Wx_plus_b, 即神经网络未激活的值
-    Wx_plus_b = tf.matmul(inputs, Weights) + biases
+            <h1 id="深层神经网络"><a href="#深层神经网络" class="headerlink" title="深层神经网络"></a>深层神经网络</h1><h2 id="损失函数定义"><a href="#损失函数定义" class="headerlink" title="损失函数定义"></a>损失函数定义</h2><p><strong>分类问题常用损失函数-交叉熵</strong></p>
+<p>交叉熵刻画了两个概率之的距离，交叉熵值越小两个概率分布越接近，是分类问题中使用比较广泛的损失函数。</p>
+<p>Softmax 回归将神经网络前向传播的得到的结果变成概论分布。tf 中它只是一层额外的处理层，将神经网络的输出变成一个概率分布：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">输入层--&gt;隐藏层</span><br><span class="line">隐藏层--&gt;原始输出层</span><br><span class="line">原始输出层--&gt;Softmax层</span><br><span class="line">Softmax层--&gt;最终输出层</span><br></pre></td></tr></table></figure>
 
-    if activation_function is None:
-        outputs = Wx_plus_b
-    else:
-        outputs = activation_function(Wx_plus_b)
-    #返回输出，添加一个神经层的函数——def add_layer()就定义好了
-    return outputs</code></pre><h2 id="建造神经网络"><a href="#建造神经网络" class="headerlink" title="建造神经网络"></a>建造神经网络</h2><pre><code>#利用占位符定义我们所需的神经网络的输入，训练时再传值！ 
-#tf.placeholder()就是代表占位符
-#这里的None代表无论输入样本有多少都可以，因为输入只有一个特征，所以这里是1。
-xs = tf.placeholder(tf.float32, [None, 1])
-ys = tf.placeholder(tf.float32, [None, 1])
-#构建输入层1个、隐藏层10个、输出层1个神经元的神经网络
-#虽然有三个层，但是只需要定义两个层构造函数即可
-#用上面的添加层函数定义隐藏层，激活函数用relu
-l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
-#定义输出层，输出层输入的数据是隐藏层l1的输出
-prediction = add_layer(l1, 10, 1, activation_function=None)
-#计算预测值prediction和真实值的误差，对二者差的平方求和再取平均。
-loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
-     reduction_indices=[1]))
-#用优化器以0.1的效率来最小化误差loss。
-train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
-init = tf.global_variables_initializer()
-sess = tf.Session()
-sess.run(init)
-#下面，让机器开始学习。
-#机器学习的内容是train_step
-#当运算要用到placeholder时，就需要feed_dict这个字典来指定输入。
-for i in range(1000):
-    # training
-    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
-    if i % 50 == 0:
-        # to see the step improvement
-        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
-#预测对应x值的y值
-prediction_value = sess.run(prediction, feed_dict={xs: x_data})</code></pre><h2 id="Classification-分类学习"><a href="#Classification-分类学习" class="headerlink" title="Classification 分类学习"></a>Classification 分类学习</h2><pre><code>#784表示28x28个特征，即一张图片由784个像素构成
-#相当于每个样本有784个输入
-xs = tf.placeholder(tf.float32, [None, 784])
-#每张图片都表示一个数字，所以我们的输出是数字0到9，共10类。
-#相对于每个样本有10个输出的可能
-ys = tf.placeholder(tf.float32, [None, 10])
-#调用add_layer函数搭建一个最简单的训练网络结构，只有输入层和输出层。 
-prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
-#loss函数（即最优化目标函数）选用交叉熵函数。
-#交叉熵用来衡量预测值和真实值的相似程度，如果完全相同，它们的交叉熵等于零。
-cross_entropy = tf.reduce_mean(
-    -tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))
-#优化器，train方法（最优化算法）采用梯度下降法。
-train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
-sess = tf.Session()
-sess.run(tf.global_variables_initializer())
-#现在开始train，每次只取100张图片，免得数据太多训练太慢。
-#mnist是原始样本集
-batch_xs, batch_ys = mnist.train.next_batch(100)
-sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})</code></pre><h2 id="Dropout-解决-overfitting"><a href="#Dropout-解决-overfitting" class="headerlink" title="Dropout 解决 overfitting"></a>Dropout 解决 overfitting</h2><pre><code>#先定义一个keep_prob
-keep_prob = tf.placeholder(tf.float32)
-#keep_prob最后在这里使用，表示有50%的结果不被Dropout掉
-#keep_prob即保留概率，即我们要保留的结果所占比例
-sess.run(train_step, feed_dict={xs: X_train, ys: y_train, keep_prob: 0.5})
-#dropout掉Wx_plus_b的50%的结果
-#Wx_plus_b是我们定义的预测值
-Wx_plus_b = tf.nn.dropout(Wx_plus_b, keep_prob)</code></pre><h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><pre><code>#定义Weight变量，输入shape，返回变量的参数。
-#其中我们使用tf.truncted_normal产生随机变量来进行初始化
-def weight_variable(shape): 
-    inital=tf.truncted_normal(shape,stddev=0.1)
-    return tf.Variable(initial)
-#定义biase变量，输入shape ,返回变量的一些参数。
-#其中我们使用tf.constant常量函数来进行初始化
-def bias_variable(shape): 
-    initial=tf.constant(0.1,shape=shape) 
-    return tf.Variable(initial)
-#定义卷积，tf.nn.conv2d函数是tensoflow里面的二维的卷积函数
-#x是图片的所有参数，W是此卷积层的权重，
-#然后定义卷积的步长strides=[1,1,1,1]值，strides[0]和strides[3]的两个1是默认值，
-#中间两个1代表padding时在x方向运动一步，y方向运动一步，padding采用的方式是SAME。
-def conv2d(x,W):
-    return tf.nn.conv2d(x,W,strides=[1,1,1,1]，padding=&apos;SAME&apos;) 
-#接着定义池化pooling，
-#为了得到更多的图片信息，padding时我们选的是一次一步，也就是strides[1]=strides[2]=1，
-#这样得到的图片尺寸没有变化，而我们希望压缩一下图片也就是参数能少一些从而减小系统的复杂度，
-#因此我们采用pooling来稀疏化参数，也就是卷积神经网络中所谓的下采样层。
-#pooling 有两种，一种是最大值池化，一种是平均值池化，本例采用的是最大值池化tf.max_pool()。
-#池化的核函数大小为2x2，因此ksize=[1,2,2,1]，步长为2，因此strides=[1,2,2,1]:
-def max_poo_2x2(x): 
-    return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1])</code></pre>
+<p>tf 对 softmax 和交叉熵进了统一的封装，可以用下面的代码实现使用了 softmax 回归后的交叉熵损失函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义的损失函数，y是原始神经网络输出，y_是正确标记</span></span><br><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits(y, y_)</span><br></pre></td></tr></table></figure>
+
+<p><strong>回归问题常用损失函数-均方误差</strong></p>
+<p>tf 实现均方差损失函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义的损失函数，y是原始神经网络输出，y_是正确答案</span></span><br><span class="line">mse = tf.reduce_mean(tf.square(y,y_))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>tf 中一些函数</strong></p>
+<p><strong><em>tf.clip_by_value</em></strong> 将张量的数值限制在一个范围内：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([<span class="number">1.0</span>, <span class="number">3.4</span>, <span class="number">5.3</span>])</span><br><span class="line">w = tf.clip_by_value(v, <span class="number">1.8</span>, <span class="number">4.5</span>)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(w))   <span class="comment">#输出[1.8 3.4 4.5]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.log</em></strong> 对张量中所有元素取对数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([<span class="number">1.0</span>, <span class="number">3.4</span>, <span class="number">5.3</span>])</span><br><span class="line">w = tf.log(v)</span><br></pre></td></tr></table></figure>
+
+<p><strong>*</strong> 实现矩阵的叉乘：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([<span class="number">1.0</span>, <span class="number">3.4</span>, <span class="number">5.3</span>])</span><br><span class="line">w = v*v</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.matmul</em></strong> 实现矩阵的点乘：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line">w = tf.matmul(v, v)</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.reduce_mean</em></strong> 对整个矩阵求平均：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>]])</span><br><span class="line">w = tf.reduce_mean(v)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(w))   <span class="comment">#输出2.5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.greater</em></strong> 比较两个张量中相同位置元素的大小：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>])</span><br><span class="line">v2 = tf.constant([<span class="number">1.3</span>, <span class="number">1.5</span>, <span class="number">3.3</span>])</span><br><span class="line">w = tf.greater(v1, v2)   <span class="comment">#[False True False]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.where</em></strong> 根据条件选择：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第一个参数是判断条件，为Ture,选择第一个</span></span><br><span class="line">s = tf.where(tf.greater(v1, v2), v1, v2)   <span class="comment">#[1.3 2.  3.3]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="神经网络优化算法"><a href="#神经网络优化算法" class="headerlink" title="神经网络优化算法"></a>神经网络优化算法</h2><p>梯度下降算法主要用于优化单个参数的取值，反向传播算法能高效的求每一层中的梯度。</p>
+<p>只有当损失函数为凸函数时，梯度下降算法才能保证全局最优解。可以用随机梯下降算法加快训练过程，实践中一般采取这两者的折中——每计算一小部分训练数据的损失函数。这一小部分数据被称一个 batch。</p>
+<p>Adam优化算法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Adam算法即自适应时刻估计方法，能计算每个参数的自适应学习率</span></span><br><span class="line"><span class="comment">#0.001是初始学习率</span></span><br><span class="line">train_step = tf.train.AdamOptimizer(<span class="number">0.001</span>).minimize(loss)</span><br></pre></td></tr></table></figure>
+
+<p><strong>学习率的设置</strong></p>
+<p>学习率决定了参数每更新的幅度，tf 提供了<strong>指数衰减法</strong>动态调整学习率:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#global_step是训练步数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#初始学习率为0.1，每100轮后学习率乘上0.96，stairvase=True使学习率的衰减成阶梯状</span></span><br><span class="line">learning_rate = tf.train.exponential_decay(<span class="number">0.1</span>, global_step, <span class="number">100</span>, <span class="number">0.96</span>, stairvase=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用指数衰减的学习率</span></span><br><span class="line">learning_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)</span><br></pre></td></tr></table></figure>
+
+<p><strong>过拟合问题</strong></p>
+<p>避免过拟合问题常用的方法是正则化，正则化的思想就是在损失函数中加入刻画模型复杂度的指标（一般是权重）。有L1和L2正则化两种方式。</p>
+<p>损失+正则化示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#前一项是均方损失，后一项中lambda控制正则化项的大小，weight是要计算正则化损失的参数</span></span><br><span class="line">loss = tf.reduce_mean(tf.square(y_-y)) + tf.contrib.l2_regularizer(<span class="keyword">lambda</span>)(weight)</span><br></pre></td></tr></table></figure>
+
+<p>三种正则化计算方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">weight = tf.constant([[<span class="number">1.0</span>, <span class="number">-2.0</span>], [<span class="number">-3.0</span>, <span class="number">4.0</span>]])</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 输出为(|1|+|-2|+|-3|+|4|)*0.5=5</span></span><br><span class="line">    print(sess.run(tf.contrib.layers.l1_regularizer(<span class="number">0.5</span>)(weight)))</span><br><span class="line">    <span class="comment"># 输出为(1²+(-2)²+(-3)²+4²)/2*0.5=7.5</span></span><br><span class="line">    <span class="comment"># TensorFlow会将L2的正则化损失值除以2使得求导得到的结果更加简洁</span></span><br><span class="line">    print(sess.run(tf.contrib.layers.l2_regularizer(<span class="number">0.5</span>)(weight)))</span><br><span class="line">    <span class="comment"># l1_regularizer+l2_regularizer</span></span><br><span class="line">    print(sess.run(tf.contrib.layers.l1_l2_regularizer(<span class="number">0.5</span>, <span class="number">0.5</span>)(weight)))</span><br></pre></td></tr></table></figure>
+
+<p>当网络结构复杂时，可以用 tf 中提供的<a href="https://blog.csdn.net/liushui94/article/details/73481112" target="_blank" rel="noopener">集合</a>简化代码，集合可以保存一组实体（如张量）。</p>
+<p><strong>滑动平均模型</strong></p>
+<p>减少变量的更新，有点像学习率。</p>
+<p>更新公式：<code>$shadow\_variable = decay*shadow\_variable + (1-decay)*variable$</code>。decay决定更新速度，越大模型越稳定，一般设置为非常接近1的数（如：0.999）。</p>
+<p>例子：变量本来要从2变到3，decay为0.999，则实际的变化后的值为：0.999*2+(1-0.999)*3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先定义一个滑动平均类</span></span><br><span class="line">variable_averages = tf.train.ExponentialMovingAverage(decay, global_step)</span><br><span class="line"><span class="comment"># tf.trainable_variables()函数返回所有没指定trainable=False的参数（如global_step一般是True，不会用滑动平均）</span></span><br><span class="line"><span class="comment"># 定义一个滑动平均操作，每次执行时，这个列表中的变量都要更新</span></span><br><span class="line">variables_averages_op = variable_averages.apply(tf.trainable_variables())</span><br></pre></td></tr></table></figure>
           
         
       
@@ -630,7 +542,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/第五章/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/技术教程/TensorFlow/2017-11-1-第三章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -650,7 +562,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/TensorFlow/第五章/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/11/01/技术教程/TensorFlow/2017-11-1-第三章/" class="post-title-link" itemprop="url">第三章</a>
               
             
           </h1>
@@ -675,7 +587,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-01T00:00:00+08:00">2017-11-01</time>
             
 
             
@@ -692,237 +604,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:52:25" itemprop="dateModified" datetime="2019-06-28T16:52:25+08:00">2019-06-28</time>
               
             
           </span>
 
           
-
-          
+            <span class="post-category">
             
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="MNIST-数字识别问题"><a href="#MNIST-数字识别问题" class="headerlink" title="MNIST 数字识别问题"></a>MNIST 数字识别问题</h1><h3 id="MNIST-数据处理"><a href="#MNIST-数据处理" class="headerlink" title="MNIST 数据处理"></a>MNIST 数据处理</h3><p>该数据集包含7万张28*28的图片，其中6万张训练，1万张测试集，每张图片代表0～9中的一个数，每一个像素在0～1之间。</p>
-<p>tf 提供了一个处理 MNIST 数据的类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"></span><br><span class="line"><span class="comment">#载入数据集，若指定位置没有数据，将重网下载</span></span><br><span class="line">mnist = input_data.read_data_sets(<span class="string">"./mnist_data"</span>,one_hot = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">print(mnist.train.num_examples)   <span class="comment">#训练集大小：55000</span></span><br><span class="line">print(mnist.validation.num_examples)   <span class="comment">#验证集大小：5000,验证集相当于可见的测试集</span></span><br><span class="line">print(mnist.test.num_examples)   <span class="comment">#测试集大小：10000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将二维图像矩阵放到长度为784的一维数组中，验证集第一个图片的向量</span></span><br><span class="line">print(mnist.train.images[<span class="number">0</span>])</span><br><span class="line"><span class="comment">#验证集第一个图片的标签的向量：[0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]</span></span><br><span class="line">print(mnist.train.labels[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#mnist.train.next_batch函数每读取训练集中一小部分用训练的batch</span></span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">    xs, ys = mnist.train.next_batch(batch_size)   <span class="comment">#xs是图片, ys是标签</span></span><br><span class="line">    print(ys[<span class="number">0</span>])   <span class="comment">#每个batch第一张图片的标签</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="神经网络模型训练"><a href="#神经网络模型训练" class="headerlink" title="神经网络模型训练"></a>神经网络模型训练</h3><p><strong><em>tf.placeholder(dtype, shape=None, name=None)</em></strong> 函数，占位符，可以理解为形参，用于定义过程，在执行的时候再赋具体的值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(tf.float32, shape=(<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">y = tf.matmul(x, x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment">#print(sess.run(y))  # ERROR: 此处x还没有赋值.</span></span><br><span class="line">    print(sess.run(y, feed_dict=&#123;x: [[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">1.0</span>, <span class="number">2.0</span>]]&#125;))  <span class="comment"># Will succeed.</span></span><br></pre></td></tr></table></figure>
-
-<p><strong><em>tf.argmax(V,1)</em></strong> 函数：返回的是V中的最大值的索引号，如果V是一个向量，那就返回一个值，如果是一个矩阵，那就返回一个向量，这个向量的每一个维度都是相对应矩阵行的最大值元素的索引号。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = [[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</span><br><span class="line">B = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">8</span>, <span class="number">7</span>, <span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(tf.argmax(A, <span class="number">1</span>)))   <span class="comment">#[4]</span></span><br><span class="line">    print(sess.run(tf.argmax(B, <span class="number">1</span>)))   <span class="comment">#[2 2 0 0]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong><em>cast(x, dtype, name=None)</em></strong> 函数：将x的数据格式转化成dtype。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">B = tf.cast(A, dtype=tf.float16)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(B))   <span class="comment">#[1. 3. 4. 5. 6.]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="变量管理"><a href="#变量管理" class="headerlink" title="变量管理"></a>变量管理</h3><p>当神经网络的结构更复杂，参数更多时，tf 提供了通过变量名称来创建或获取一个变量的机制。主要通过 tf.get_variable 和 tf.variable_scope 函数实现。</p>
-<p><strong><em>tf.get_variable</em></strong> 函数：当用于创建变量时，和 tf.Variable 的功能基本等价，最大的区别在于 tf.get_variable 的变量名称参数是必填的参数。</p>
-<p><strong><em>tf.variable_scope</em></strong> 函数：如果需要通过 tf.get_variable 获取一个已经创建的变量， 需要通过 tf.variable_scope 函数来生成一个上下文管理器，并明确指定在这个上下文管理器中。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在名字为foo的命名空间中创建名字为v的变量</span></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    <span class="comment">#注：tf.constant_initializer是变量初始化函数</span></span><br><span class="line">    v = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>], initializer=tf.constant_initializer(<span class="number">1.0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#因为在foo空间中存在了名字为v的变量，所以下面的代码会报错</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">with tf.variable_scope("foo"):</span></span><br><span class="line"><span class="string">    v = tf.get_variable("v", [1])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-
-<p>参数 reuse=True，则 tf.get_variable 只能获取foo空间下已经创建的对象；reuse=False，则 tf.get_variable 将创建对象：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>, reuse=<span class="literal">True</span>):</span><br><span class="line">    v1 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">print(v == v1)   <span class="comment">#True</span></span><br></pre></td></tr></table></figure>
-
-<p>命名空间可以嵌套，可以通过 variable_scope 来管理变量：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    v2 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"foo"</span>):</span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"bar"</span>):</span><br><span class="line">        v3 = tf.get_variable(<span class="string">"v"</span>, [<span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">""</span>, reuse=<span class="literal">True</span>):</span><br><span class="line">    v4 = tf.get_variable(<span class="string">"foo/bar/v"</span>, [<span class="number">1</span>])   <span class="comment">#通过变量的名称来获取变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打印时会自动加上命名空间</span></span><br><span class="line">print(v1.name)   <span class="comment"># v:0</span></span><br><span class="line">print(v2.name)   <span class="comment"># foo/v:0</span></span><br><span class="line">print(v3.name)   <span class="comment"># foo/bar/v:0</span></span><br><span class="line">print(v4.name)   <span class="comment"># foo/bar/v:0</span></span><br></pre></td></tr></table></figure>
-
-<p>变量初始化函数（与第三章的类似）：</p>
-<table>
-<thead>
-<tr>
-<th>初始化函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tf.constant_initializer</td>
-<td>初始化为给定常量</td>
-</tr>
-<tr>
-<td>tf.random_normal_initializer</td>
-<td>正态分布随机数</td>
-</tr>
-<tr>
-<td>tf.truncated_normal_initializer</td>
-<td>截断正态分布</td>
-</tr>
-<tr>
-<td>tf.random_uniform_initializer</td>
-<td>平均分布</td>
-</tr>
-<tr>
-<td>tf.zeros_initializer</td>
-<td>全0</td>
-</tr>
-<tr>
-<td>tf.ones_initializer</td>
-<td>全1</td>
-</tr>
-</tbody></table>
-<h3 id="模型持久化"><a href="#模型持久化" class="headerlink" title="模型持久化"></a>模型持久化</h3><p>保存与加载模型：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保持</span></span><br><span class="line">saver.save(sess, <span class="string">"Saved_model/model.ckpt"</span>)</span><br><span class="line"><span class="comment">#加载</span></span><br><span class="line">saver.restore(sess, <span class="string">"Saved_model/model.ckpt"</span>)</span><br></pre></td></tr></table></figure>
-
-<p>tf.train.Saver 类支持在保存或者加载时给变量重命名：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存的模型中v1的名字是v1,和这里声明变量的名称不同</span></span><br><span class="line">v1 = tf.Variable(tf.constant(<span class="number">1.0</span>, shape=[<span class="number">1</span>]), name = <span class="string">"other-v1"</span>)</span><br><span class="line"><span class="comment">#通过字典对变量重命名</span></span><br><span class="line">saver = tf.train.Saver(&#123;<span class="string">"v1"</span>: v1&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="最佳实践样例"><a href="#最佳实践样例" class="headerlink" title="最佳实践样例"></a>最佳实践样例</h3><p>将一个程序拆分为三个部分：</p>
-<ol>
-<li>定义向前传播的过程以及神经网络中的参数；</li>
-<li>定义神经网络训练过程；</li>
-<li>定义测试过程。</li>
-</ol>
-<p>计算过程，假设一个 batch 有100张图片，每张图片是784维向量，则输入层是100*784的矩阵，另设隐藏层500节点，输出层10节点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\text&#123;第一层，从输入层到隐藏层：&#125;</span><br><span class="line">[100*784][784*500]+[1*500]=[100*500]</span><br><span class="line"></span><br><span class="line">\text&#123;第二层，从影藏层到输出层：&#125;</span><br><span class="line">[100*500][500*10]+[1*10]=[100*10]</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/第三章/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/TensorFlow/第三章/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
+              <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">分类于</span>
               
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
 
-              
+                
                 
               
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
-              
-            
-          </span>
-
+            </span>
           
 
           
@@ -1090,7 +794,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/TensorFlow/numpy教程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/技术教程/Spring Boot/2017-10-9-第8章 单元测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1110,7 +814,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/TensorFlow/numpy教程/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/09/技术教程/Spring Boot/2017-10-9-第8章 单元测试/" class="post-title-link" itemprop="url">第8章 单元测试</a>
               
             
           </h1>
@@ -1135,7 +839,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-09T00:00:00+08:00">2017-10-09</time>
             
 
             
@@ -1152,11 +856,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:43" itemprop="dateModified" datetime="2018-08-12T09:24:43+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:47:26" itemprop="dateModified" datetime="2019-06-28T16:47:26+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1188,7 +910,16 @@ def max_poo_2x2(x):
       
         
           
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">c_dot = np.dot(a,b) <span class="comment">#矩阵相乘</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> A: <span class="comment">#遍历每一行</span></span><br><span class="line"><span class="keyword">for</span> column <span class="keyword">in</span> A.T: <span class="comment">#遍历每一列</span></span><br><span class="line">C = np.vstack((A,B)) <span class="comment">#上下合并</span></span><br><span class="line">D = np.hstack((A,B)) <span class="comment">#左右合并</span></span><br><span class="line">A[np.newaxis,:] <span class="comment">#在行上加上一个维度</span></span><br><span class="line">np.split(A, <span class="number">2</span>, axis=<span class="number">1</span>) <span class="comment">#纵向分割成2块</span></span><br><span class="line">print(np.vsplit(A, <span class="number">3</span>)) <span class="comment">#等于 print(np.split(A, 3, axis=0))</span></span><br><span class="line">b = a.copy()    <span class="comment"># deep copy</span></span><br></pre></td></tr></table></figure>
+            <p>通过对我们要测试的代码编写测试类进行单元测试。</p>
+<p>例如我们要测试 GirlService 类中的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Girl findOne(Integer id)&#123;</span><br><span class="line">    return girlRepository.findOne(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建测试类 GirlServiceTest，通过 IEDA 可以在文件中右键选择运行测试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)   //表示我们要在测试环境中跑了</span><br><span class="line">@SpringBootTest   //表示将启动整个工程</span><br><span class="line">public class GirlServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    //注入我们要测试的类</span><br><span class="line">    @Autowired</span><br><span class="line">    private GirlService girlService;</span><br><span class="line"></span><br><span class="line">    @Test   //测试方法加这个注解</span><br><span class="line">    public void findOneTest()&#123;</span><br><span class="line">        Girl girl = girlService.findOne(1);</span><br><span class="line">        //使用断言，验证 girl 对象的年龄为13</span><br><span class="line">        Assert.assertEquals(new Integer(13), girl.getAge());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 mvn clean package 命令打包时会自动进行单元测试。</p>
+<p>通过 mvn clean package -Dmaven.test.skip=true 跳过单元测试。</p>
+
           
         
       
@@ -1244,7 +975,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/7、统一异常处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/技术教程/Spring Boot/2017-10-8-第7章 统一异常处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1264,7 +995,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/7、统一异常处理/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/08/技术教程/Spring Boot/2017-10-8-第7章 统一异常处理/" class="post-title-link" itemprop="url">第7章 统一异常处理</a>
               
             
           </h1>
@@ -1289,7 +1020,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-08T00:00:00+08:00">2017-10-08</time>
             
 
             
@@ -1306,11 +1037,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:47" itemprop="dateModified" datetime="2018-08-12T09:24:47+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:45:34" itemprop="dateModified" datetime="2019-06-28T16:45:34+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1438,7 +1187,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/8、单元测试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/07/技术教程/Spring Boot/2017-10-7-第6章 使用AOP处理请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1458,7 +1207,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/8、单元测试/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/07/技术教程/Spring Boot/2017-10-7-第6章 使用AOP处理请求/" class="post-title-link" itemprop="url">第6章 使用AOP处理请求</a>
               
             
           </h1>
@@ -1483,7 +1232,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-07T00:00:00+08:00">2017-10-07</time>
             
 
             
@@ -1500,11 +1249,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:44" itemprop="dateModified" datetime="2018-08-12T09:24:44+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:46:24" itemprop="dateModified" datetime="2019-06-28T16:46:24+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1536,15 +1303,27 @@ def max_poo_2x2(x):
       
         
           
-            <p>通过对我们要测试的代码编写测试类进行单元测试。</p>
-<p>例如我们要测试 GirlService 类中的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Girl findOne(Integer id)&#123;</span><br><span class="line">    return girlRepository.findOne(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>新建测试类 GirlServiceTest，通过 IEDA 可以在文件中右键选择运行测试。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)   //表示我们要在测试环境中跑了</span><br><span class="line">@SpringBootTest   //表示将启动整个工程</span><br><span class="line">public class GirlServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    //注入我们要测试的类</span><br><span class="line">    @Autowired</span><br><span class="line">    private GirlService girlService;</span><br><span class="line"></span><br><span class="line">    @Test   //测试方法加这个注解</span><br><span class="line">    public void findOneTest()&#123;</span><br><span class="line">        Girl girl = girlService.findOne(1);</span><br><span class="line">        //使用断言，验证 girl 对象的年龄为13</span><br><span class="line">        Assert.assertEquals(new Integer(13), girl.getAge());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过 mvn clean package 命令打包时会自动进行单元测试。</p>
-<p>通过 mvn clean package -Dmaven.test.skip=true 跳过单元测试。</p>
+            <p>AOP即：面向切面，是一种编程范式、编程思想，与语言无关。</p>
+<p>将通用服务从具体逻辑中分离出来。</p>
+<p>例子，许多操作都需要进行登录验证，可以分离出来：</p>
+<ul>
+<li><p>添加依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建切面类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Aspect   //表示这是一个切面类</span><br><span class="line">@Component   //将文件引入到 spring 容器里去</span><br><span class="line">public class HttpAspect &#123;</span><br><span class="line">    </span><br><span class="line">    //在com.imooc.girl.controller 包下 GirlController 控制器的 girlList 方法执行之前，执行如下方法</span><br><span class="line">    //@Before 前置通知，在连接点前面执行，前置通知不会影响连接点，除非此处抛出异常</span><br><span class="line">    @Before(&quot;execution(public * com.imooc.girl.controller.GirlController.girlList(..))&quot;)</span><br><span class="line">    public void log()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //在 com.imooc.girl.controller 包下 GirlController 控制器的所有方法执行之后，执行如下方法</span><br><span class="line">    //@After 返回通知，在连接点执行完后执行，不管是否正常执行，都会执行返回通知中的内容。</span><br><span class="line">    //后面一个 * 表示所有方法</span><br><span class="line">    @After(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">    public void logs()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优化一：减少代码量</p>
+<p>  当有多个方法切同一个点时，用如下方法减少代码量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">@Component   //将文件引入到spring容器里去</span><br><span class="line">public class HttpAspect &#123;</span><br><span class="line">    </span><br><span class="line">    //表示切这个点</span><br><span class="line">    @Pointcut(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">    public void log()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Before(&quot;log()&quot;)</span><br><span class="line">    public void doBefore()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @After(&quot;log()&quot;)</span><br><span class="line">    public void doAfter()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优化二：使用日志记录</p>
+<p>  日志记录更加详细。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//注意选org.slf4j这个，是spring自带的日志框架</span><br><span class="line">//还要注意参数名是所在的类名</span><br><span class="line">private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);</span><br><span class="line"></span><br><span class="line">@Pointcut(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">public void log()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Before(&quot;log()&quot;)</span><br><span class="line">public void doBefore()&#123;</span><br><span class="line">    //写入日志</span><br><span class="line">    logger.info(&quot;成功&quot;);</span><br><span class="line">&#125;</span><br><span class="line">@After(&quot;log()&quot;)</span><br><span class="line">public void doAfter()&#123;</span><br><span class="line">    logger.info(&quot;成功&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取请求和返回的信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span>   <span class="comment">//将文件引入到spring容器里去</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注意选org.slf4j这个，是spring自带的日志框架</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(HttpAspect.class);</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.imooc.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">        <span class="comment">//注意选 javax.servlet.http.HttpServletRequest</span></span><br><span class="line">        HttpServletRequest request = attributes.getRequest();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取请求 url</span></span><br><span class="line">        <span class="comment">//request就会记录到大括号里</span></span><br><span class="line">        logger.info(<span class="string">"url=&#123;&#125;"</span>, request.getRequestURI());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//method</span></span><br><span class="line">        logger.info(<span class="string">"method=&#123;&#125;"</span>, request.getMethod());</span><br><span class="line">        <span class="comment">//ip</span></span><br><span class="line">        logger.info(<span class="string">"ip=&#123;&#125;"</span>, request.getRemoteAddr());</span><br><span class="line">        <span class="comment">//类方法</span></span><br><span class="line">        logger.info(<span class="string">"class_method=&#123;&#125;"</span>,joinPoint.getSignature().getDeclaringTypeName()+<span class="string">"."</span>+joinPoint.getSignature().getName());</span><br><span class="line">        <span class="comment">//参数</span></span><br><span class="line">        logger.info(<span class="string">"args=&#123;&#125;"</span>,joinPoint.getArgs());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取返回对象，这里返回对象是 Girl 实体</span></span><br><span class="line">    <span class="meta">@AfterReturning</span>(returning = <span class="string">"object"</span>, pointcut=<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturning</span><span class="params">(Object object)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里要在 Girl 实体加一个 toString() 方法</span></span><br><span class="line">        logger.info(<span class="string">"response=&#123;&#125;"</span>, object.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
           
         
@@ -1601,7 +1380,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/3、数据库操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/06/技术教程/Spring Boot/2017-10-6-第5章 表单验证/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1621,7 +1400,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/3、数据库操作/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/06/技术教程/Spring Boot/2017-10-6-第5章 表单验证/" class="post-title-link" itemprop="url">第5章 表单验证</a>
               
             
           </h1>
@@ -1646,7 +1425,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-06 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-06T00:00:00+08:00">2017-10-06</time>
             
 
             
@@ -1663,11 +1442,387 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-15 17:34:17" itemprop="dateModified" datetime="2018-08-15T17:34:17+08:00">2018-08-15</time>
+                <time title="修改时间：2019-06-28 16:44:45" itemprop="dateModified" datetime="2019-06-28T16:44:45+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对数据输入的数据进行验证，比如验证女生的年龄必须大于18岁才有效：</p>
+<ul>
+<li><p>在实体表类 Girl 中添加@Min最小值注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加验证注解，验证失败会给出 message 信息</span></span><br><span class="line"><span class="meta">@Min</span>(value = <span class="number">18</span>, message = <span class="string">"未成年人禁止入内"</span>)</span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改控制器中的要修改的信息，这里是是添加女生的函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个女生</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="comment">//@Valid 是要验证的对象，BindingResult会给出验证结果</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@Valid Girl girl, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="comment">//如果验证错误，控制台打印默认错误信息并返回</span></span><br><span class="line">    <span class="keyword">if</span>(bindingResult.hasErrors())&#123;</span><br><span class="line">        System.out.println(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/05/技术教程/Spring Boot/2017-10-5-第4章 事务管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/10/05/技术教程/Spring Boot/2017-10-5-第4章 事务管理/" class="post-title-link" itemprop="url">第4章 事务管理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-05 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-05T00:00:00+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:43:32" itemprop="dateModified" datetime="2019-06-28T16:43:32+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>事务管理指的是涉及数据库时，作为单个逻辑工作单元执行的一系列操作，要么这些操作完全执行，要么都不执行。</p>
+<p>例如插入两条记录，要么都成功，要么都不要插入：</p>
+<p>先建一个类定义数据库操作类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Service注解，将自动注册到Spring容器</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//事物管理注解，只有当下面的函数中的语句都能正确执行，才进行插入操作</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girlA = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlA.setCupSize(<span class="string">"A"</span>);</span><br><span class="line">        girlA.setAge(<span class="number">18</span>);</span><br><span class="line">        girlRepository.save(girlA);</span><br><span class="line"></span><br><span class="line">        Girl girlB = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlB.setCupSize(<span class="string">"B"</span>);</span><br><span class="line">        girlB.setAge(<span class="number">19</span>);</span><br><span class="line">        girlRepository.save(girlB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改控制器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入 GirlService 类</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlService girlService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/two"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        girlService.insertTwo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/04/技术教程/Spring Boot/2017-10-4-第3章 数据库操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/10/04/技术教程/Spring Boot/2017-10-4-第3章 数据库操作/" class="post-title-link" itemprop="url">第3章 数据库操作</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-04T00:00:00+08:00">2017-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:41:06" itemprop="dateModified" datetime="2019-06-28T16:41:06+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1791,7 +1946,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/4、事务管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/03/技术教程/Spring Boot/2017-10-3-第2章 Controller的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1811,7 +1966,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/4、事务管理/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/03/技术教程/Spring Boot/2017-10-3-第2章 Controller的使用/" class="post-title-link" itemprop="url">第2章 Controller的使用</a>
               
             
           </h1>
@@ -1836,7 +1991,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-03 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-03T00:00:00+08:00">2017-10-03</time>
             
 
             
@@ -1853,11 +2008,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:45" itemprop="dateModified" datetime="2018-08-12T09:24:45+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:41:41" itemprop="dateModified" datetime="2019-06-28T16:41:41+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1889,13 +2062,61 @@ def max_poo_2x2(x):
       
         
           
-            <p>事务管理指的是涉及数据库时，作为单个逻辑工作单元执行的一系列操作，要么这些操作完全执行，要么都不执行。</p>
-<p>例如插入两条记录，要么都成功，要么都不要插入：</p>
-<p>先建一个类定义数据库操作类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Service注解，将自动注册到Spring容器</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository girlRepository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//事物管理注解，只有当下面的函数中的语句都能正确执行，才进行插入操作</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girlA = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlA.setCupSize(<span class="string">"A"</span>);</span><br><span class="line">        girlA.setAge(<span class="number">18</span>);</span><br><span class="line">        girlRepository.save(girlA);</span><br><span class="line"></span><br><span class="line">        Girl girlB = <span class="keyword">new</span> Girl();</span><br><span class="line">        girlB.setCupSize(<span class="string">"B"</span>);</span><br><span class="line">        girlB.setAge(<span class="number">19</span>);</span><br><span class="line">        girlRepository.save(girlB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="第一部分：url-请求"><a href="#第一部分：url-请求" class="headerlink" title="第一部分：url 请求"></a>第一部分：url 请求</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Controller</td>
+<td>处理http请求</td>
+</tr>
+<tr>
+<td>@RestController</td>
+<td>@ResponseBody与@Controller的组合</td>
+</tr>
+<tr>
+<td>@RequestMapping</td>
+<td>配置url映射</td>
+</tr>
+<tr>
+<td>@GetMapping</td>
+<td>组合注解，还有@PostMapping等</td>
+</tr>
+</tbody></table>
+<p>相对于 @Controller 一般使用 @RestController，表这个类的是控制器，其所有方法返回的数据直接给浏览器（如果是对象，转为json格式），如果其中某些方法要返回 html 页面在类就必须用 @Controller。</p>
+<p>对于 @Controller：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class HelloController &#123;</span><br><span class="line"></span><br><span class="line">    @ResponseBody   //返回数据 &quot;hello world&quot;</span><br><span class="line">    @GetMapping(value = &quot;/hello&quot;)</span><br><span class="line">    public String hello()&#123;</span><br><span class="line">        return &quot;hello world&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(value = &quot;/success&quot;)</span><br><span class="line">    public String success()&#123;</span><br><span class="line">        return &quot;success&quot;;   //返回 classpath:/templates/ 下的 success.html 文件给浏览器</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>修改控制器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入 GirlService 类</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlService girlService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/two"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        girlService.insertTwo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于 @RequestMapping：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)   <span class="comment">//可以用于类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//可以用于类中的方法，如果不写get或者post方法，则都行，但最好明确写出来</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/say"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//访问 /hello/say1 与 /hello/say2 都调用该方法</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/say1"</span>, <span class="string">"say2"</span>&#125;, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world 2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@GetMapping 例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//@RequestMapping(value = "/say", method = RequestMethod.GET)</span></span><br><span class="line">    <span class="comment">//@GetMapping 实现了上面语句的功能，减少了代码量</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/say"</span>）</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二部分：url-请求中的参数"><a href="#第二部分：url-请求中的参数" class="headerlink" title="第二部分：url 请求中的参数"></a>第二部分：url 请求中的参数</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@PathVariable</td>
+<td>获取url中的数据</td>
+</tr>
+<tr>
+<td>@RequestParam</td>
+<td>获取请求参数的值</td>
+</tr>
+</tbody></table>
+<p>@PathVariable 例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/say/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="comment">//假设请求为 /hello/say/100，则 myid=100，为 int 类型</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id: "</span> + myid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/&#123;id&#125;/say"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say2</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id: "</span> + myid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@RequestParam 例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/say"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="comment">//这时请求链接为 /hello/say?id=100，这是较为传统的方式</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id: "</span> + myid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/say"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="comment">//设置了 id 可以不用传，默认值为0，注意加了引号</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>,required = <span class="keyword">false</span>,defaultValue = <span class="string">"0"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id: "</span> + myid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1951,7 +2172,7 @@ def max_poo_2x2(x):
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/6、使用AOP处理请求/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/技术教程/Spring Boot/2017-10-2-第1章 配置文件使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="夏雨潇潇">
@@ -1971,7 +2192,7 @@ def max_poo_2x2(x):
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/28/技术教程/Spring Boot/6、使用AOP处理请求/" class="post-title-link" itemprop="url">未命名</a>
+                <a href="/2017/10/02/技术教程/Spring Boot/2017-10-2-第1章 配置文件使用/" class="post-title-link" itemprop="url">第1章 配置文件使用</a>
               
             
           </h1>
@@ -1996,7 +2217,7 @@ def max_poo_2x2(x):
                 
               
 
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
+              <time title="创建时间：2017-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-02T00:00:00+08:00">2017-10-02</time>
             
 
             
@@ -2013,11 +2234,29 @@ def max_poo_2x2(x):
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-12 09:24:46" itemprop="dateModified" datetime="2018-08-12T09:24:46+08:00">2018-08-12</time>
+                <time title="修改时间：2019-06-28 16:41:52" itemprop="dateModified" datetime="2019-06-28T16:41:52+08:00">2019-06-28</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2049,189 +2288,13 @@ def max_poo_2x2(x):
       
         
           
-            <p>AOP即：面向切面，是一种编程范式、编程思想，与语言无关。</p>
-<p>将通用服务从具体逻辑中分离出来。</p>
-<p>例子，许多操作都需要进行登录验证，可以分离出来：</p>
-<ul>
-<li><p>添加依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建切面类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Aspect   //表示这是一个切面类</span><br><span class="line">@Component   //将文件引入到 spring 容器里去</span><br><span class="line">public class HttpAspect &#123;</span><br><span class="line">    </span><br><span class="line">    //在com.imooc.girl.controller 包下 GirlController 控制器的 girlList 方法执行之前，执行如下方法</span><br><span class="line">    //@Before 前置通知，在连接点前面执行，前置通知不会影响连接点，除非此处抛出异常</span><br><span class="line">    @Before(&quot;execution(public * com.imooc.girl.controller.GirlController.girlList(..))&quot;)</span><br><span class="line">    public void log()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //在 com.imooc.girl.controller 包下 GirlController 控制器的所有方法执行之后，执行如下方法</span><br><span class="line">    //@After 返回通知，在连接点执行完后执行，不管是否正常执行，都会执行返回通知中的内容。</span><br><span class="line">    //后面一个 * 表示所有方法</span><br><span class="line">    @After(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">    public void logs()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>优化一：减少代码量</p>
-<p>  当有多个方法切同一个点时，用如下方法减少代码量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">@Component   //将文件引入到spring容器里去</span><br><span class="line">public class HttpAspect &#123;</span><br><span class="line">    </span><br><span class="line">    //表示切这个点</span><br><span class="line">    @Pointcut(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">    public void log()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Before(&quot;log()&quot;)</span><br><span class="line">    public void doBefore()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @After(&quot;log()&quot;)</span><br><span class="line">    public void doAfter()&#123;</span><br><span class="line">        System.out.println(&quot;yes&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>优化二：使用日志记录</p>
-<p>  日志记录更加详细。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//注意选org.slf4j这个，是spring自带的日志框架</span><br><span class="line">//还要注意参数名是所在的类名</span><br><span class="line">private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);</span><br><span class="line"></span><br><span class="line">@Pointcut(&quot;execution(public * com.imooc.girl.controller.GirlController.*(..))&quot;)</span><br><span class="line">public void log()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Before(&quot;log()&quot;)</span><br><span class="line">public void doBefore()&#123;</span><br><span class="line">    //写入日志</span><br><span class="line">    logger.info(&quot;成功&quot;);</span><br><span class="line">&#125;</span><br><span class="line">@After(&quot;log()&quot;)</span><br><span class="line">public void doAfter()&#123;</span><br><span class="line">    logger.info(&quot;成功&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取请求和返回的信息</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span>   <span class="comment">//将文件引入到spring容器里去</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注意选org.slf4j这个，是spring自带的日志框架</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(HttpAspect.class);</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.imooc.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">        <span class="comment">//注意选 javax.servlet.http.HttpServletRequest</span></span><br><span class="line">        HttpServletRequest request = attributes.getRequest();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取请求 url</span></span><br><span class="line">        <span class="comment">//request就会记录到大括号里</span></span><br><span class="line">        logger.info(<span class="string">"url=&#123;&#125;"</span>, request.getRequestURI());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//method</span></span><br><span class="line">        logger.info(<span class="string">"method=&#123;&#125;"</span>, request.getMethod());</span><br><span class="line">        <span class="comment">//ip</span></span><br><span class="line">        logger.info(<span class="string">"ip=&#123;&#125;"</span>, request.getRemoteAddr());</span><br><span class="line">        <span class="comment">//类方法</span></span><br><span class="line">        logger.info(<span class="string">"class_method=&#123;&#125;"</span>,joinPoint.getSignature().getDeclaringTypeName()+<span class="string">"."</span>+joinPoint.getSignature().getName());</span><br><span class="line">        <span class="comment">//参数</span></span><br><span class="line">        logger.info(<span class="string">"args=&#123;&#125;"</span>,joinPoint.getArgs());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取返回对象，这里返回对象是 Girl 实体</span></span><br><span class="line">    <span class="meta">@AfterReturning</span>(returning = <span class="string">"object"</span>, pointcut=<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturning</span><span class="params">(Object object)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里要在 Girl 实体加一个 toString() 方法</span></span><br><span class="line">        logger.info(<span class="string">"response=&#123;&#125;"</span>, object.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+            <p>配置文件有 application.properties 与 application.yml 两种类型，推荐使用后面一种。</p>
+<h2 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h2><p>以 application.yml 类型为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line"></span><br><span class="line">cupSize: B</span><br><span class="line">age: 18</span><br><span class="line"></span><br><span class="line">content: &quot;cupSize: $&#123;cupSize&#125;, age: $&#123;age&#125;&quot;</span><br></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
+<p>则其他地方可以这用使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;cupSize&#125;&quot;)</span><br><span class="line">private String cupSize;   //cupSize 的值为 B</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;age&#125;&quot;)</span><br><span class="line">private String age;   //age 的值为 18</span><br><span class="line"></span><br><span class="line">@Value(&quot;$&#123;content&#125;&quot;)</span><br><span class="line">private String content;   //content 的值为 cupSize: B, age: 18</span><br></pre></td></tr></table></figure>
 
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/技术教程/Spring Boot/5、表单验证/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏雨潇潇">
-      <meta itemprop="description" content="Hello world!">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="龙宇的博客小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/技术教程/Spring Boot/5、表单验证/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 14:04:54" itemprop="dateCreated datePublished" datetime="2019-06-28T14:04:54+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-12 09:24:44" itemprop="dateModified" datetime="2018-08-12T09:24:44+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对数据输入的数据进行验证，比如验证女生的年龄必须大于18岁才有效：</p>
-<ul>
-<li><p>在实体表类 Girl 中添加@Min最小值注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加验证注解，验证失败会给出 message 信息</span></span><br><span class="line"><span class="meta">@Min</span>(value = <span class="number">18</span>, message = <span class="string">"未成年人禁止入内"</span>)</span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改控制器中的要修改的信息，这里是是添加女生的函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个女生</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="comment">//@Valid 是要验证的对象，BindingResult会给出验证结果</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@Valid Girl girl, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="comment">//如果验证错误，控制台打印默认错误信息并返回</span></span><br><span class="line">    <span class="keyword">if</span>(bindingResult.hasErrors())&#123;</span><br><span class="line">        System.out.println(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="keyword">return</span> girlRepository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
 
           
         
@@ -2344,7 +2407,33 @@ def max_poo_2x2(x):
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

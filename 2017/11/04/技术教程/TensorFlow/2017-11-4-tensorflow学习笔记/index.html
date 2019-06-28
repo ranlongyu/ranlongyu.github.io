@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="tensorflow笔记一个小例子# 用numpy构造数据 x_data = np.random.rand(100).astype(np.float32) y_data = x_data*0.1 + 0.3 #tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值 #1表示这个变量是一维的，变量的初始范围是-1到1 Weights = tf.Variab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/11/04/技术教程/TensorFlow/2017-11-4-tensorflow学习笔记/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="tensorflow笔记一个小例子# 用numpy构造数据 x_data = np.random.rand(100).astype(np.float32) y_data = x_data*0.1 + 0.3 #tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值 #1表示这个变量是一维的，变量的初始范围是-1到1 Weights = tf.Variab">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-28T08:51:46.530Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tensorflow学习笔记">
+<meta name="twitter:description" content="tensorflow笔记一个小例子# 用numpy构造数据 x_data = np.random.rand(100).astype(np.float32) y_data = x_data*0.1 + 0.3 #tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值 #1表示这个变量是一维的，变量的初始范围是-1到1 Weights = tf.Variab">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/11/04/技术教程/TensorFlow/2017-11-4-tensorflow学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>tensorflow学习笔记 | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/技术教程/TensorFlow/2017-11-4-tensorflow学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tensorflow学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-04T00:00:00+08:00">2017-11-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:51:46" itemprop="dateModified" datetime="2019-06-28T16:51:46+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="tensorflow笔记"><a href="#tensorflow笔记" class="headerlink" title="tensorflow笔记"></a>tensorflow笔记</h1><h2 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h2><pre><code># 用numpy构造数据
+x_data = np.random.rand(100).astype(np.float32)
+y_data = x_data*0.1 + 0.3
+#tf.Variable定义了一个变量，random_uniform表示用随机的方式生成变量的初始值
+#1表示这个变量是一维的，变量的初始范围是-1到1
+Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+#定了变量初始值为0
+biases = tf.Variable(tf.zeros([1]))
+#预测的y，由真实的数据x_data来表示
+y = Weights*x_data + biases
+#定义损失函数，实际的y与定义的y_data的差值
+loss = tf.reduce_mean(tf.square(y-y_data))
+#定义了一个最原始的优化器，0.5为学习率
+optimizer = tf.train.GradientDescentOptimizer(0.5)
+#用优化器减小误差
+train = optimizer.minimize(loss)
+#建立了神经网络的结构，在使用这个结构之前，我们必须先初始化所有之前定义的Variable初始化
+init = tf.global_variables_initializer()
+#用Session来run每一次training的数据
+sess = tf.Session()
+sess.run(init)
+#要训练多少次，就循环多少次
+for step in range(201):
+sess.run(train)
+if step % 20 == 0:
+#每20次训练输出定义的权重和偏置值
+print(step, sess.run(Weights), sess.run(biases))</code></pre><h2 id="Session会话控制"><a href="#Session会话控制" class="headerlink" title="Session会话控制"></a>Session会话控制</h2><pre><code>#定义两个矩阵，tf.constant表示恒量
+matrix1 = tf.constant([[3,3]])
+matrix2 = tf.constant([[2],
+   [2]])
+#tf.matmul表示矩阵乘法
+product = tf.matmul(matrix1,matrix2)
+# 两种Session的打开模式，法1
+sess = tf.Session()
+result = sess.run(product)
+print(result)
+sess.close()
+#法2
+with tf.Session() as sess:
+result2 = sess.run(product)
+print(result2)</code></pre><h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><pre><code>#变量一定要用tf.Variable定义才是变量
+#这里定义了变量名为0，变量名为counter，然后打印了变量名字
+state = tf.Variable(0, name=&apos;counter&apos;)
+print（state.name）
+# 定义常量 one
+one = tf.constant(1)
+# 定义加法步骤 (注: 此步并没有直接计算)
+new_value = tf.add(state, one)
+# 用tf.assign将 State 更新成为 new_value
+update = tf.assign(state, new_value)
+# 如果定义 Variable, 就一定要 initialize
+# 就是初始化我们定义的变量
+init = tf.global_variables_initializer() 
+# 使用 Session
+with tf.Session() as sess:
+    #必须要run一下init激活我们的结构
+    sess.run(init)
+    for _ in range(3):
+        #每run一次update，state变量就会加1
+        sess.run(update)
+        #注意这里直接 print(state) 不起作用
+        print(sess.run(state))</code></pre><h2 id="Placeholder-传入值"><a href="#Placeholder-传入值" class="headerlink" title="Placeholder 传入值"></a>Placeholder 传入值</h2><pre><code>#在 Tensorflow 中需要定义 placeholder 的 type ，一般为 float32 类型
+input1 = tf.placeholder(tf.float32)
+nput2 = tf.placeholder(tf.float32)
+# mul = multiply 是将input1和input2 做乘法运算，并输出为 output 
+ouput = tf.multiply(input1, input2)
+with tf.Session() as sess:
+    # 需要传入的值放在了feed_dict={} 并一一对应每一个 
+    # input. placeholder 与 feed_dict={} 是绑定在一起出现的
+    print(sess.run(ouput, feed_dict={input1: [7.], input2: [2.]}))</code></pre><h2 id="添加层-def-add-layer"><a href="#添加层-def-add-layer" class="headerlink" title="添加层 def add_layer()"></a>添加层 def add_layer()</h2><pre><code>#定义添加神经层的函数def add_layer(),
+#它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。
+def add_layer(inputs, in_size, out_size, activation_function=None):  
+    #随机变量(normal distribution)会比全部为0要好很多
+    #这里的weights为一个in_size行, out_size列的随机变量矩阵。
+    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
+    #biases的推荐值不为0，所以我们这里是在0向量的基础上又加了0.1
+    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
+    #定义Wx_plus_b, 即神经网络未激活的值
+    Wx_plus_b = tf.matmul(inputs, Weights) + biases
+
+    if activation_function is None:
+        outputs = Wx_plus_b
+    else:
+        outputs = activation_function(Wx_plus_b)
+    #返回输出，添加一个神经层的函数——def add_layer()就定义好了
+    return outputs</code></pre><h2 id="建造神经网络"><a href="#建造神经网络" class="headerlink" title="建造神经网络"></a>建造神经网络</h2><pre><code>#利用占位符定义我们所需的神经网络的输入，训练时再传值！ 
+#tf.placeholder()就是代表占位符
+#这里的None代表无论输入样本有多少都可以，因为输入只有一个特征，所以这里是1。
+xs = tf.placeholder(tf.float32, [None, 1])
+ys = tf.placeholder(tf.float32, [None, 1])
+#构建输入层1个、隐藏层10个、输出层1个神经元的神经网络
+#虽然有三个层，但是只需要定义两个层构造函数即可
+#用上面的添加层函数定义隐藏层，激活函数用relu
+l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
+#定义输出层，输出层输入的数据是隐藏层l1的输出
+prediction = add_layer(l1, 10, 1, activation_function=None)
+#计算预测值prediction和真实值的误差，对二者差的平方求和再取平均。
+loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
+     reduction_indices=[1]))
+#用优化器以0.1的效率来最小化误差loss。
+train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+#下面，让机器开始学习。
+#机器学习的内容是train_step
+#当运算要用到placeholder时，就需要feed_dict这个字典来指定输入。
+for i in range(1000):
+    # training
+    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+    if i % 50 == 0:
+        # to see the step improvement
+        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
+#预测对应x值的y值
+prediction_value = sess.run(prediction, feed_dict={xs: x_data})</code></pre><h2 id="Classification-分类学习"><a href="#Classification-分类学习" class="headerlink" title="Classification 分类学习"></a>Classification 分类学习</h2><pre><code>#784表示28x28个特征，即一张图片由784个像素构成
+#相当于每个样本有784个输入
+xs = tf.placeholder(tf.float32, [None, 784])
+#每张图片都表示一个数字，所以我们的输出是数字0到9，共10类。
+#相对于每个样本有10个输出的可能
+ys = tf.placeholder(tf.float32, [None, 10])
+#调用add_layer函数搭建一个最简单的训练网络结构，只有输入层和输出层。 
+prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
+#loss函数（即最优化目标函数）选用交叉熵函数。
+#交叉熵用来衡量预测值和真实值的相似程度，如果完全相同，它们的交叉熵等于零。
+cross_entropy = tf.reduce_mean(
+    -tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))
+#优化器，train方法（最优化算法）采用梯度下降法。
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+#现在开始train，每次只取100张图片，免得数据太多训练太慢。
+#mnist是原始样本集
+batch_xs, batch_ys = mnist.train.next_batch(100)
+sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})</code></pre><h2 id="Dropout-解决-overfitting"><a href="#Dropout-解决-overfitting" class="headerlink" title="Dropout 解决 overfitting"></a>Dropout 解决 overfitting</h2><pre><code>#先定义一个keep_prob
+keep_prob = tf.placeholder(tf.float32)
+#keep_prob最后在这里使用，表示有50%的结果不被Dropout掉
+#keep_prob即保留概率，即我们要保留的结果所占比例
+sess.run(train_step, feed_dict={xs: X_train, ys: y_train, keep_prob: 0.5})
+#dropout掉Wx_plus_b的50%的结果
+#Wx_plus_b是我们定义的预测值
+Wx_plus_b = tf.nn.dropout(Wx_plus_b, keep_prob)</code></pre><h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><pre><code>#定义Weight变量，输入shape，返回变量的参数。
+#其中我们使用tf.truncted_normal产生随机变量来进行初始化
+def weight_variable(shape): 
+    inital=tf.truncted_normal(shape,stddev=0.1)
+    return tf.Variable(initial)
+#定义biase变量，输入shape ,返回变量的一些参数。
+#其中我们使用tf.constant常量函数来进行初始化
+def bias_variable(shape): 
+    initial=tf.constant(0.1,shape=shape) 
+    return tf.Variable(initial)
+#定义卷积，tf.nn.conv2d函数是tensoflow里面的二维的卷积函数
+#x是图片的所有参数，W是此卷积层的权重，
+#然后定义卷积的步长strides=[1,1,1,1]值，strides[0]和strides[3]的两个1是默认值，
+#中间两个1代表padding时在x方向运动一步，y方向运动一步，padding采用的方式是SAME。
+def conv2d(x,W):
+    return tf.nn.conv2d(x,W,strides=[1,1,1,1]，padding=&apos;SAME&apos;) 
+#接着定义池化pooling，
+#为了得到更多的图片信息，padding时我们选的是一次一步，也就是strides[1]=strides[2]=1，
+#这样得到的图片尺寸没有变化，而我们希望压缩一下图片也就是参数能少一些从而减小系统的复杂度，
+#因此我们采用pooling来稀疏化参数，也就是卷积神经网络中所谓的下采样层。
+#pooling 有两种，一种是最大值池化，一种是平均值池化，本例采用的是最大值池化tf.max_pool()。
+#池化的核函数大小为2x2，因此ksize=[1,2,2,1]，步长为2，因此strides=[1,2,2,1]:
+def max_poo_2x2(x): 
+    return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1])</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/技术教程/TensorFlow/2017-11-3-第五章/" rel="next" title="第五章">
+                <i class="fa fa-chevron-left"></i> 第五章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/05/技术教程/TensorFlow/20170-11-5-numpy教程/" rel="prev" title="numpy教程">
+                numpy教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tensorflow笔记"><span class="nav-number">1.</span> <span class="nav-text">tensorflow笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个小例子"><span class="nav-number">1.1.</span> <span class="nav-text">一个小例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session会话控制"><span class="nav-number">1.2.</span> <span class="nav-text">Session会话控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variable-变量"><span class="nav-number">1.3.</span> <span class="nav-text">Variable 变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Placeholder-传入值"><span class="nav-number">1.4.</span> <span class="nav-text">Placeholder 传入值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加层-def-add-layer"><span class="nav-number">1.5.</span> <span class="nav-text">添加层 def add_layer()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造神经网络"><span class="nav-number">1.6.</span> <span class="nav-text">建造神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-分类学习"><span class="nav-number">1.7.</span> <span class="nav-text">Classification 分类学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout-解决-overfitting"><span class="nav-number">1.8.</span> <span class="nav-text">Dropout 解决 overfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN-卷积神经网络"><span class="nav-number">1.9.</span> <span class="nav-text">CNN 卷积神经网络</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

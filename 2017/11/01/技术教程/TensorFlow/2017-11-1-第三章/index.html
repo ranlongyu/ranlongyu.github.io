@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/source/images/favicon.ico?v=7.1.2">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="TensorFlow入门计算模型-计算图tf 程序可以分为两个阶段：定图中的计算，执行计算。 tf 会自动将定义的计算转化为上的节点。 数据模型-张量tf 中的所有数据都是通过张量的形式来表示，张量可以被简的理解为多维数组。张量中并没有真正保存数字，它保存的是如何得到这些数字的计算过程。 一个张量主要保存三个属性：name, shape, type。 12# tf.constant是一个计算，产生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三章">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/技术教程/TensorFlow/2017-11-1-第三章/index.html">
+<meta property="og:site_name" content="龙宇的博客小站">
+<meta property="og:description" content="TensorFlow入门计算模型-计算图tf 程序可以分为两个阶段：定图中的计算，执行计算。 tf 会自动将定义的计算转化为上的节点。 数据模型-张量tf 中的所有数据都是通过张量的形式来表示，张量可以被简的理解为多维数组。张量中并没有真正保存数字，它保存的是如何得到这些数字的计算过程。 一个张量主要保存三个属性：name, shape, type。 12# tf.constant是一个计算，产生">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-28T08:52:25.829Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三章">
+<meta name="twitter:description" content="TensorFlow入门计算模型-计算图tf 程序可以分为两个阶段：定图中的计算，执行计算。 tf 会自动将定义的计算转化为上的节点。 数据模型-张量tf 中的所有数据都是通过张量的形式来表示，张量可以被简的理解为多维数组。张量中并没有真正保存数字，它保存的是如何得到这些数字的计算过程。 一个张量主要保存三个属性：name, shape, type。 12# tf.constant是一个计算，产生">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/11/01/技术教程/TensorFlow/2017-11-1-第三章/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第三章 | 龙宇的博客小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">龙宇的博客小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/技术教程/TensorFlow/2017-11-1-第三章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏雨潇潇">
+      <meta itemprop="description" content="Hello world!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="龙宇的博客小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第三章
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-01T00:00:00+08:00">2017-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-28 16:52:25" itemprop="dateModified" datetime="2019-06-28T16:52:25+08:00">2019-06-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TensorFlow入门"><a href="#TensorFlow入门" class="headerlink" title="TensorFlow入门"></a>TensorFlow入门</h1><h3 id="计算模型-计算图"><a href="#计算模型-计算图" class="headerlink" title="计算模型-计算图"></a>计算模型-计算图</h3><p>tf 程序可以分为两个阶段：定图中的计算，执行计算。</p>
+<p>tf 会自动将定义的计算转化为上的节点。</p>
+<h3 id="数据模型-张量"><a href="#数据模型-张量" class="headerlink" title="数据模型-张量"></a>数据模型-张量</h3><p>tf 中的所有数据都是通过张量的形式来表示，张量可以被简的理解为多维数组。张量中并没有真正保存数字，它保存的是如何得到这些数字的计算过程。</p>
+<p>一个张量主要保存三个属性：name, shape, type。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tf.constant是一个计算，产生一个常量，计算结果为一个张量</span></span><br><span class="line">a = tf.constant([<span class="number">1.0</span>,<span class="number">2.0</span>],name=<span class="string">"a"</span>，dtype=tf.float32)</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行模型-会话"><a href="#运行模型-会话" class="headerlink" title="运行模型-会话"></a>运行模型-会话</h3><p>会话拥有并管理 tf 程序运行时的所有资源。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment">#使用创建的对话来计算关心的结果</span></span><br><span class="line">    sess.run(...)</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量（tf.Variable）的作用就是保存和更新神经网络中的参数，变量必须被初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成了一个2*3的均值为0，标准差为2的矩阵,来初始weights</span></span><br><span class="line">weights = tf.Variable(tf.random_normal([<span class="number">2</span>,<span class="number">3</span>], stddev=<span class="number">2</span>))</span><br><span class="line"><span class="comment"># 用常数初始化</span></span><br><span class="line">biases = tf.Variable(tf.zeros([<span class="number">3</span>]))</span><br><span class="line"><span class="comment"># 用其他变量初始化,weights初始值的2倍</span></span><br><span class="line">w2 = tf.Variable(weights.initialized_value() * <span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>虽然变量在定义时给出了初始化的方法，但这个方法并没有被真正运行，需要：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化所有变量</span></span><br><span class="line">init_op = tf.global_variables_initializer()</span><br><span class="line">sess.run(init_op)</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>tf.truncated_normal(shape, mean, stddev)</em></strong> 函数：shape表示生成张量的维度，mean是均值，stddev是标准差。</p>
+<p>从截断的正态分布中输出随机值。生成的值服从具有指定平均值和标准偏差的正态分布，如果生成的值大于平均值2个标准偏差的值则丢弃重新选择。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = tf.Variable(tf.truncated_normal([<span class="number">2</span>, <span class="number">2</span>], mean=<span class="number">1</span>, stddev=<span class="number">1</span>))</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    print(sess.run(a))</span><br></pre></td></tr></table></figure>
+
+<p>随机数生成函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>随机数分布</th>
+<th>主要参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tf.random_normal</td>
+<td>正态分布</td>
+<td>平均值、标准差、取值类型</td>
+</tr>
+<tr>
+<td>tf.truncated_normal</td>
+<td>被截断的正态分布</td>
+<td>平均值、标准差、取值类型</td>
+</tr>
+<tr>
+<td>tf.random_uniform</td>
+<td>均匀分布</td>
+<td>最小、最大取值，取值类型</td>
+</tr>
+<tr>
+<td>tf.random_gamma</td>
+<td>Gamma分布</td>
+<td>形状参数 alpha、尺度参数 beta、取值类型</td>
+</tr>
+</tbody></table>
+<p>常数生成函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>功能</th>
+<th>样例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tf.zeros</td>
+<td>产生全0的数组</td>
+<td>tf.zeros([2,3],int32)-&gt;[[0,0,0][0,0,0]]</td>
+</tr>
+<tr>
+<td>tf.ones</td>
+<td>产生全1的数组</td>
+<td>tf.ones([2,3],int32)-&gt;[[1,1,1][1,1,1]]</td>
+</tr>
+<tr>
+<td>tf.fill</td>
+<td>产生一个全部为给定数字的数组</td>
+<td>tf.fill([2,3],9)-&gt;[[9,9,9][9,9,9]]</td>
+</tr>
+<tr>
+<td>tf.constant</td>
+<td>产生给定值常量</td>
+<td>tf.constant([1,2,3])-&gt;[1,2,3]</td>
+</tr>
+</tbody></table>
+<p><strong>变量与张量的区别</strong>：变量的声明函数 tf.Variable 是一个运算，运算的结果是是一个张量，变量是特殊的张量。变量是含张量的内存缓冲。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/技术教程/Spring Boot/2017-10-9-第8章 单元测试/" rel="next" title="第8章 单元测试">
+                <i class="fa fa-chevron-left"></i> 第8章 单元测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/02/技术教程/TensorFlow/2017-11-2-第四章/" rel="prev" title="第四章">
+                第四章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="夏雨潇潇">
+            
+              <p class="site-author-name" itemprop="name">夏雨潇潇</p>
+              <div class="site-description motion-element" itemprop="description">Hello world!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow入门"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算模型-计算图"><span class="nav-number">1.0.1.</span> <span class="nav-text">计算模型-计算图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型-张量"><span class="nav-number">1.0.2.</span> <span class="nav-text">数据模型-张量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行模型-会话"><span class="nav-number">1.0.3.</span> <span class="nav-text">运行模型-会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.0.4.</span> <span class="nav-text">变量</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏雨潇潇</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
